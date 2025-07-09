@@ -1,0 +1,402 @@
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  FiArrowLeft,
+  FiMapPin,
+  FiClock,
+  FiUsers,
+  FiCamera,
+  FiStar,
+  FiChevronLeft,
+  FiChevronRight,
+} from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
+import { toursData } from "../data/toursData";
+
+const TourDetails = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const tour = toursData.find((t) => t.id === parseInt(id));
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  if (!tour) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Tour Not Found
+          </h2>
+          <button
+            onClick={() => navigate("/")}
+            className="bg-riviera-blue text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Back to Home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const whatsappMessage = `Hello! I'm interested in booking the "${tour.title}" tour for ${tour.price} ${tour.priceType}. Could you please provide more details about availability and booking?`;
+  const whatsappUrl = `https://wa.me/33605985410?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
+
+  // Phone number: +33 6 05 98 54 10
+  // Format for URL: 33605985410 (no spaces, no + sign)
+  // To use local images:
+  // 1. Add your images to public/images/tours/ folder
+  // 2. Replace the URLs below with /images/tours/your-image-name.jpg
+  const slideshowImages = [
+    {
+      url: "/images/tours/img1.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img2.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img3.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img4.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img5.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img6.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img7.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img8.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img9.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img10.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img11.jpeg", // Replace with your image
+    },
+    {
+      url: "/images/tours/img13.jpeg", // Replace with your image
+    },
+  ];
+
+  // City facts for the recap section
+  const cityFacts = [
+    {
+      name: "Nice",
+      facts: [
+        "Founded by the Greeks in 350 BC",
+        "Capital of the French Riviera",
+        "Famous for its 7km Promenade des Anglais",
+        "Home to the largest old town on the Riviera",
+      ],
+    },
+    {
+      name: "Villefranche-sur-Mer",
+      facts: [
+        "One of the deepest natural harbors in the Mediterranean",
+        "Medieval citadel from the 16th century",
+        "Picturesque fishing village",
+        "Featured in many Hollywood films",
+      ],
+    },
+    {
+      name: "Monaco",
+      facts: [
+        "Second smallest country in the world",
+        "No personal income tax",
+        "Home to the famous Monte Carlo Casino",
+        "Ruled by the Grimaldi family since 1297",
+      ],
+    },
+    {
+      name: "Èze",
+      facts: [
+        "Perched 400 meters above sea level",
+        "Medieval village dating back to the Middle Ages",
+        "Famous exotic garden with panoramic views",
+        "Inspiration for many artists and writers",
+      ],
+    },
+    {
+      name: "Menton",
+      facts: [
+        "Known as the 'Pearl of France'",
+        "Warmest microclimate on the French Riviera",
+        "Famous for its annual Lemon Festival",
+        "Strong Italian architectural influence",
+      ],
+    },
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + slideshowImages.length) % slideshowImages.length
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation Header */}
+      <div className="bg-white shadow-sm sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <button
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 text-riviera-blue hover:text-blue-700 transition-colors"
+          >
+            <FiArrowLeft className="w-5 h-5" />
+            Back to Home
+          </button>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="relative h-96 overflow-hidden">
+        <img
+          src={tour.image}
+          alt={tour.title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        <div className="absolute bottom-8 left-8 text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{tour.title}</h1>
+          <div className="flex items-center gap-6 text-lg">
+            <div className="flex items-center gap-2">
+              <FiClock className="w-5 h-5" />
+              <span>{tour.duration}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FiMapPin className="w-5 h-5" />
+              <span>{tour.city}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FiUsers className="w-5 h-5" />
+              <span>Max 8 people</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            {/* Overview */}
+            <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                Tour Overview
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                {tour.description}
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <FiClock className="w-8 h-8 text-riviera-blue mx-auto mb-2" />
+                  <div className="font-semibold text-gray-800">Duration</div>
+                  <div className="text-gray-600">{tour.duration}</div>
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <FiUsers className="w-8 h-8 text-riviera-blue mx-auto mb-2" />
+                  <div className="font-semibold text-gray-800">Group Size</div>
+                  <div className="text-gray-600">Max 8 people</div>
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <FiCamera className="w-8 h-8 text-riviera-blue mx-auto mb-2" />
+                  <div className="font-semibold text-gray-800">Photography</div>
+                  <div className="text-gray-600">Assistance included</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Photo Slideshow */}
+            <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                Tour Gallery
+              </h2>
+              <div className="relative group">
+                <div className="aspect-video rounded-xl overflow-hidden bg-gray-100 relative">
+                  {/* Image Container with Smooth Transitions */}
+                  <div className="relative w-full h-full">
+                    {slideshowImages.map((image, index) => (
+                      <div
+                        key={index}
+                        className={`absolute inset-0 transition-all duration-700 ease-out ${
+                          index === currentSlide
+                            ? "opacity-100 scale-100"
+                            : "opacity-0 scale-105"
+                        }`}
+                      >
+                        <img
+                          src={image.url}
+                          alt={`Tour gallery ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Modern Navigation Arrows - Only show on hover */}
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 
+                             bg-white/20 backdrop-blur-sm hover:bg-white/30 
+                             text-white p-3 rounded-full transition-all duration-300 
+                             opacity-0 group-hover:opacity-100 hover:scale-110
+                             border border-white/20"
+                  >
+                    <FiChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 
+                             bg-white/20 backdrop-blur-sm hover:bg-white/30 
+                             text-white p-3 rounded-full transition-all duration-300 
+                             opacity-0 group-hover:opacity-100 hover:scale-110
+                             border border-white/20"
+                  >
+                    <FiChevronRight className="w-5 h-5" />
+                  </button>
+
+                  {/* Modern Progress Bar */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
+                    <div
+                      className="h-full bg-white transition-all duration-700 ease-out"
+                      style={{
+                        width: `${
+                          ((currentSlide + 1) / slideshowImages.length) * 100
+                        }%`,
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Minimalist Dots Indicator */}
+                <div className="flex justify-center mt-6 space-x-2">
+                  {slideshowImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentSlide
+                          ? "w-8 h-2 bg-riviera-blue"
+                          : "w-2 h-2 bg-gray-300 hover:bg-gray-400 hover:scale-125"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Image Counter */}
+                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                  {currentSlide + 1} / {slideshowImages.length}
+                </div>
+              </div>
+            </div>
+
+            {/* Cities Recap */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                Cities We'll Discover
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Here are some fascinating facts about the cities along our
+                route. More detailed historical insights and stories will be
+                shared during the trip!
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {cityFacts.map((city, index) => (
+                  <div
+                    key={index}
+                    className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+                  >
+                    <h3 className="text-xl font-bold text-riviera-blue mb-3">
+                      {city.name}
+                    </h3>
+                    <ul className="space-y-2">
+                      {city.facts.map((fact, factIndex) => (
+                        <li
+                          key={factIndex}
+                          className="flex items-start gap-2 text-gray-600"
+                        >
+                          <FiStar className="w-4 h-4 text-sunset-orange mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">{fact}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+                <p className="text-riviera-blue font-medium text-center">
+                  💫 These are just glimpses of what awaits! During our journey,
+                  you'll discover much more fascinating stories, local legends,
+                  and hidden historical details about each destination.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            {/* Booking Card */}
+            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+              <div className="text-center mb-6">
+                <div className="text-4xl font-bold text-riviera-blue mb-2">
+                  {tour.price}
+                </div>
+                <div className="text-gray-600">{tour.priceType}</div>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-600">Duration</span>
+                  <span className="font-medium">{tour.duration}</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-600">Group Size</span>
+                  <span className="font-medium">Max 8 people</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-600">Languages</span>
+                  <span className="font-medium">FR, EN, AR</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-gray-600">Includes</span>
+                  <span className="font-medium">Transportation</span>
+                </div>
+              </div>
+
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-lg font-semibold text-lg transition-colors duration-200 flex items-center justify-center gap-2 mb-4"
+              >
+                <FaWhatsapp className="w-5 h-5" />
+                Book on WhatsApp
+              </a>
+
+              <div className="text-center text-sm text-gray-500">
+                Instant confirmation • Free cancellation up to 24h before
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TourDetails;
