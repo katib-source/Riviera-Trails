@@ -17,6 +17,8 @@ const TourCard = ({ tour, onBooking }) => {
 
   const handleCardClick = () => {
     navigate(`/tour/${tour.id}`);
+    // Scroll to top when navigating to tour details
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

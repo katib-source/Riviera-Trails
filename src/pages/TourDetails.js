@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   FiArrowLeft,
@@ -9,6 +9,8 @@ import {
   FiStar,
   FiChevronLeft,
   FiChevronRight,
+  FiX,
+  FiZoomIn,
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { toursData } from "../data/toursData";
@@ -18,6 +20,27 @@ const TourDetails = () => {
   const navigate = useNavigate();
   const tour = toursData.find((t) => t.id === parseInt(id));
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // Handle escape key to close modal
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === "Escape" && isModalOpen) {
+        setIsModalOpen(false);
+        document.body.style.overflow = "unset";
+      }
+    };
+
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isModalOpen]);
 
   if (!tour) {
     return (
@@ -145,6 +168,26 @@ const TourDetails = () => {
     );
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "unset"; // Restore scrolling
+  };
+
+  const nextSlideModal = () => {
+    setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
+  };
+
+  const prevSlideModal = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + slideshowImages.length) % slideshowImages.length
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation Header */}
@@ -229,7 +272,10 @@ const TourDetails = () => {
               <div className="relative group">
                 <div className="aspect-video rounded-xl overflow-hidden bg-gray-100 relative">
                   {/* Image Container with Smooth Transitions */}
-                  <div className="relative w-full h-full">
+                  <div
+                    className="relative w-full h-full group cursor-pointer"
+                    onClick={openModal}
+                  >
                     {slideshowImages.map((image, index) => (
                       <div
                         key={index}
@@ -242,10 +288,20 @@ const TourDetails = () => {
                         <img
                           src={image.url}
                           alt={`Tour gallery ${index + 1}`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     ))}
+
+                    {/* Zoom indicator overlay */}
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="bg-white/90 backdrop-blur-sm text-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+                        <FiZoomIn className="w-5 h-5" />
+                        <span className="text-sm font-medium">
+                          Click to expand
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Modern Navigation Arrows - Always visible on mobile, hover on desktop */}
@@ -414,6 +470,79 @@ const TourDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* Full-Screen Image Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4">
+          {/* Close button */}
+          <button
+            onClick={closeModal}
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
+          >
+            <FiX className="w-8 h-8" />
+          </button>
+
+          {/* Modal content */}
+          <div className="relative w-full h-full max-w-6xl max-h-full flex items-center justify-center">
+            {/* Previous button */}
+            <button
+              onClick={prevSlideModal}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 
+                       bg-white/20 backdrop-blur-sm hover:bg-white/30 
+                       text-white p-3 rounded-full transition-all duration-300 
+                       hover:scale-110 border border-white/20 z-10"
+            >
+              <FiChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Image */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <img
+                src={slideshowImages[currentSlide].url}
+                alt={`Tour gallery ${currentSlide + 1}`}
+                className="max-w-full max-h-full object-contain"
+              />
+            </div>
+
+            {/* Next button */}
+            <button
+              onClick={nextSlideModal}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 
+                       bg-white/20 backdrop-blur-sm hover:bg-white/30 
+                       text-white p-3 rounded-full transition-all duration-300 
+                       hover:scale-110 border border-white/20 z-10"
+            >
+              <FiChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Image counter */}
+            <div
+              className="absolute bottom-4 left-1/2 transform -translate-x-1/2 
+                         bg-black/60 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium"
+            >
+              {currentSlide + 1} / {slideshowImages.length}
+            </div>
+
+            {/* Dots indicator */}
+            <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {slideshowImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`transition-all duration-300 rounded-full ${
+                    index === currentSlide
+                      ? "w-8 h-2 bg-white"
+                      : "w-2 h-2 bg-white/50 hover:bg-white/75 hover:scale-125"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Click outside to close */}
+          <div className="absolute inset-0 -z-10" onClick={closeModal} />
+        </div>
+      )}
     </div>
   );
 };
