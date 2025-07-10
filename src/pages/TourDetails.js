@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  FiArrowLeft,
   FiMapPin,
   FiClock,
   FiUsers,
@@ -190,19 +189,6 @@ const TourDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center gap-2 text-riviera-blue hover:text-blue-700 transition-colors"
-          >
-            <FiArrowLeft className="w-5 h-5" />
-            Back to Home
-          </button>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden">
         <img
@@ -211,6 +197,7 @@ const TourDetails = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
         <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8 text-white">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight">
             {tour.title}
