@@ -19,25 +19,25 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+      <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-4xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
           Riviera Trails
         </h1>
 
-        <p className="text-xl md:text-2xl mb-4 text-gray-200 font-light">
+        <p className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 text-gray-200 font-light">
           Local expert. Unique experiences. Small groups.
         </p>
 
-        <p className="text-lg mb-8 text-gray-300 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg mb-6 sm:mb-8 text-gray-300 max-w-2xl mx-auto leading-relaxed">
           Discover the hidden gems and iconic landmarks of the French Riviera
           with passionate local guides. From Nice's charming old town to
           Monaco's glamorous streets.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12">
           <a
             href="#tours"
-            className="bg-riviera-blue hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+            className="w-full sm:w-auto bg-riviera-blue hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-lg"
           >
             Discover Our Guided Tours
           </a>
@@ -46,7 +46,7 @@ const Hero = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-2 border-white hover:bg-white hover:text-gray-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center gap-2"
+            className="w-full sm:w-auto border-2 border-white hover:bg-white hover:text-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
             <FaWhatsapp className="w-5 h-5" />
             Contact on WhatsApp

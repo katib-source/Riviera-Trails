@@ -161,36 +161,38 @@ const TourDetails = () => {
       </div>
 
       {/* Hero Section */}
-      <div className="relative h-96 overflow-hidden">
+      <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden">
         <img
           src={tour.image}
           alt={tour.title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-        <div className="absolute bottom-8 left-8 text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{tour.title}</h1>
-          <div className="flex items-center gap-6 text-lg">
-            <div className="flex items-center gap-2">
-              <FiClock className="w-5 h-5" />
+        <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8 text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight">
+            {tour.title}
+          </h1>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 text-sm sm:text-base md:text-lg">
+            <div className="flex items-center gap-1 sm:gap-2">
+              <FiClock className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>{tour.duration}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <FiMapPin className="w-5 h-5" />
-              <span>{tour.city}</span>
+            <div className="flex items-center gap-1 sm:gap-2">
+              <FiMapPin className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="truncate">{tour.city}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <FiUsers className="w-5 h-5" />
+            <div className="flex items-center gap-1 sm:gap-2">
+              <FiUsers className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>Max 8 people</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Main Content */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 order-2 lg:order-1">
             {/* Overview */}
             <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
               <h2 className="text-3xl font-bold text-gray-800 mb-6">
@@ -246,26 +248,26 @@ const TourDetails = () => {
                     ))}
                   </div>
 
-                  {/* Modern Navigation Arrows - Only show on hover */}
+                  {/* Modern Navigation Arrows - Always visible on mobile, hover on desktop */}
                   <button
                     onClick={prevSlide}
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 
+                    className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 
                              bg-white/20 backdrop-blur-sm hover:bg-white/30 
-                             text-white p-3 rounded-full transition-all duration-300 
-                             opacity-0 group-hover:opacity-100 hover:scale-110
+                             text-white p-2 sm:p-3 rounded-full transition-all duration-300 
+                             lg:opacity-0 lg:group-hover:opacity-100 hover:scale-110
                              border border-white/20"
                   >
-                    <FiChevronLeft className="w-5 h-5" />
+                    <FiChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                   <button
                     onClick={nextSlide}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 
+                    className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 
                              bg-white/20 backdrop-blur-sm hover:bg-white/30 
-                             text-white p-3 rounded-full transition-all duration-300 
-                             opacity-0 group-hover:opacity-100 hover:scale-110
+                             text-white p-2 sm:p-3 rounded-full transition-all duration-300 
+                             lg:opacity-0 lg:group-hover:opacity-100 hover:scale-110
                              border border-white/20"
                   >
-                    <FiChevronRight className="w-5 h-5" />
+                    <FiChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
 
                   {/* Modern Progress Bar */}
@@ -282,22 +284,23 @@ const TourDetails = () => {
                 </div>
 
                 {/* Minimalist Dots Indicator */}
-                <div className="flex justify-center mt-6 space-x-2">
+                <div className="flex justify-center mt-4 sm:mt-6 space-x-2">
                   {slideshowImages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
-                      className={`transition-all duration-300 rounded-full ${
+                      className={`transition-all duration-300 rounded-full touch-manipulation ${
                         index === currentSlide
-                          ? "w-8 h-2 bg-riviera-blue"
+                          ? "w-6 sm:w-8 h-2 bg-riviera-blue"
                           : "w-2 h-2 bg-gray-300 hover:bg-gray-400 hover:scale-125"
                       }`}
+                      style={{ minWidth: "16px", minHeight: "16px" }} // Ensure minimum touch target
                     />
                   ))}
                 </div>
 
                 {/* Image Counter */}
-                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-black/60 backdrop-blur-sm text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
                   {currentSlide + 1} / {slideshowImages.length}
                 </div>
               </div>
@@ -349,32 +352,48 @@ const TourDetails = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 order-1 lg:order-2">
             {/* Booking Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
-              <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-riviera-blue mb-2">
+            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:sticky lg:top-24">
+              <div className="text-center mb-4 sm:mb-6">
+                <div className="text-3xl sm:text-4xl font-bold text-riviera-blue mb-2">
                   {tour.price}
                 </div>
                 <div className="text-gray-600">{tour.priceType}</div>
               </div>
 
-              <div className="space-y-4 mb-6">
+              <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Duration</span>
-                  <span className="font-medium">{tour.duration}</span>
+                  <span className="text-gray-600 text-sm sm:text-base">
+                    Duration
+                  </span>
+                  <span className="font-medium text-sm sm:text-base">
+                    {tour.duration}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Group Size</span>
-                  <span className="font-medium">Max 8 people</span>
+                  <span className="text-gray-600 text-sm sm:text-base">
+                    Group Size
+                  </span>
+                  <span className="font-medium text-sm sm:text-base">
+                    Max 8 people
+                  </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Languages</span>
-                  <span className="font-medium">FR, EN, AR</span>
+                  <span className="text-gray-600 text-sm sm:text-base">
+                    Languages
+                  </span>
+                  <span className="font-medium text-sm sm:text-base">
+                    FR, EN, AR
+                  </span>
                 </div>
                 <div className="flex justify-between items-center py-2">
-                  <span className="text-gray-600">Includes</span>
-                  <span className="font-medium">Transportation</span>
+                  <span className="text-gray-600 text-sm sm:text-base">
+                    Includes
+                  </span>
+                  <span className="font-medium text-sm sm:text-base">
+                    Transportation
+                  </span>
                 </div>
               </div>
 
@@ -382,13 +401,13 @@ const TourDetails = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-lg font-semibold text-lg transition-colors duration-200 flex items-center justify-center gap-2 mb-4"
+                className="w-full bg-green-500 hover:bg-green-600 text-white py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-colors duration-200 flex items-center justify-center gap-2 mb-3 sm:mb-4"
               >
-                <FaWhatsapp className="w-5 h-5" />
+                <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
                 Book on WhatsApp
               </a>
 
-              <div className="text-center text-sm text-gray-500">
+              <div className="text-center text-xs sm:text-sm text-gray-500">
                 Instant confirmation • Free cancellation up to 24h before
               </div>
             </div>
