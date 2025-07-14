@@ -1,5 +1,6 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { FadeIn, SlideIn } from "./LoadingAnimations";
 
 const Hero = () => {
   const whatsappUrl =
@@ -20,13 +21,17 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-4xl mx-auto">
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-          Riviera Trails
-        </h1>
+        <FadeIn>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+            Riviera Trails
+          </h1>
+        </FadeIn>
 
-        <p className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 text-gray-200 font-light">
-          Local expert. Unique experiences. Small groups.
-        </p>
+        <FadeIn delay={200}>
+          <p className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 text-gray-200 font-light">
+            Local expert. Unique experiences. Small groups.
+          </p>
+        </FadeIn>
 
         <p className="text-base sm:text-lg mb-6 sm:mb-8 text-gray-300 max-w-2xl mx-auto leading-relaxed">
           Discover the hidden gems and iconic landmarks of the French Riviera

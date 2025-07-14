@@ -13,6 +13,8 @@ import {
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { toursData } from "../data/toursData";
+import BookingForm from "../components/BookingForm";
+import SEOHead, { seoConfigs } from "../components/SEOHead";
 
 const TourDetails = () => {
   const { id } = useParams();
@@ -20,6 +22,7 @@ const TourDetails = () => {
   const tour = toursData.find((t) => t.id === parseInt(id));
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -189,6 +192,7 @@ const TourDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead {...seoConfigs.tourDetails(tour)} />
       {/* Hero Section */}
       <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden">
         <img
@@ -213,7 +217,7 @@ const TourDetails = () => {
             </div>
             <div className="flex items-center gap-1 sm:gap-2">
               <FiUsers className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>Max 8 people</span>
+              <span>Max 4 people</span>
             </div>
           </div>
         </div>
@@ -241,7 +245,7 @@ const TourDetails = () => {
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <FiUsers className="w-8 h-8 text-riviera-blue mx-auto mb-2" />
                   <div className="font-semibold text-gray-800">Group Size</div>
-                  <div className="text-gray-600">Max 8 people</div>
+                  <div className="text-gray-600">Max 4 people</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <FiCamera className="w-8 h-8 text-riviera-blue mx-auto mb-2" />
@@ -419,7 +423,7 @@ const TourDetails = () => {
                     Group Size
                   </span>
                   <span className="font-medium text-sm sm:text-base">
-                    Max 8 people
+                    Max 4 people
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
@@ -440,15 +444,16 @@ const TourDetails = () => {
                 </div>
               </div>
 
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-green-500 hover:bg-green-600 text-white py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-colors duration-200 flex items-center justify-center gap-2 mb-3 sm:mb-4"
+              {/* Book Now Button */}
+              <button
+                onClick={() => setIsBookingOpen(true)}
+                className="w-full bg-riviera-blue hover:bg-blue-700 text-white py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-colors duration-200 flex items-center justify-center gap-2 mb-3 sm:mb-4"
               >
-                <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
-                Book on WhatsApp
-              </a>
+                 Book Your Tour
+              </button>
+
+              
+             
 
               <div className="text-center text-xs sm:text-sm text-gray-500">
                 Instant confirmation • Free cancellation up to 24h before
@@ -529,6 +534,11 @@ const TourDetails = () => {
           {/* Click outside to close */}
           <div className="absolute inset-0 -z-10" onClick={closeModal} />
         </div>
+      )}
+
+      {/* Booking Form Modal */}
+      {isBookingOpen && (
+        <BookingForm tour={tour} onClose={() => setIsBookingOpen(false)} />
       )}
     </div>
   );

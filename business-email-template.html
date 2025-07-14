@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        padding: 20px;
+        border-radius: 8px 8px 0 0;
+      }
+      .content {
+        background: #f8f9fa;
+        padding: 20px;
+      }
+      .booking-details {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+      .action-required {
+        background: #fef3c7;
+        border: 1px solid #f59e0b;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+      .footer {
+        background: #6b7280;
+        color: white;
+        padding: 15px;
+        border-radius: 0 0 8px 8px;
+        text-align: center;
+      }
+      ul {
+        padding-left: 20px;
+      }
+      li {
+        margin: 8px 0;
+      }
+      .highlight {
+        color: #10b981;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>🆕 New Booking Received</h2>
+      </div>
+
+      <div class="content">
+        <div class="booking-details">
+          <h3>📋 Booking Details</h3>
+          <ul>
+            <li>
+              <strong>Customer:</strong>
+              <span class="highlight">{{customer_name}}</span>
+            </li>
+            <li><strong>Email:</strong> {{customer_email}}</li>
+            <li><strong>Phone:</strong> {{customer_phone}}</li>
+            <li><strong>Tour:</strong> {{tour_title}}</li>
+            <li><strong>Price:</strong> {{tour_price}}</li>
+            <li><strong>Guests:</strong> {{guests_count}}</li>
+            <li><strong>Preferred Date:</strong> {{preferred_date}}</li>
+            <li><strong>Order ID:</strong> {{order_id}}</li>
+            <li><strong>Booking Date:</strong> {{booking_date}}</li>
+          </ul>
+        </div>
+
+        <h3>💬 Special Requests</h3>
+        <p>{{special_requests}}</p>
+
+        <div class="action-required">
+          <h3>⚡ Action Required</h3>
+          <p>
+            <strong
+              >Please contact the customer within 24 hours to confirm the
+              booking details.</strong
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>
+          <small
+            >This is an automated notification from your Riviera Trails booking
+            system.</small
+          >
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

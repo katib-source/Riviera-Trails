@@ -8,11 +8,14 @@ import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import TourDetails from "./pages/TourDetails";
+import WhatsAppWidget from "./components/WhatsAppWidget";
+import SEOHead, { seoConfigs } from "./components/SEOHead";
 import "./App.css";
 
 // Home Page Component
 const HomePage = () => (
   <>
+    <SEOHead {...seoConfigs.home} />
     <Hero />
     <Tours />
     <About />
@@ -31,6 +34,7 @@ function App() {
           <Route path="/tour/:id" element={<TourDetails />} />
         </Routes>
         <Footer />
+        <WhatsAppWidget />
       </div>
     </Router>
   );

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: white;
+        padding: 20px;
+        border-radius: 8px 8px 0 0;
+      }
+      .content {
+        background: #f8f9fa;
+        padding: 20px;
+      }
+      .booking-details {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+      .footer {
+        background: #6b7280;
+        color: white;
+        padding: 15px;
+        border-radius: 0 0 8px 8px;
+        text-align: center;
+      }
+      ul {
+        padding-left: 20px;
+      }
+      li {
+        margin: 8px 0;
+      }
+      .highlight {
+        color: #3b82f6;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>🌊 Booking Confirmation - Riviera Trails</h2>
+      </div>
+
+      <div class="content">
+        <p>Dear <strong>{{to_name}}</strong>,</p>
+
+        <p>
+          Thank you for booking with Riviera Trails! We're excited to share the
+          beauty of the French Riviera with you.
+        </p>
+
+        <div class="booking-details">
+          <h3>📋 Booking Details</h3>
+          <ul>
+            <li><strong>Tour:</strong> {{tour_title}}</li>
+            <li><strong>Duration:</strong> {{tour_duration}}</li>
+            <li><strong>Price:</strong> {{tour_price}}</li>
+            <li><strong>Guests:</strong> {{guests_count}}</li>
+            <li><strong>Preferred Date:</strong> {{preferred_date}}</li>
+            <li><strong>Order ID:</strong> {{order_id}}</li>
+            <li><strong>Booking Date:</strong> {{booking_date}}</li>
+          </ul>
+        </div>
+
+        <h3>📞 Next Steps</h3>
+        <p>We'll contact you within 24 hours to:</p>
+        <ul>
+          <li>Confirm your tour date and time</li>
+          <li>Provide meeting point details</li>
+          <li>Answer any questions you might have</li>
+        </ul>
+
+        <h3>📱 Contact Information</h3>
+        <p>If you have any immediate questions:</p>
+        <ul>
+          <li>
+            <strong>Phone/WhatsApp:</strong>
+            <span class="highlight">{{guide_phone}}</span>
+          </li>
+          <li>
+            <strong>Email:</strong>
+            <span class="highlight">{{guide_email}}</span>
+          </li>
+        </ul>
+
+        <h3>🔄 Cancellation Policy</h3>
+        <p>
+          Free cancellation up to 24 hours before your tour. For cancellations,
+          please contact us directly.
+        </p>
+
+        <p>We can't wait to show you the magic of the French Riviera!</p>
+
+        <p>Best regards,<br /><strong>Your Riviera Trails Team</strong></p>
+      </div>
+
+      <div class="footer">
+        <p>
+          <small
+            >This is an automated confirmation email. Please save this email for
+            your records.</small
+          >
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
