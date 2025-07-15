@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const SEOHead = ({
-  title = "Riviera Trails - French Riviera Tours | Expert Local Guide",
+  title = "Azur Escape - French Riviera Tours | Expert Local Guide",
   description = "Discover the French Riviera with expert local guide. Small group tours from Nice to Menton. Book your authentic Côte d'Azur experience today. Licensed guide, instant booking.",
   keywords = "French Riviera tours, Nice tours, Monaco tours, Côte d'Azur guide, Riviera tours, Mediterranean tours, local guide France, small group tours",
   canonical = window.location.href,
@@ -30,7 +30,7 @@ const SEOHead = ({
     updateMetaTag("description", description);
     updateMetaTag("keywords", keywords);
     updateMetaTag("robots", "index, follow");
-    updateMetaTag("author", "Riviera Trails");
+    updateMetaTag("author", "Azur Escape");
     updateMetaTag("viewport", "width=device-width, initial-scale=1.0");
 
     // Open Graph tags
@@ -39,7 +39,7 @@ const SEOHead = ({
     updateMetaTag("og:type", "website", true);
     updateMetaTag("og:url", canonical, true);
     updateMetaTag("og:image", ogImage, true);
-    updateMetaTag("og:site_name", "Riviera Trails", true);
+    updateMetaTag("og:site_name", "Azur Escape", true);
     updateMetaTag("og:locale", "en_US", true);
 
     // Twitter Card tags
@@ -47,7 +47,7 @@ const SEOHead = ({
     updateMetaTag("twitter:title", title);
     updateMetaTag("twitter:description", description);
     updateMetaTag("twitter:image", ogImage);
-    updateMetaTag("twitter:site", "@rivieratrails");
+    updateMetaTag("twitter:site", "@azurescape");
 
     // Additional meta tags
     updateMetaTag("geo.region", "FR-06");
@@ -83,7 +83,7 @@ const SEOHead = ({
 // Predefined SEO configs for different pages
 export const seoConfigs = {
   home: {
-    title: "Riviera Trails - French Riviera Tours | Expert Local Guide",
+    title: "Azur Escape - French Riviera Tours | Expert Local Guide",
     description:
       "Discover the French Riviera with expert local guide. Small group tours from Nice to Menton. Book your authentic Côte d'Azur experience today. Licensed guide, instant booking.",
     keywords:
@@ -91,10 +91,10 @@ export const seoConfigs = {
     structuredData: {
       "@context": "https://schema.org",
       "@type": "TourOperator",
-      name: "Riviera Trails",
+      name: "Azur Escape",
       description:
         "Expert local guide offering small group tours of the French Riviera",
-      url: "https://rivieratrails.com",
+      url: "https://www.azurescape.fr",
       telephone: "+33605985410",
       email: "derbalaymene@yahoo.fr",
       address: {
@@ -118,7 +118,7 @@ export const seoConfigs = {
   },
 
   tourDetails: (tour) => ({
-    title: `${tour.title} - French Riviera Tours | Riviera Trails`,
+    title: `${tour.title} - French Riviera Tours | Azur Escape`,
     description: `${tour.description.substring(0, 150)}... Book this ${
       tour.duration
     } French Riviera tour for ${
@@ -132,7 +132,7 @@ export const seoConfigs = {
       description: tour.description,
       provider: {
         "@type": "TourOperator",
-        name: "Riviera Trails",
+        name: "Azur Escape",
         telephone: "+33605985410",
       },
       duration: tour.duration,
@@ -148,19 +148,19 @@ export const seoConfigs = {
   }),
 
   contact: {
-    title: "Contact Riviera Trails - Book Your French Riviera Tour",
+    title: "Contact Azur Escape - Book Your French Riviera Tour",
     description:
       "Contact our expert local guide to book your French Riviera tour. WhatsApp, email, or phone booking available. Quick responses and instant confirmation.",
     keywords:
-      "contact Riviera Trails, book French Riviera tour, WhatsApp booking, tour guide contact",
+      "contact Azur Escape, book French Riviera tour, WhatsApp booking, tour guide contact",
   },
 
   about: {
-    title: "About Riviera Trails - Your Local French Riviera Expert",
+    title: "About Azur Escape - Your Local French Riviera Expert",
     description:
       "Meet your local French Riviera guide. Born in Nice, expert in history and culture. Small group tours, personalized experiences, licensed and insured.",
     keywords:
-      "French Riviera guide, local tour guide Nice, Riviera Trails about, licensed tour guide",
+      "French Riviera guide, local tour guide Nice, Azur Escape about, licensed tour guide",
   },
 };
 

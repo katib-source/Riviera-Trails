@@ -23,7 +23,7 @@ const Hero = () => {
       <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-4xl mx-auto">
         <FadeIn>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-            Riviera Trails
+            Azur Escape
           </h1>
         </FadeIn>
 

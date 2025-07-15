@@ -1,4 +1,4 @@
-# Adding Local Images to Your Riviera Trails Website
+# Adding Local Images to Your Azur Escape Website
 
 ## Quick Start Guide
 

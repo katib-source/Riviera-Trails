@@ -1,4 +1,4 @@
-# 📱 Mobile Optimization Checklist - Riviera Trails
+# 📱 Mobile Optimization Checklist - Azur Escape
 
 ## ✅ **Completed Optimizations:**
 
@@ -141,7 +141,7 @@ npx serve -s build
 4. **Verify image loading performance**
 5. **Check cross-browser compatibility**
 
-Your Riviera Trails website is now optimized for mobile with:
+Your Azur Escape website is now optimized for mobile with:
 
 - Fast loading times
 - Touch-friendly interface

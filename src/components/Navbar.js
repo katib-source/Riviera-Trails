@@ -61,7 +61,7 @@ const Navbar = () => {
                 isScrolled ? "text-riviera-blue" : "text-white"
               }`}
             >
-              Riviera Trails
+              Azur Escape
             </button>
           </div>
 

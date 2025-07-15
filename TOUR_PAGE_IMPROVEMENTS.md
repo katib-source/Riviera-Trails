@@ -142,7 +142,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
 
 ---
 
-## 🎯 **Perfect for Riviera Trails:**
+## 🎯 **Perfect for Azur Escape:**
 
 Your tour business now has a **professional image gallery** that:
 

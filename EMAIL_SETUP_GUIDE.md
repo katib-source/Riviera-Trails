@@ -1,6 +1,6 @@
 # Email Templates Setup Guide
 
-This guide explains how to set up email confirmations for your Riviera Trails booking system.
+This guide explains how to set up email confirmations for your Azur Escape booking system.
 
 ## EmailJS Setup
 
@@ -22,18 +22,18 @@ This guide explains how to set up email confirmations for your Riviera Trails bo
 
 Create a template with ID: `customer_booking_confirmation`
 
-**Subject:** `Booking Confirmation - {{tour_title}} - Riviera Trails`
+**Subject:** `Booking Confirmation - {{tour_title}} - Azur Escape`
 
 **Content:**
 
 ```html
-<h2>🌊 Booking Confirmation - Riviera Trails</h2>
+<h2>🌊 Booking Confirmation - Azur Escape</h2>
 
 <p>Dear {{to_name}},</p>
 
 <p>
-  Thank you for booking with Riviera Trails! We're excited to share the beauty
-  of the French Riviera with you.
+  Thank you for booking with Azur Escape! We're excited to share the beauty of
+  the French Riviera with you.
 </p>
 
 <h3>📋 Booking Details</h3>
@@ -72,7 +72,7 @@ Create a template with ID: `customer_booking_confirmation`
 
 <p>
   Best regards,<br />
-  Your Riviera Trails Team
+  Your Azur Escape Team
 </p>
 
 <hr />
@@ -119,7 +119,7 @@ Create a template with ID: `business_booking_notification`
 <hr />
 <p>
   <small
-    >This is an automated notification from your Riviera Trails booking
+    >This is an automated notification from your Azur Escape booking
     system.</small
   >
 </p>

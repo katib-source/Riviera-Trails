@@ -85,7 +85,7 @@ const About = () => {
               {/* Trust Indicators */}
               <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gray-50 rounded-lg">
                 <h3 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-sm sm:text-base">
-                  Why Choose Riviera Trails?
+                  Why Choose Azur Escape?
                 </h3>
                 <ul className="space-y-2 text-gray-600 text-sm sm:text-base">
                   <li className="flex items-center gap-2">

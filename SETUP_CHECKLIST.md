@@ -4,7 +4,7 @@
 
 1. [ ] Go to https://developer.paypal.com/
 2. [ ] Log in with PayPal account
-3. [ ] Create new app "Riviera Trails Booking"
+3. [ ] Create new app "Azur Escape Booking"
 4. [ ] Choose "Checkout" product
 5. [ ] Copy Sandbox Client ID
 6. [ ] Add Client ID to .env file

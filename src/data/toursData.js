@@ -45,7 +45,7 @@ export const toursData = [
     price: "€115",
     priceType: "per person*",
     image:
-      "https://images.unsplash.com/photo-1590736969955-71cc94901144?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://cdn.pixabay.com/photo/2014/11/16/12/33/gordes-533375_1280.jpg",
     duration: "Full-day (9 hours)",
     city: "Grasse, Gourdon, Tourrettes-sur-Loup, Saint-Paul-de-Vence",
     topPick: false,
@@ -60,27 +60,6 @@ export const toursData = [
     shared: true,
   },
   {
-    id: 4,
-    title: "Provencal Market & Wine Tasting",
-    description:
-      "Experience Provence's flavors at Antibes' market, visit artistic villages, and enjoy wine tasting at Château de Crémat.",
-    price: "€129",
-    priceType: "per person*",
-    image:
-      "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    duration: "Full-day (9 hours)",
-    city: "Antibes, Saint-Paul-de-Vence, Château de Crémat",
-    topPick: false,
-    departure: "9:00H | Tue, Thu, Sat",
-    highlights: [
-      "Antibes market",
-      "Saint-Paul-de-Vence",
-      "Château de Crémat",
-      "Gairaut Waterfall",
-    ],
-    shared: true,
-  },
-  {
     id: 5,
     title: "Countryside & Lake Saint-Cassien",
     description:
@@ -88,7 +67,7 @@ export const toursData = [
     price: "€119",
     priceType: "per person*",
     image:
-      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://www.paysdefayence.com/wp-content/uploads/2024/06/panorama-saintcassien-otipf_jeanpaulvillegas-2.jpg",
     duration: "Full-day (9 hours)",
     city: "Saut du Loup, Gourdon, Grasse, Lake Saint-Cassien",
     topPick: false,
@@ -104,7 +83,7 @@ export const toursData = [
     price: "€119",
     priceType: "per person*",
     image:
-      "https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://cdn.pixabay.com/photo/2020/04/21/11/31/architecture-5072728_1280.jpg",
     duration: "Full-day (9 hours)",
     city: "San Remo/Ventimiglia, Menton, Monaco, Monte-Carlo",
     topPick: false,
@@ -125,7 +104,7 @@ export const toursData = [
     price: "€85",
     priceType: "per person*",
     image:
-      "https://images.unsplash.com/photo-1580674285054-bed31e145f59?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/21/75/18.jpg",
     duration: "Half-day (4.5 hours)",
     city: "Cannes, Antibes, Saint-Paul-de-Vence",
     topPick: false,

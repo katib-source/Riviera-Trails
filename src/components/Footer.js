@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Riviera Trails
+              Azur Escape
             </h3>
             <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
               Your trusted local guide for unforgettable French Riviera
@@ -107,7 +107,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-700 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400">
           <p className="flex items-center justify-center gap-2 text-sm sm:text-base flex-wrap">
-            © {currentYear} Riviera Trails. Made with
+            © {currentYear} Azur Escape. Made with
             <FiHeart className="w-4 h-4 text-red-500" />
             for French Riviera travelers.
           </p>

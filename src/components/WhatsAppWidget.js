@@ -67,9 +67,7 @@ const WhatsAppWidget = () => {
                   <FaWhatsapp className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800">
-                    Riviera Trails
-                  </h3>
+                  <h3 className="font-semibold text-gray-800">Azur Escape</h3>
                   <p className="text-sm text-green-600">Online now</p>
                 </div>
               </div>

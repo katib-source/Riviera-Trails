@@ -29,6 +29,36 @@ const BookingForm = ({ tour, onClose }) => {
     }));
   };
 
+  const validateForm = () => {
+    const { name, email, phone, preferredDate } = customerInfo;
+    return name && email && phone && preferredDate;
+  };
+
+  const handleBooking = () => {
+    if (validateForm()) {
+      // Open WhatsApp with pre-filled booking information
+      const bookingMessage = `Hello! I'd like to book the "${tour.title}" tour:
+      
+Name: ${customerInfo.name}
+Email: ${customerInfo.email}
+Phone: ${customerInfo.phone}
+Guests: ${customerInfo.guestsCount}
+Preferred Date: ${customerInfo.preferredDate}
+Special Requests: ${customerInfo.specialRequests || "None"}
+
+Total: €${parseInt(tour.price.replace("€", "")) * customerInfo.guestsCount}
+
+Please confirm availability and provide payment instructions.`;
+
+      const encodedMessage = encodeURIComponent(bookingMessage);
+      const bookingWhatsAppUrl = `https://wa.me/33605985410?text=${encodedMessage}`;
+      window.open(bookingWhatsAppUrl, "_blank");
+
+      // Close the form after submitting
+      onClose();
+    }
+  };
+
   const getTomorrowDate = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -193,8 +223,9 @@ const BookingForm = ({ tour, onClose }) => {
           <div className="flex flex-col gap-3 pt-2">
             <button
               type="button"
-              onClick={onClose}
-              className="w-full bg-gradient-to-r from-riviera-blue to-mediterranean-teal text-white py-4 px-6 rounded-xl font-semibold hover:from-riviera-blue/90 hover:to-mediterranean-teal/90 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+              onClick={handleBooking}
+              disabled={!validateForm()}
+              className="w-full bg-gradient-to-r from-riviera-blue to-mediterranean-teal text-white py-4 px-6 rounded-xl font-semibold hover:from-riviera-blue/90 hover:to-mediterranean-teal/90 transition-all duration-200 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
             >
               Book Your Tour
             </button>
