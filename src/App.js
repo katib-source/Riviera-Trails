@@ -33,7 +33,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/tour/:id" element={<TourDetails />} />
           <Route path="/testimonials" element={<Testimonials />} />
-          {/* <Route path="/clients" element={<ClientMemoriesPage />} /> */}
+          <Route path="/clients" element={<ClientMemoriesPage />} />
         </Routes>
         <Footer />
         <WhatsAppWidget />
