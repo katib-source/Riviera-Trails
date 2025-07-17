@@ -101,7 +101,7 @@ const AboutPreviewSection = () => {
                   <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
                     <FiStar className="w-4 h-4 text-yellow-600" />
                   </div>
-                  <span className="font-semibold">4.9/5 Rating</span>
+                  <span className="font-semibold">5/5 Rating</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-700">
                   <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
@@ -125,24 +125,24 @@ const AboutPreviewSection = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <img
-                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/images/ppl/w1.jpeg"
                     alt="Group tour in Monaco"
-                    className="w-full h-48 object-cover rounded-2xl shadow-lg"
+                    className="w-full h-70 object-cover rounded-2xl shadow-lg"
                   />
                   <img
-                    src="https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/images/ppl/w2.jpeg"
                     alt="Scenic French Riviera landscape"
-                    className="w-full h-32 object-cover rounded-2xl shadow-lg"
+                    className="w-full h-70 object-cover rounded-2xl shadow-lg"
                   />
                 </div>
                 <div className="space-y-4 pt-8">
                   <img
-                    src="https://images.unsplash.com/photo-1595439317096-91c6be88db50?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/images/ppl/w3.jpeg"
                     alt="Happy clients at Eze Village"
-                    className="w-full h-32 object-cover rounded-2xl shadow-lg"
+                    className="w-full h-66 object-cover rounded-2xl shadow-lg"
                   />
                   <img
-                    src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/images/ppl/w4.jpeg"
                     alt="Family enjoying Saint-Tropez"
                     className="w-full h-48 object-cover rounded-2xl shadow-lg"
                   />

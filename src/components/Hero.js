@@ -1,6 +1,6 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { FadeIn, SlideIn } from "./LoadingAnimations";
+import { FadeIn } from "./LoadingAnimations";
 
 const Hero = () => {
   const whatsappUrl =

@@ -11,7 +11,6 @@ import {
   FiX,
   FiZoomIn,
 } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
 import { toursData } from "../data/toursData";
 import BookingForm from "../components/BookingForm";
 import SEOHead, { seoConfigs } from "../components/SEOHead";
@@ -61,11 +60,6 @@ const TourDetails = () => {
       </div>
     );
   }
-
-  const whatsappMessage = `Hello! I'm interested in booking the "${tour.title}" tour for ${tour.price} ${tour.priceType}. Could you please provide more details about availability and booking?`;
-  const whatsappUrl = `https://wa.me/33605985410?text=${encodeURIComponent(
-    whatsappMessage
-  )}`;
 
   // Phone number: +33 6 05 98 54 10
   // Format for URL: 33605985410 (no spaces, no + sign)
@@ -449,11 +443,8 @@ const TourDetails = () => {
                 onClick={() => setIsBookingOpen(true)}
                 className="w-full bg-riviera-blue hover:bg-blue-700 text-white py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-colors duration-200 flex items-center justify-center gap-2 mb-3 sm:mb-4"
               >
-                 Book Your Tour
+                Book Your Tour
               </button>
-
-              
-             
 
               <div className="text-center text-xs sm:text-sm text-gray-500">
                 Instant confirmation • Free cancellation up to 24h before

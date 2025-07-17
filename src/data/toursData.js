@@ -2,6 +2,88 @@
 export const toursData = [
   {
     id: 1,
+    title: "Côte d'Azur Complete • French Riviera Highlights",
+    description:
+      "Découvrez l'itinéraire complet de la Côte d'Azur de Nice à Menton. Un voyage à travers les plus belles villes et villages de la Riviera française, des ports de pêche colorés aux villages médiévaux perchés.",
+    price: "€110",
+    priceType: "1 personne | €190 (2 pers.) | €270 (3 pers.)",
+    image:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    duration: "Full-day (10 hours)",
+    city: "Nice • Villefranche • Saint-Jean-Cap-Ferrat • Èze • Monaco • Menton",
+    topPick: true,
+    departure: "8:00H | Daily",
+    highlights: [
+      "Nice - Promenade des Anglais et vieux quartier coloré",
+      "Villefranche-sur-Mer - Port de pêche et citadelle du XVIe siècle",
+      "Saint-Jean-Cap-Ferrat - Villa Ephrussi de Rothschild",
+      "Beaulieu-sur-Mer - Station balnéaire élégante",
+      "Èze - Village médiéval 'Nid d'Aigle' avec vues spectaculaires",
+      "Cap-d'Ail - Criques secrètes",
+      "Monaco - Monte-Carlo et casino célèbre",
+      "Roquebrune-Cap-Martin - Village médiéval avec architecture préservée",
+      "Menton - Jardins et mélange culturel franco-italien",
+    ],
+    shared: true,
+    itinerary: [
+      {
+        stop: "Nice",
+        duration: "1h30",
+        description:
+          "La principale ville de la Côte d'Azur, connue pour sa Promenade des Anglais et son vieux quartier coloré.",
+      },
+      {
+        stop: "Villefranche-sur-Mer",
+        duration: "45min",
+        description:
+          "Un charmant port de pêche avec des façades colorées et une citadelle du XVIe siècle.",
+      },
+      {
+        stop: "Saint-Jean-Cap-Ferrat",
+        duration: "1h15",
+        description:
+          "Une péninsule luxueuse avec des villas somptueuses et des jardins comme la Villa Ephrussi de Rothschild.",
+      },
+      {
+        stop: "Beaulieu-sur-Mer",
+        duration: "30min",
+        description:
+          "Une station balnéaire élégante, souvent considérée comme une extension de Saint-Jean-Cap-Ferrat.",
+      },
+      {
+        stop: "Èze",
+        duration: "1h30",
+        description:
+          "Un village médiéval perché surnommé le 'Nid d'Aigle' pour ses vues spectaculaires sur la Méditerranée.",
+      },
+      {
+        stop: "Cap-d'Ail",
+        duration: "30min",
+        description:
+          "Une petite commune côtière entre Monaco et Nice, avec des criques secrètes.",
+      },
+      {
+        stop: "Monaco",
+        duration: "2h",
+        description:
+          "Incluant Monte-Carlo et son célèbre casino. Bien que techniquement une principauté indépendante.",
+      },
+      {
+        stop: "Roquebrune-Cap-Martin",
+        duration: "45min",
+        description:
+          "Un village médiéval avec une architecture préservée et des vues sur la mer.",
+      },
+      {
+        stop: "Menton",
+        duration: "1h15",
+        description:
+          "La dernière ville française avant l'Italie, célèbre pour ses citrons, ses jardins et son mélange culturel franco-italien.",
+      },
+    ],
+  },
+  {
+    id: 2,
     title: "Gorges du Verdon",
     description:
       "Enjoy the authenticity of Castellane, nestled at the gates of the Gorges du Verdon. Admire Moustiers-Sainte-Marie, one of France's most beautiful villages, known for its faience. Explore Sainte-Croix Lake, ideal for swimming and water activities.",
@@ -22,7 +104,7 @@ export const toursData = [
     shared: true,
   },
   {
-    id: 2,
+    id: 3,
     title: "Saint-Tropez & Port Grimaud",
     description:
       "Discover Saint-Tropez, blending tradition and modernity, and explore Port Grimaud, the 'Little Venice of Provence,' with its picturesque canals.",
@@ -38,7 +120,7 @@ export const toursData = [
     shared: true,
   },
   {
-    id: 3,
+    id: 5,
     title: "Provence & Its Medieval Villages",
     description:
       "Explore Grasse's perfume secrets, medieval villages, and stunning coastal views.",
@@ -60,7 +142,7 @@ export const toursData = [
     shared: true,
   },
   {
-    id: 5,
+    id: 6,
     title: "Countryside & Lake Saint-Cassien",
     description:
       "Discover lavender fields, waterfalls, and the refreshing Lake Saint-Cassien.",
@@ -76,7 +158,7 @@ export const toursData = [
     shared: true,
   },
   {
-    id: 6,
+    id: 7,
     title: "Italian Riviera & Monaco",
     description:
       "Explore Italy's markets, Monaco's royal sites, and the Grand Prix circuit.",
@@ -97,7 +179,7 @@ export const toursData = [
     shared: true,
   },
   {
-    id: 7,
+    id: 8,
     title: "Cannes • Antibes • St-Paul de Vence",
     description:
       "Coastal drive from Cannes to Antibes, ending at the medieval gem Saint-Paul-de-Vence.",
@@ -113,7 +195,7 @@ export const toursData = [
     shared: true,
   },
   {
-    id: 8,
+    id: 9,
     title: "Eze • Monaco • Monte-Carlo",
     description:
       "Visit Eze's perfume factory, Monaco's palace, and Monte-Carlo's luxury spots.",
@@ -129,14 +211,13 @@ export const toursData = [
     shared: true,
   },
   {
-    id: 9,
+    id: 10,
     title: "French Riviera • Côte d'Azur",
     description:
       "Panoramic views, medieval Eze, and Monaco's jet-set attractions.",
     price: "€115",
     priceType: "per person*",
-    image:
-      "https://images.pexels.com/photos/3016350/pexels-photo-3016350.jpeg",
+    image: "https://images.pexels.com/photos/3016350/pexels-photo-3016350.jpeg",
     duration: "Full-day (9 hours)",
     city: "Nice, Villefranche, Eze Village, Monaco, Monte-Carlo",
     topPick: false,

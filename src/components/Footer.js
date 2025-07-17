@@ -1,6 +1,6 @@
 import React from "react";
 import { FiHeart } from "react-icons/fi";
-import { FaWhatsapp, FaInstagram, FaFacebook, FaGoogle } from "react-icons/fa";
+import { FaWhatsapp, FaFacebook, FaGoogle } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
