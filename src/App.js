@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Tours from "./components/Tours";
-import About from "./components/About";
-import Testimonials from "./components/Testimonials";
+import AboutPreviewSection from "./components/AboutPreviewSection";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import TourDetails from "./pages/TourDetails";
+import Testimonials from "./pages/Testimonials";
+import ClientMemoriesPage from "./pages/ClientMemoriesPage";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import SEOHead, { seoConfigs } from "./components/SEOHead";
 import "./App.css";
@@ -18,8 +19,7 @@ const HomePage = () => (
     <SEOHead {...seoConfigs.home} />
     <Hero />
     <Tours />
-    <About />
-    <Testimonials />
+    <AboutPreviewSection />
     <Contact />
   </>
 );
@@ -32,6 +32,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/tour/:id" element={<TourDetails />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          {/* <Route path="/clients" element={<ClientMemoriesPage />} /> */}
         </Routes>
         <Footer />
         <WhatsAppWidget />

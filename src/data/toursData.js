@@ -104,7 +104,7 @@ export const toursData = [
     price: "€85",
     priceType: "per person*",
     image:
-      "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/21/75/18.jpg",
+      "https://cdn.pixabay.com/photo/2018/04/06/10/05/travel-3295399_1280.jpg",
     duration: "Half-day (4.5 hours)",
     city: "Cannes, Antibes, Saint-Paul-de-Vence",
     topPick: false,
@@ -120,7 +120,7 @@ export const toursData = [
     price: "€85",
     priceType: "per person*",
     image:
-      "https://images.unsplash.com/photo-1595439317096-91c6be88db50?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://cdn.pixabay.com/photo/2018/07/13/21/04/the-french-riviera-3536553_1280.jpg",
     duration: "Half-day (4.5 hours)",
     city: "Eze Village, Monaco, Monte-Carlo",
     topPick: true,
@@ -136,7 +136,7 @@ export const toursData = [
     price: "€115",
     priceType: "per person*",
     image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://images.pexels.com/photos/3016350/pexels-photo-3016350.jpeg",
     duration: "Full-day (9 hours)",
     city: "Nice, Villefranche, Eze Village, Monaco, Monte-Carlo",
     topPick: false,

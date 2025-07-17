@@ -40,6 +40,11 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
+  const handleTestimonialsClick = () => {
+    navigate("/clients");
+    setIsOpen(false);
+  };
+
   const handleLogoClick = () => {
     navigate("/");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -87,6 +92,16 @@ const Navbar = () => {
                 }`}
               >
                 About
+              </button>
+              <button
+                onClick={handleTestimonialsClick}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  isScrolled
+                    ? "text-gray-700 hover:text-riviera-blue"
+                    : "text-white hover:text-gray-200"
+                }`}
+              >
+                Client Stories
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -145,6 +160,12 @@ const Navbar = () => {
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-gray-50 w-full text-left"
             >
               About
+            </button>
+            <button
+              onClick={handleTestimonialsClick}
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-gray-50 w-full text-left"
+            >
+              Client Stories
             </button>
             <button
               onClick={() => scrollToSection("contact")}
