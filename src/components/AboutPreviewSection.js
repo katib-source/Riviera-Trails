@@ -248,7 +248,7 @@ const AboutPreviewSection = () => {
             </div>
 
             {/* CTA to Full Testimonials */}
-            <div className="text-center">
+            {/* <div className="text-center">
               <Link
                 to="/clients"
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-riviera-blue to-mediterranean-teal text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-lg transition-shadow"
@@ -256,7 +256,7 @@ const AboutPreviewSection = () => {
                 <FiCamera className="w-5 h-5" />
                 See All Client Stories & Photos
               </Link>
-            </div>
+            </div> */}
           </div>
         </SlideIn>
 
