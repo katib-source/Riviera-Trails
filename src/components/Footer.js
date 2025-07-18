@@ -1,8 +1,9 @@
 import React from "react";
-import { FiHeart } from "react-icons/fi";
 import { FaWhatsapp, FaFacebook, FaGoogle } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -15,9 +16,7 @@ const Footer = () => {
               Azur Escape
             </h3>
             <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
-              Your trusted local guide for unforgettable French Riviera
-              experiences. Discover hidden gems, iconic landmarks, and authentic
-              culture with personalized tours.
+              {t("footer.tagline")}
             </p>
             <div className="flex gap-3 sm:gap-4">
               <a
@@ -50,7 +49,7 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
-              Quick Links
+              {t("footer.quickLinks")}
             </h4>
             <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
               <li>
@@ -58,7 +57,7 @@ const Footer = () => {
                   href="#tours"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  Our Tours
+                  {t("footer.tours")}
                 </a>
               </li>
               <li>
@@ -66,7 +65,7 @@ const Footer = () => {
                   href="#about"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  About Us
+                  {t("footer.about")}
                 </a>
               </li>
               <li>
@@ -74,7 +73,7 @@ const Footer = () => {
                   href="#contact"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  Contact
+                  {t("footer.contact")}
                 </a>
               </li>
               <li>
@@ -93,7 +92,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
-              Contact Info
+              {t("footer.contact")}
             </h4>
             <div className="space-y-2 text-gray-300 text-sm sm:text-base">
               <p>📍 Nice, French Riviera</p>
@@ -107,9 +106,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-700 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400">
           <p className="flex items-center justify-center gap-2 text-sm sm:text-base flex-wrap">
-            © {currentYear} Azur Escape. Made with
-            <FiHeart className="w-4 h-4 text-red-500" />
-            for French Riviera travelers.
+            © {currentYear} Azur Escape. {t("footer.rights")}
           </p>
           <p className="mt-2 text-xs sm:text-sm">
             Licensed tour guide | Fully insured | Small group experiences

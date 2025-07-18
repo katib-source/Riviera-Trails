@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Masonry } from "react-visual-grid";
-import { testimonialsData } from "../data/toursData";
+import { testimonialsData } from "../data/bilingualTestimonials";
+import { useLanguage } from "../context/LanguageContext";
 import { FadeIn, SlideIn } from "../components/LoadingAnimations";
 import {
   FiStar,
@@ -12,13 +13,17 @@ import {
 import { FaWhatsapp } from "react-icons/fa";
 
 const ClientMemoriesPage = () => {
+  const { language, t } = useLanguage();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [filter, setFilter] = useState("all");
+  
+  // Get testimonials for current language
+  const testimonials = testimonialsData[language];
 
   // Extended testimonials with more client experiences and colors
   const extendedTestimonials = [
-    ...testimonialsData,
+    ...testimonials,
     {
       id: 4,
       name: "Jean-Pierre Dubois",
@@ -220,11 +225,10 @@ const ClientMemoriesPage = () => {
           <FadeIn>
             <div className="text-center mb-8">
               <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-riviera-blue to-mediterranean-teal bg-clip-text text-transparent mb-6">
-                Memories Made Together
+                {t("clientMemories.title")}
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Real clients, real experiences, real memories made in the French
-                Riviera. Explore their photos and discover their stories.
+                {t("clientMemories.subtitle")}
               </p>
             </div>
           </FadeIn>

@@ -7,9 +7,12 @@ import {
   FiStar,
 } from "react-icons/fi";
 import { FaWhatsapp, FaGoogle } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
 
 const Contact = () => {
+  const { t } = useLanguage();
+
   const whatsappUrl =
     "https://wa.me/33605985410?text=Hello!%20I'd%20like%20to%20book%20a%20tour%20or%20get%20more%20information%20about%20your%20French%20Riviera%20experiences.";
 
@@ -19,12 +22,10 @@ const Contact = () => {
         <FadeIn>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-              Ready to Explore the French Riviera?
+              {t("contact.title")}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Get in touch to book your personalized tour or ask any questions.
-              I'm here to help you create unforgettable memories along the
-              Mediterranean coast.
+              {t("contact.description")}
             </p>
           </div>
         </FadeIn>
@@ -34,7 +35,7 @@ const Contact = () => {
           <SlideIn direction="left">
             <div>
               <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
-                Get In Touch
+                {t("contact.getInTouch")}
               </h3>
 
               <div className="space-y-6">
@@ -50,10 +51,10 @@ const Contact = () => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
-                      WhatsApp (Preferred)
+                      {t("contact.whatsappTitle")}
                     </h4>
                     <p className="text-gray-600 text-xs sm:text-sm">
-                      Quick responses, instant booking
+                      {t("contact.whatsappDescription")}
                     </p>
                     <p className="text-green-600 font-medium text-sm sm:text-base break-all">
                       +33 6 05 98 54 10
@@ -71,10 +72,10 @@ const Contact = () => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
-                      Email
+                      {t("contact.emailTitle")}
                     </h4>
                     <p className="text-gray-600 text-xs sm:text-sm">
-                      For detailed inquiries
+                      {t("contact.emailDescription")}
                     </p>
                     <p className="text-riviera-blue font-medium text-sm sm:text-base break-all">
                       derbalaymene@yahoo.fr

@@ -2,16 +2,13 @@ import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 const StructuredData = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
-    name: "Azur Escape - French Riviera Tours",
-    description:
-      language === "fr"
-        ? "Découvrez la Côte d'Azur avec des tours guidés premium de Nice à Menton. Petits groupes, expérience de luxe, guides experts."
-        : "Discover the French Riviera with premium guided tours from Nice to Menton. Small groups, luxury experience, expert guides.",
+    name: `Azur Escape - ${t("hero.title")}`,
+    description: t("hero.description"),
     provider: {
       "@type": "Organization",
       name: "Azur Escape",
@@ -42,12 +39,18 @@ const StructuredData = () => {
       {
         "@type": "Place",
         name: "Nice",
-        description: "Promenade des Anglais and colorful old quarter",
+        description:
+          language === "fr"
+            ? "Promenade des Anglais et quartier coloré de la vieille ville"
+            : "Promenade des Anglais and colorful old quarter",
       },
       {
         "@type": "Place",
         name: "Monaco",
-        description: "Monte-Carlo and famous casino",
+        description:
+          language === "fr"
+            ? "Monte-Carlo et casino célèbre"
+            : "Monte-Carlo and famous casino",
       },
       {
         "@type": "Place",
