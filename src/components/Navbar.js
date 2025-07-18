@@ -96,7 +96,7 @@ const Navbar = () => {
               >
                 {t("nav.about")}
               </button>
-            
+
               <button
                 onClick={() => scrollToSection("contact")}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
