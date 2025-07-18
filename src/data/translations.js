@@ -14,6 +14,11 @@ export const translations = {
         "Experience the glamour, culture, and natural beauty of the French Riviera with our personalized private tours. From Monaco's luxury to charming medieval villages, create unforgettable memories.",
       ctaButton: "Explore Tours",
       ctaWhatsapp: "Book via WhatsApp",
+      stats: {
+        travelers: "Happy Travelers",
+        villages: "Historic Villages",
+        languages: "Languages Spoken",
+      },
     },
     tours: {
       title: "Our Tours",
@@ -144,6 +149,11 @@ export const translations = {
         "Découvrez le glamour, la culture et la beauté naturelle de la Côte d'Azur avec nos tours privés personnalisés. Du luxe de Monaco aux charmants villages médiévaux, créez des souvenirs inoubliables.",
       ctaButton: "Explorer les Tours",
       ctaWhatsapp: "Réserver via WhatsApp",
+      stats: {
+        travelers: "Voyageurs satisfaits",
+        villages: "Villages historiques",
+        languages: "Langues parlées",
+      },
     },
     tours: {
       title: "Nos Tours",

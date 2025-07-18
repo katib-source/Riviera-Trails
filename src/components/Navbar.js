@@ -65,7 +65,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <button
               onClick={handleLogoClick}
-              className={`text-2xl font-bold transition-colors duration-200 ${
+              className={`text-lg sm:text-xl lg:text-2xl font-bold transition-colors duration-200 ${
                 isScrolled ? "text-riviera-blue" : "text-white"
               }`}
             >
