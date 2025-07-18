@@ -7,9 +7,11 @@ import {
   FiCheckCircle,
   FiArrowRight,
 } from "react-icons/fi";
+import { useLanguage } from "../context/LanguageContext";
 
 const TourCard = ({ tour, onBooking }) => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleCardClick = () => {
     navigate(`/tour/${tour.id}`);
@@ -25,7 +27,7 @@ const TourCard = ({ tour, onBooking }) => {
       {tour.topPick && (
         <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-gradient-to-r from-sunset-orange to-orange-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 z-10 shadow-lg">
           <FiAward className="w-3 h-3 sm:w-4 sm:h-4" />
-          Top Pick
+          {t("tours.topPick")}
         </div>
       )}
 
@@ -40,7 +42,7 @@ const TourCard = ({ tour, onBooking }) => {
         {/* View Details Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-riviera-blue/90 via-riviera-blue/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
           <div className="bg-white/95 backdrop-blur-sm text-riviera-blue px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold flex items-center gap-2 text-sm sm:text-base shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-            <span>View Details</span>
+            <span>{t("tours.viewDetails")}</span>
             <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" />
           </div>
         </div>
@@ -69,7 +71,7 @@ const TourCard = ({ tour, onBooking }) => {
           <div className="mb-5">
             <h4 className="text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <span className="w-2 h-2 bg-gradient-to-r from-riviera-blue to-mediterranean-teal rounded-full"></span>
-              Tour Highlights:
+              {t("tours.highlights")}:
             </h4>
             <ul className="space-y-1">
               {tour.highlights.slice(0, 3).map((highlight, index) => (

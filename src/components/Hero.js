@@ -1,8 +1,10 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FadeIn } from "./LoadingAnimations";
+import { useLanguage } from "../context/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
   const whatsappUrl =
     "https://wa.me/33605985410?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.%20Could%20you%20please%20provide%20more%20information?";
 
@@ -23,20 +25,18 @@ const Hero = () => {
       <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-4xl mx-auto">
         <FadeIn>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-            Azur Escape
+            {t("hero.title")}
           </h1>
         </FadeIn>
 
         <FadeIn delay={200}>
           <p className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 text-gray-200 font-light">
-            Local expert. Unique experiences. Small groups.
+            {t("hero.subtitle")}
           </p>
         </FadeIn>
 
         <p className="text-base sm:text-lg mb-6 sm:mb-8 text-gray-300 max-w-2xl mx-auto leading-relaxed">
-          Discover the hidden gems and iconic landmarks of the French Riviera
-          with passionate local guides. From Nice's charming old town to
-          Monaco's glamorous streets.
+          {t("hero.description")}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12">
@@ -44,7 +44,7 @@ const Hero = () => {
             href="#tours"
             className="w-full sm:w-auto bg-riviera-blue hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-lg"
           >
-            Discover Our Guided Tours
+            {t("hero.ctaButton")}
           </a>
 
           <a
@@ -54,7 +54,7 @@ const Hero = () => {
             className="w-full sm:w-auto border-2 border-white hover:bg-white hover:text-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
             <FaWhatsapp className="w-5 h-5" />
-            Contact on WhatsApp
+            {t("hero.ctaWhatsapp")}
           </a>
         </div>
 

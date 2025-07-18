@@ -8,11 +8,11 @@ export const toursData = [
     price: "€110",
     priceType: "1 personne | €190 (2 pers.) | €270 (3 pers.)",
     image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    duration: "Full-day (10 hours)",
+      "https://cdn.pixabay.com/photo/2025/07/18/09/11/09-11-57-51_1280.jpg",
+    duration: "4.5 hours",
     city: "Nice • Villefranche • Saint-Jean-Cap-Ferrat • Èze • Monaco • Menton",
     topPick: true,
-    departure: "8:00H | Daily",
+    departure: "Daily",
     highlights: [
       "Nice - Promenade des Anglais et vieux quartier coloré",
       "Villefranche-sur-Mer - Port de pêche et citadelle du XVIe siècle",
@@ -210,21 +210,21 @@ export const toursData = [
     highlights: ["Eze Village", "Monaco", "Monte-Carlo"],
     shared: true,
   },
-  {
-    id: 10,
-    title: "French Riviera • Côte d'Azur",
-    description:
-      "Panoramic views, medieval Eze, and Monaco's jet-set attractions.",
-    price: "€115",
-    priceType: "per person*",
-    image: "https://images.pexels.com/photos/3016350/pexels-photo-3016350.jpeg",
-    duration: "Full-day (9 hours)",
-    city: "Nice, Villefranche, Eze Village, Monaco, Monte-Carlo",
-    topPick: false,
-    departure: "9:00H",
-    highlights: ["Nice, Villefranche", "Eze Village", "Monaco", "Monte-Carlo"],
-    shared: true,
-  },
+  // {
+  //   id: 10,
+  //   title: "French Riviera • Côte d'Azur",
+  //   description:
+  //     "Panoramic views, medieval Eze, and Monaco's jet-set attractions.",
+  //   price: "€115",
+  //   priceType: "per person*",
+  //   image: "https://images.pexels.com/photos/3016350/pexels-photo-3016350.jpeg",
+  //   duration: "Full-day (9 hours)",
+  //   city: "Nice, Villefranche, Eze Village, Monaco, Monte-Carlo",
+  //   topPick: false,
+  //   departure: "9:00H",
+  //   highlights: ["Nice, Villefranche", "Eze Village", "Monaco", "Monte-Carlo"],
+  //   shared: true,
+  // },
 ];
 
 // Sample testimonials

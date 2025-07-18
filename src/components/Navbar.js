@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,8 +74,8 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="flex items-baseline space-x-4">
               <button
                 onClick={() => scrollToSection("tours")}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
@@ -81,7 +84,7 @@ const Navbar = () => {
                     : "text-white hover:text-gray-200"
                 }`}
               >
-                Tours
+                {t("nav.tours")}
               </button>
               <button
                 onClick={() => scrollToSection("about")}
@@ -91,18 +94,9 @@ const Navbar = () => {
                     : "text-white hover:text-gray-200"
                 }`}
               >
-                About
+                {t("nav.about")}
               </button>
-              <button
-                onClick={handleTestimonialsClick}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  isScrolled
-                    ? "text-gray-700 hover:text-riviera-blue"
-                    : "text-white hover:text-gray-200"
-                }`}
-              >
-                Client Stories
-              </button>
+            
               <button
                 onClick={() => scrollToSection("contact")}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
@@ -111,7 +105,7 @@ const Navbar = () => {
                     : "text-white hover:text-gray-200"
                 }`}
               >
-                Contact
+                {t("nav.contact")}
               </button>
               <a
                 href={whatsappUrl}
@@ -120,13 +114,15 @@ const Navbar = () => {
                 className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-2"
               >
                 <FaWhatsapp className="w-4 h-4" />
-                Book Now
+                {t("nav.bookNow")}
               </a>
             </div>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageSwitcher />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md transition-colors duration-200 ${
@@ -153,25 +149,25 @@ const Navbar = () => {
               onClick={() => scrollToSection("tours")}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-gray-50 w-full text-left"
             >
-              Tours
+              {t("nav.tours")}
             </button>
             <button
               onClick={() => scrollToSection("about")}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-gray-50 w-full text-left"
             >
-              About
+              {t("nav.about")}
             </button>
             <button
               onClick={handleTestimonialsClick}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-gray-50 w-full text-left"
             >
-              Client Stories
+              {t("nav.clientStories")}
             </button>
             <button
               onClick={() => scrollToSection("contact")}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-gray-50 w-full text-left"
             >
-              Contact
+              {t("nav.contact")}
             </button>
             <a
               href={whatsappUrl}
@@ -181,7 +177,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             >
               <FaWhatsapp className="w-4 h-4" />
-              Book Now
+              {t("nav.bookNow")}
             </a>
           </div>
         </div>

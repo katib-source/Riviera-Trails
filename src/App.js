@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Tours from "./components/Tours";
@@ -26,19 +27,21 @@ const HomePage = () => (
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/tour/:id" element={<TourDetails />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/clients" element={<ClientMemoriesPage />} />
-        </Routes>
-        <Footer />
-        <WhatsAppWidget />
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/tour/:id" element={<TourDetails />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/clients" element={<ClientMemoriesPage />} />
+          </Routes>
+          <Footer />
+          <WhatsAppWidget />
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
 

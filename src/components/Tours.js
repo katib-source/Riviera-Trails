@@ -1,29 +1,30 @@
 import React from "react";
 import TourCard from "../components/TourCard";
-import { toursData } from "../data/toursData";
+import { toursData } from "../data/bilingualToursData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
+import { useLanguage } from "../context/LanguageContext";
 
 const Tours = () => {
+  const { t, language } = useLanguage();
+  const currentTours = toursData[language] || toursData.en;
+
   return (
     <section id="tours" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-              Discover the French Riviera
+              {t("tours.title")}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Explore the most beautiful destinations along the Côte d'Azur with
-              our curated selection of guided tours. From historic villages to
-              glamorous cities, experience authentic local culture and
-              breathtaking coastal views.
+              {t("tours.subtitle")}
             </p>
           </div>
         </FadeIn>
 
         <SlideIn direction="up" delay={200}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {toursData.map((tour, index) => (
+            {currentTours.map((tour, index) => (
               <div key={tour.id} className="flex justify-center">
                 <TourCard tour={tour} />
               </div>
