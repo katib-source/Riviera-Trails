@@ -42,6 +42,7 @@ function App() {
           </Routes>
           <Footer />
           <WhatsAppWidget />
+          <Analytics />
         </div>
       </Router>
     </LanguageProvider>
