@@ -16,7 +16,7 @@ import { FadeIn, SlideIn } from "./LoadingAnimations";
 
 const AboutPreviewSection = () => {
   const { language, t } = useLanguage();
-  
+
   // Get testimonials based on current language
   const testimonials = testimonialsData[language];
   // Select first 3 testimonials for preview

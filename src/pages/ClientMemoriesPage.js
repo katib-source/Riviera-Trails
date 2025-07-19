@@ -17,7 +17,7 @@ const ClientMemoriesPage = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [filter, setFilter] = useState("all");
-  
+
   // Get testimonials for current language
   const testimonials = testimonialsData[language];
 
