@@ -1,5 +1,6 @@
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
@@ -43,6 +44,7 @@ function App() {
           <Footer />
           <WhatsAppWidget />
           <Analytics />
+          <SpeedInsights />
         </div>
       </Router>
     </LanguageProvider>
