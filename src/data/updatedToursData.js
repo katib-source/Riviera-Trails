@@ -58,7 +58,8 @@ export const updatedToursData = {
         description:
           "A luxurious peninsula with sumptuous villas and gardens such as the Villa Ephrussi de Rothschild.",
         duration: "3 hours",
-        image: "https://od.lk/s/NjlfNDA5NTAyMzRf/vue-aerienne-saint-jean-cap-ferrat-scaled.jpg",
+        image:
+          "https://od.lk/s/NjlfNDA5NTAyMzRf/vue-aerienne-saint-jean-cap-ferrat-scaled.jpg",
         slug: "saint-jean-cap-ferrat",
         highlights: [
           "Villa Ephrussi de Rothschild and gardens",
@@ -76,7 +77,8 @@ export const updatedToursData = {
         description:
           "An elegant seaside resort, often considered an extension of Saint-Jean-Cap-Ferrat.",
         duration: "2 hours",
-        image: "https://od.lk/s/NjlfNDA5NTAzNDFf/beaulieu-sur-mer8-scaled-e1710335496187.jpeg",
+        image:
+          "https://od.lk/s/NjlfNDA5NTAzNDFf/beaulieu-sur-mer8-scaled-e1710335496187.jpeg",
         slug: "beaulieu-sur-mer",
         highlights: [
           "Belle Époque architecture",
@@ -94,7 +96,8 @@ export const updatedToursData = {
         description:
           "A perched medieval village nicknamed the 'Eagle's Nest' for its spectacular views over the Mediterranean.",
         duration: "2 hours",
-        image: "https://od.lk/s/NjlfNDA5NTA0MTVf/TESTE-POUR-VOUS-MONT-BASTIDE-EZE-2-2048x1379.jpg.webp",
+        image:
+          "https://od.lk/s/NjlfNDA5NTA0MTVf/TESTE-POUR-VOUS-MONT-BASTIDE-EZE-2-2048x1379.jpg.webp",
         slug: "eze",
         highlights: [
           "Medieval village perched 400m above sea",
@@ -111,7 +114,7 @@ export const updatedToursData = {
         title: "Cap-d'Ail",
         description:
           "A small coastal town between Monaco and Nice, with hidden coves.",
-        duration: "1.5 hours",
+        duration: "2 hours",
         image: "https://od.lk/s/NjlfNDA5NTA1Mzhf/10111276-2048x1365.jpg.webp",
         slug: "cap-dail",
         highlights: [
@@ -130,7 +133,8 @@ export const updatedToursData = {
         description:
           "Including Monte-Carlo and its famous casino (technically an independent principality).",
         duration: "Half-day (4 hours)",
-        image: "https://od.lk/s/NjlfNDA5NTA2NzRf/16d0e61d4250-Web-Large-JPG-C-BVergely_Lot21_Dec2022_19_addcrop.jpg.webp",
+        image:
+          "https://od.lk/s/NjlfNDA5NTA2NzRf/16d0e61d4250-Web-Large-JPG-C-BVergely_Lot21_Dec2022_19_addcrop.jpg.webp",
         slug: "monaco",
         highlights: [
           "Monte-Carlo Casino and luxury shopping",
@@ -189,7 +193,7 @@ export const updatedToursData = {
         description:
           "La principale ville de la Côte d'Azur, connue pour sa Promenade des Anglais et son vieux quartier coloré.",
         duration: "Demi-journée (4 heures)",
-        image: "/images/tours/img1.jpeg",
+        image: "https://od.lk/s/NjlfNDA5NTAwMTFf/webcams.jpg.webp",
         slug: "nice",
         highlights: [
           "Promenade des Anglais - Célèbre promenade en bord de mer",
@@ -207,7 +211,7 @@ export const updatedToursData = {
         description:
           "Un charmant port de pêche avec des façades colorées et une citadelle du XVIe siècle.",
         duration: "2 heures",
-        image: "/images/tours/img2.jpeg",
+        image: "https://od.lk/s/NjlfNDA5NTAxNzFf/11945679.jpg",
         slug: "villefranche-sur-mer",
         highlights: [
           "Bâtiments colorés du front de mer",
@@ -225,7 +229,8 @@ export const updatedToursData = {
         description:
           "Une péninsule luxueuse avec des villas somptueuses et des jardins comme la Villa Ephrussi de Rothschild.",
         duration: "3 heures",
-        image: "/images/tours/img3.jpeg",
+        image:
+          "https://od.lk/s/NjlfNDA5NTAyMzRf/vue-aerienne-saint-jean-cap-ferrat-scaled.jpg",
         slug: "saint-jean-cap-ferrat",
         highlights: [
           "Villa Ephrussi de Rothschild et ses jardins",
@@ -243,7 +248,8 @@ export const updatedToursData = {
         description:
           "Une station balnéaire élégante, souvent considérée comme une extension de Saint-Jean-Cap-Ferrat.",
         duration: "2 heures",
-        image: "/images/tours/img4.jpeg",
+        image:
+          "https://od.lk/s/NjlfNDA5NTAzNDFf/beaulieu-sur-mer8-scaled-e1710335496187.jpeg",
         slug: "beaulieu-sur-mer",
         highlights: [
           "Architecture Belle Époque",
@@ -261,7 +267,8 @@ export const updatedToursData = {
         description:
           "Un village médiéval perché surnommé le 'Nid d'Aigle' pour ses vues spectaculaires sur la Méditerranée.",
         duration: "2 heures",
-        image: "/images/tours/img5.jpeg",
+        image:
+          "https://od.lk/s/NjlfNDA5NTA0MTVf/TESTE-POUR-VOUS-MONT-BASTIDE-EZE-2-2048x1379.jpg.webp",
         slug: "eze",
         highlights: [
           "Village médiéval perché à 400m au-dessus de la mer",
@@ -278,8 +285,8 @@ export const updatedToursData = {
         title: "Cap-d'Ail",
         description:
           "Une petite commune côtière entre Monaco et Nice, avec des criques secrètes.",
-        duration: "1.5 heures",
-        image: "/images/tours/img6.jpeg",
+        duration: "2 heures",
+        image: "https://od.lk/s/NjlfNDA5NTA1Mzhf/10111276-2048x1365.jpg.webp",
         slug: "cap-dail",
         highlights: [
           "Plage de la Mala - Crique cachée aux eaux cristallines",
@@ -297,7 +304,8 @@ export const updatedToursData = {
         description:
           "Incluant Monte-Carlo et son célèbre casino (bien que techniquement une principauté indépendante).",
         duration: "Demi-journée (4 heures)",
-        image: "/images/tours/img7.jpeg",
+        image:
+          "https://od.lk/s/NjlfNDA5NTA2NzRf/16d0e61d4250-Web-Large-JPG-C-BVergely_Lot21_Dec2022_19_addcrop.jpg.webp",
         slug: "monaco",
         highlights: [
           "Casino de Monte-Carlo et shopping de luxe",
@@ -316,7 +324,7 @@ export const updatedToursData = {
         description:
           "Un village médiéval avec une architecture préservée et des vues sur la mer.",
         duration: "2 heures",
-        image: "/images/tours/img8.jpeg",
+        image: "https://od.lk/s/NjlfNDA5NTA3NTVf/11973644.jpg.webp",
         slug: "roquebrune-cap-martin",
         highlights: [
           "Château médiéval - plus ancien château féodal de France",
@@ -334,7 +342,7 @@ export const updatedToursData = {
         description:
           "La dernière ville française avant l'Italie, célèbre pour ses citrons, ses jardins et son mélange culturel franco-italien.",
         duration: "2 heures",
-        image: "/images/tours/img-nice-menton.png",
+        image: "https://od.lk/s/NjlfNDA5NTA5MTRf/Port_menton.jpg",
         slug: "menton",
         highlights: [
           "Fête du Citron et jardins d'agrumes",
