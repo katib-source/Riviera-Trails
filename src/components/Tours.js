@@ -1,12 +1,13 @@
 import React from "react";
 import TourCard from "../components/TourCard";
-import { toursData } from "../data/bilingualToursData";
+import { getToursByLanguage, getPricingByLanguage } from "../data/updatedToursData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
 import { useLanguage } from "../context/LanguageContext";
 
 const Tours = () => {
   const { t, language } = useLanguage();
-  const currentTours = toursData[language] || toursData.en;
+  const currentTours = getToursByLanguage(language);
+  const currentPricing = getPricingByLanguage(language);
 
   return (
     <section id="tours" className="py-16 bg-gray-50">
@@ -19,6 +20,25 @@ const Tours = () => {
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               {t("tours.subtitle")}
             </p>
+          </div>
+        </FadeIn>
+
+        {/* Pricing Section */}
+        <FadeIn delay={100}>
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">
+              {t("tours.pricing.title")}
+            </h3>
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              {Object.entries(currentPricing).map(([key, price]) => (
+                <div key={key} className="bg-white px-6 py-3 rounded-lg shadow-md border border-gray-200">
+                  <span className="block text-sm text-gray-600 capitalize mb-1">
+                    {key.replace('_', ' ').replace('personnes', 'personnes').replace('personne', 'personne')}
+                  </span>
+                  <span className="text-xl font-bold text-sunset-orange">{price}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </FadeIn>
 

@@ -26,6 +26,10 @@ export const translations = {
       highlights: "Highlights",
       viewDetails: "View Details",
       bookTour: "Book This Tour",
+      pricing: {
+        title: "Tour Pricing",
+        subtitle: "All tours available at the same competitive rates"
+      }
     },
     about: {
       title: "About Azur Escape",
@@ -156,6 +160,10 @@ export const translations = {
       highlights: "Points forts",
       viewDetails: "Voir les détails",
       bookTour: "Réserver ce Tour",
+      pricing: {
+        title: "Tarifs des Circuits",
+        subtitle: "Tous les circuits disponibles aux mêmes tarifs compétitifs"
+      }
     },
     about: {
       title: "À propos d'Azur Escape",

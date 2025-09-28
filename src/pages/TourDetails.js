@@ -11,14 +11,23 @@ import {
   FiX,
   FiZoomIn,
 } from "react-icons/fi";
-import { toursData } from "../data/toursData";
+import { getTourBySlug, getToursByLanguage } from "../data/updatedToursData";
+import { useLanguage } from "../context/LanguageContext";
 import BookingForm from "../components/BookingForm";
 import SEOHead, { seoConfigs } from "../components/SEOHead";
 
 const TourDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const tour = toursData.find((t) => t.id === parseInt(id));
+  const { language } = useLanguage();
+  
+  // Try to find tour by slug first, then by id
+  let tour = getTourBySlug(id, language);
+  if (!tour) {
+    const tours = getToursByLanguage(language);
+    tour = tours.find((t) => t.id === parseInt(id));
+  }
+  
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
