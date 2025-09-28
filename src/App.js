@@ -11,12 +11,15 @@ import TourDetails from "./pages/TourDetails";
 import Testimonials from "./pages/Testimonials";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import SEOHead, { seoConfigs } from "./components/SEOHead";
+import StructuredDataScript from "./components/StructuredData";
 import "./App.css";
 
 // Home Page Component
 const HomePage = () => (
   <>
     <SEOHead {...seoConfigs.home} />
+    <StructuredDataScript type="website" />
+    <StructuredDataScript type="organization" />
     <Hero />
     <Tours />
     <AboutPreviewSection />
