@@ -106,13 +106,10 @@ const TourCard = ({ tour, onBooking }) => {
               </span>
             </div>
           </div>
-          
+
           {/* WhatsApp Booking Button */}
           <div className="mt-2" onClick={(e) => e.stopPropagation()}>
-            <WhatsAppBooking 
-              tour={tour} 
-              className="w-full text-sm py-2"
-            />
+            <WhatsAppBooking tour={tour} className="w-full text-sm py-2" />
           </div>
         </div>
       </div>

@@ -9,6 +9,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import TourDetails from "./pages/TourDetails";
 import Testimonials from "./pages/Testimonials";
+import FAQ from "./pages/FAQ";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import PrivacyPolicyFr from "./pages/PrivacyPolicyFr";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import CookieConsent from "./components/CookieConsent";
 import SEOHead, { seoConfigs } from "./components/SEOHead";
@@ -38,6 +41,9 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/tour/:id" element={<TourDetails />} />
             <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/privacy-policy-fr" element={<PrivacyPolicyFr />} />
           </Routes>
           <Footer />
           <WhatsAppWidget />

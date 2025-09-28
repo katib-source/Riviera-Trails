@@ -5,6 +5,7 @@ export const translations = {
       about: "About",
       clientStories: "Client Stories",
       contact: "Contact",
+      faq: "FAQ",
       bookNow: "Book Now",
     },
     hero: {
@@ -139,6 +140,7 @@ export const translations = {
       about: "À propos",
       clientStories: "Témoignages",
       contact: "Contact",
+      faq: "FAQ",
       bookNow: "Réserver",
     },
     hero: {

@@ -107,6 +107,19 @@ const Navbar = () => {
               >
                 {t("nav.contact")}
               </button>
+              <button
+                onClick={() => {
+                  navigate("/faq");
+                  setIsOpen(false);
+                }}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  isScrolled
+                    ? "text-gray-700 hover:text-riviera-blue"
+                    : "text-white hover:text-gray-200"
+                }`}
+              >
+                {t("nav.faq")}
+              </button>
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -168,6 +181,15 @@ const Navbar = () => {
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-gray-50 w-full text-left"
             >
               {t("nav.contact")}
+            </button>
+            <button
+              onClick={() => {
+                navigate("/faq");
+                setIsOpen(false);
+              }}
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-gray-50 w-full text-left"
+            >
+              {t("nav.faq")}
             </button>
             <a
               href={whatsappUrl}

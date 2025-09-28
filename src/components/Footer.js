@@ -1,9 +1,32 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 import { FaWhatsapp, FaFacebook, FaGoogle } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const scrollToSection = (sectionId) => {
+    // If not on homepage, navigate to homepage first
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <footer className="bg-gray-800 text-white py-8 sm:py-12">
@@ -54,38 +77,58 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
               <li>
-                <a
-                  href="#tours"
-                  className="hover:text-white transition-colors duration-200"
+                <button
+                  onClick={() => scrollToSection("tours")}
+                  className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
                   Our Tours
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#about"
-                  className="hover:text-white transition-colors duration-200"
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
                   About Us
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#contact"
-                  className="hover:text-white transition-colors duration-200"
+                <button
+                  onClick={() => navigate("/clients")}
+                  className="hover:text-white transition-colors duration-200 cursor-pointer"
+                >
+                  Client Stories
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
                   Contact
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="https://wa.me/33605985410?text=Hello!%20I%20have%20a%20question%20about%20your%20tours."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors duration-200"
+                <button
+                  onClick={() => navigate("/faq")}
+                  className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
                   FAQ
-                </a>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() =>
+                    navigate(
+                      language === "fr"
+                        ? "/privacy-policy-fr"
+                        : "/privacy-policy"
+                    )
+                  }
+                  className="hover:text-white transition-colors duration-200 cursor-pointer"
+                >
+                  Privacy Policy
+                </button>
               </li>
             </ul>
           </div>
