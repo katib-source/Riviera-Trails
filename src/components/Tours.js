@@ -1,6 +1,9 @@
 import React from "react";
 import TourCard from "../components/TourCard";
-import { getToursByLanguage, getPricingByLanguage } from "../data/updatedToursData";
+import {
+  getToursByLanguage,
+  getPricingByLanguage,
+} from "../data/updatedToursData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -31,11 +34,19 @@ const Tours = () => {
             </h3>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               {Object.entries(currentPricing).map(([key, price]) => (
-                <div key={key} className="bg-white px-6 py-3 rounded-lg shadow-md border border-gray-200">
+                <div
+                  key={key}
+                  className="bg-white px-6 py-3 rounded-lg shadow-md border border-gray-200"
+                >
                   <span className="block text-sm text-gray-600 capitalize mb-1">
-                    {key.replace('_', ' ').replace('personnes', 'personnes').replace('personne', 'personne')}
+                    {key
+                      .replace("_", " ")
+                      .replace("personnes", "personnes")
+                      .replace("personne", "personne")}
                   </span>
-                  <span className="text-xl font-bold text-sunset-orange">{price}</span>
+                  <span className="text-xl font-bold text-sunset-orange">
+                    {price}
+                  </span>
                 </div>
               ))}
             </div>

@@ -20,14 +20,14 @@ const TourDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { language } = useLanguage();
-  
+
   // Try to find tour by slug first, then by id
   let tour = getTourBySlug(id, language);
   if (!tour) {
     const tours = getToursByLanguage(language);
     tour = tours.find((t) => t.id === parseInt(id));
   }
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);

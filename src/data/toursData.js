@@ -8,7 +8,7 @@ export const toursData = [
     price: "€110",
     priceType: "1 personne | €190 (2 pers.) | €270 (3 pers.)",
     image:
-      "https://cdn.pixabay.com/photo/2025/08/06/13/14/13-14-49-577_1280.jpg",
+      "https://od.lk/s/NjlfNDA5NTAwMTFf/webcams.jpg.webp",
     duration: "4.5 hours",
     city: "Nice • Villefranche • Saint-Jean-Cap-Ferrat • Èze • Monaco • Menton",
     topPick: true,
