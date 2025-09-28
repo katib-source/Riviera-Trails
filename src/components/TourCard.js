@@ -8,6 +8,7 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import { useLanguage } from "../context/LanguageContext";
+import WhatsAppBooking from "./WhatsAppBooking";
 
 const TourCard = ({ tour, onBooking }) => {
   const navigate = useNavigate();
@@ -36,6 +37,8 @@ const TourCard = ({ tour, onBooking }) => {
           src={tour.image}
           alt={tour.title}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
 
@@ -102,6 +105,14 @@ const TourCard = ({ tour, onBooking }) => {
                 {tour.priceType}
               </span>
             </div>
+          </div>
+          
+          {/* WhatsApp Booking Button */}
+          <div className="mt-2" onClick={(e) => e.stopPropagation()}>
+            <WhatsAppBooking 
+              tour={tour} 
+              className="w-full text-sm py-2"
+            />
           </div>
         </div>
       </div>

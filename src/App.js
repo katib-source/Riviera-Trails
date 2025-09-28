@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import TourDetails from "./pages/TourDetails";
 import Testimonials from "./pages/Testimonials";
 import WhatsAppWidget from "./components/WhatsAppWidget";
+import CookieConsent from "./components/CookieConsent";
 import SEOHead, { seoConfigs } from "./components/SEOHead";
 import StructuredDataScript from "./components/StructuredData";
 import "./App.css";
@@ -40,6 +41,7 @@ function App() {
           </Routes>
           <Footer />
           <WhatsAppWidget />
+          <CookieConsent />
         </div>
       </Router>
     </LanguageProvider>

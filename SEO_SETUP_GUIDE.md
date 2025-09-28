@@ -6,16 +6,22 @@
 
 ```html
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'GA_MEASUREMENT_ID');
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "GA_MEASUREMENT_ID");
 </script>
 ```
 
 **Steps:**
+
 1. Go to https://analytics.google.com
 2. Create account for "Azur Escape"
 3. Add property for www.azurescape.fr
@@ -28,6 +34,7 @@
 
 **Option 1: HTML Meta Tag (Recommended)**
 Add this to public/index.html in <head>:
+
 ```html
 <meta name="google-site-verification" content="VERIFICATION_CODE" />
 ```
@@ -36,6 +43,7 @@ Add this to public/index.html in <head>:
 Download verification file from Search Console and add to public/ folder
 
 **Steps:**
+
 1. Go to https://search.google.com/search-console
 2. Add property: https://www.azurescape.fr
 3. Choose verification method
@@ -45,13 +53,15 @@ Download verification file from Search Console and add to public/ folder
 ## 3. Submit Your Site to Google
 
 ### Manual submission:
+
 1. Google Search Console → Sitemaps → Add sitemap → "sitemap.xml"
 2. Google Search Console → URL Inspection → Submit specific URLs
 3. Request indexing for key pages
 
 ### Key URLs to submit:
+
 - https://www.azurescape.fr/
-- https://www.azurescape.fr/tour/monaco  
+- https://www.azurescape.fr/tour/monaco
 - https://www.azurescape.fr/tour/nice
 - https://www.azurescape.fr/tour/eze
 
@@ -69,19 +79,22 @@ Download verification file from Search Console and add to public/ folder
 ## 5. Content SEO Strategy
 
 ### Target Keywords:
+
 - Primary: "French Riviera tours", "Nice to Menton tours"
 - Secondary: "Monaco tours", "Eze village tours", "Côte d'Azur guided tours"
 - Long-tail: "private guided tours French Riviera", "small group tours Monaco Nice"
 
 ### Content Pages to Add:
+
 1. Blog/Articles about each destination
 2. FAQ page about tours
 3. About the French Riviera guide page
 4. Customer testimonials page (already exists)
 
 ## Next Actions:
+
 1. Set up Google Analytics
-2. Verify Google Search Console  
+2. Verify Google Search Console
 3. Submit sitemap
 4. Monitor search performance
 5. Add more content pages
