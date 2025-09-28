@@ -21,7 +21,7 @@ export const updatedToursData = {
         title: "Nice",
         description:
           "The main city of the French Riviera, known for its Promenade des Anglais and colorful old town.",
-        duration: "Half-day (4 hours)",
+        duration: "4.5 hours",
         image: "https://od.lk/s/NjlfNDA5NTAwMTFf/webcams.jpg.webp",
         slug: "nice",
         highlights: [
@@ -39,7 +39,7 @@ export const updatedToursData = {
         title: "Villefranche-sur-Mer",
         description:
           "A charming fishing port with colorful facades and a 16th-century citadel.",
-        duration: "2 hours",
+        duration: "4.5 hours",
         image: "https://od.lk/s/NjlfNDA5NTAxNzFf/11945679.jpg",
         slug: "villefranche-sur-mer",
         highlights: [
@@ -57,7 +57,7 @@ export const updatedToursData = {
         title: "Saint-Jean-Cap-Ferrat",
         description:
           "A luxurious peninsula with sumptuous villas and gardens such as the Villa Ephrussi de Rothschild.",
-        duration: "3 hours",
+        duration: "4.5 hours",
         image:
           "https://od.lk/s/NjlfNDA5NTAyMzRf/vue-aerienne-saint-jean-cap-ferrat-scaled.jpg",
         slug: "saint-jean-cap-ferrat",
@@ -76,7 +76,7 @@ export const updatedToursData = {
         title: "Beaulieu-sur-Mer",
         description:
           "An elegant seaside resort, often considered an extension of Saint-Jean-Cap-Ferrat.",
-        duration: "2 hours",
+        duration: "4.5 hours",
         image:
           "https://od.lk/s/NjlfNDA5NTAzNDFf/beaulieu-sur-mer8-scaled-e1710335496187.jpeg",
         slug: "beaulieu-sur-mer",
@@ -95,7 +95,7 @@ export const updatedToursData = {
         title: "Èze",
         description:
           "A perched medieval village nicknamed the 'Eagle's Nest' for its spectacular views over the Mediterranean.",
-        duration: "2 hours",
+        duration: "4.5 hours",
         image:
           "https://od.lk/s/NjlfNDA5NTA0MTVf/TESTE-POUR-VOUS-MONT-BASTIDE-EZE-2-2048x1379.jpg.webp",
         slug: "eze",
@@ -114,7 +114,7 @@ export const updatedToursData = {
         title: "Cap-d'Ail",
         description:
           "A small coastal town between Monaco and Nice, with hidden coves.",
-        duration: "2 hours",
+        duration: "4.5 hours",
         image: "https://od.lk/s/NjlfNDA5NTA1Mzhf/10111276-2048x1365.jpg.webp",
         slug: "cap-dail",
         highlights: [
@@ -132,7 +132,7 @@ export const updatedToursData = {
         title: "Monaco",
         description:
           "Including Monte-Carlo and its famous casino (technically an independent principality).",
-        duration: "Half-day (4 hours)",
+        duration: "4.5 hours",
         image:
           "https://od.lk/s/NjlfNDA5NTA2NzRf/16d0e61d4250-Web-Large-JPG-C-BVergely_Lot21_Dec2022_19_addcrop.jpg.webp",
         slug: "monaco",
@@ -152,7 +152,7 @@ export const updatedToursData = {
         title: "Roquebrune-Cap-Martin",
         description:
           "A medieval village with preserved architecture and sea views.",
-        duration: "2 hours",
+        duration: "4.5 hours",
         image: "https://od.lk/s/NjlfNDA5NTA3NTVf/11973644.jpg.webp",
         slug: "roquebrune-cap-martin",
         highlights: [
@@ -170,7 +170,7 @@ export const updatedToursData = {
         title: "Menton",
         description:
           "The last French city before Italy, famous for its lemons, gardens, and Franco-Italian cultural blend.",
-        duration: "2 hours",
+        duration: "4.5 hours",
         image: "https://od.lk/s/NjlfNDA5NTA5MTRf/Port_menton.jpg",
         slug: "menton",
         highlights: [
@@ -179,6 +179,28 @@ export const updatedToursData = {
           "Italian-influenced architecture",
           "Val Rahmeh Botanical Garden",
           "Basilica of Saint-Michel",
+        ],
+        price: "€110",
+        priceType: "1 person | €190 (2 people) | €270 (3 people)",
+      },
+      {
+        id: 10,
+        order: 10,
+        title: "Saint-Tropez",
+        description:
+          "The legendary glamorous resort town famous for its beaches, luxury yachts, and vibrant nightlife. A full day exploring the French Riviera's most iconic destination.",
+        duration: "8 hours",
+        image:
+          "https://od.lk/s/NjlfNDA5NTQ3MjRf/st.%2Btropez%2B101%2Bmiddellandse%2Bzee%2Bkust%2Bvakantie%2Bfrankrijk%2Bluxe%2Bvilla%2Bprovence%2Bcote%2Bd%27azur.jpg",
+        slug: "saint-tropez",
+        topPick: true,
+        highlights: [
+          "Port of Saint-Tropez - Iconic harbor with luxury yachts",
+          "Place des Lices - Famous market square and café culture",
+          "Citadel of Saint-Tropez - Historic fortress with panoramic views",
+          "Pampelonne Beach - World-renowned beach clubs",
+          "Old Town - Charming Provençal streets and boutiques",
+          "Musée de l'Annonciade - Impressive art collection",
         ],
         price: "€110",
         priceType: "1 person | €190 (2 people) | €270 (3 people)",
@@ -192,7 +214,7 @@ export const updatedToursData = {
         title: "Nice",
         description:
           "La principale ville de la Côte d'Azur, connue pour sa Promenade des Anglais et son vieux quartier coloré.",
-        duration: "Demi-journée (4 heures)",
+        duration: "4,5 heures",
         image: "https://od.lk/s/NjlfNDA5NTAwMTFf/webcams.jpg.webp",
         slug: "nice",
         highlights: [
@@ -210,7 +232,7 @@ export const updatedToursData = {
         title: "Villefranche-sur-Mer",
         description:
           "Un charmant port de pêche avec des façades colorées et une citadelle du XVIe siècle.",
-        duration: "2 heures",
+        duration: "4,5 heures",
         image: "https://od.lk/s/NjlfNDA5NTAxNzFf/11945679.jpg",
         slug: "villefranche-sur-mer",
         highlights: [
@@ -228,7 +250,7 @@ export const updatedToursData = {
         title: "Saint-Jean-Cap-Ferrat",
         description:
           "Une péninsule luxueuse avec des villas somptueuses et des jardins comme la Villa Ephrussi de Rothschild.",
-        duration: "3 heures",
+        duration: "4,5 heures",
         image:
           "https://od.lk/s/NjlfNDA5NTAyMzRf/vue-aerienne-saint-jean-cap-ferrat-scaled.jpg",
         slug: "saint-jean-cap-ferrat",
@@ -247,7 +269,7 @@ export const updatedToursData = {
         title: "Beaulieu-sur-Mer",
         description:
           "Une station balnéaire élégante, souvent considérée comme une extension de Saint-Jean-Cap-Ferrat.",
-        duration: "2 heures",
+        duration: "4,5 heures",
         image:
           "https://od.lk/s/NjlfNDA5NTAzNDFf/beaulieu-sur-mer8-scaled-e1710335496187.jpeg",
         slug: "beaulieu-sur-mer",
@@ -266,7 +288,7 @@ export const updatedToursData = {
         title: "Èze",
         description:
           "Un village médiéval perché surnommé le 'Nid d'Aigle' pour ses vues spectaculaires sur la Méditerranée.",
-        duration: "2 heures",
+        duration: "4,5 heures",
         image:
           "https://od.lk/s/NjlfNDA5NTA0MTVf/TESTE-POUR-VOUS-MONT-BASTIDE-EZE-2-2048x1379.jpg.webp",
         slug: "eze",
@@ -285,7 +307,7 @@ export const updatedToursData = {
         title: "Cap-d'Ail",
         description:
           "Une petite commune côtière entre Monaco et Nice, avec des criques secrètes.",
-        duration: "2 heures",
+        duration: "4,5 heures",
         image: "https://od.lk/s/NjlfNDA5NTA1Mzhf/10111276-2048x1365.jpg.webp",
         slug: "cap-dail",
         highlights: [
@@ -303,7 +325,7 @@ export const updatedToursData = {
         title: "Monaco",
         description:
           "Incluant Monte-Carlo et son célèbre casino (bien que techniquement une principauté indépendante).",
-        duration: "Demi-journée (4 heures)",
+        duration: "4,5 heures",
         image:
           "https://od.lk/s/NjlfNDA5NTA2NzRf/16d0e61d4250-Web-Large-JPG-C-BVergely_Lot21_Dec2022_19_addcrop.jpg.webp",
         slug: "monaco",
@@ -323,7 +345,7 @@ export const updatedToursData = {
         title: "Roquebrune-Cap-Martin",
         description:
           "Un village médiéval avec une architecture préservée et des vues sur la mer.",
-        duration: "2 heures",
+        duration: "4,5 heures",
         image: "https://od.lk/s/NjlfNDA5NTA3NTVf/11973644.jpg.webp",
         slug: "roquebrune-cap-martin",
         highlights: [
@@ -341,7 +363,7 @@ export const updatedToursData = {
         title: "Menton",
         description:
           "La dernière ville française avant l'Italie, célèbre pour ses citrons, ses jardins et son mélange culturel franco-italien.",
-        duration: "2 heures",
+        duration: "4,5 heures",
         image: "https://od.lk/s/NjlfNDA5NTA5MTRf/Port_menton.jpg",
         slug: "menton",
         highlights: [
@@ -350,6 +372,28 @@ export const updatedToursData = {
           "Architecture d'influence italienne",
           "Jardin botanique du Val Rahmeh",
           "Basilique Saint-Michel",
+        ],
+        price: "110€",
+        priceType: "1 personne | 190€ (2 personnes) | 270€ (3 personnes)",
+      },
+      {
+        id: 10,
+        order: 10,
+        title: "Saint-Tropez",
+        description:
+          "La légendaire station balnéaire glamour célèbre pour ses plages, ses yachts de luxe et sa vie nocturne animée. Une journée complète à explorer la destination la plus emblématique de la Côte d'Azur.",
+        duration: "8 heures",
+        image:
+          "https://od.lk/s/NjlfNDA5NTQ3MjRf/st.%2Btropez%2B101%2Bmiddellandse%2Bzee%2Bkust%2Bvakantie%2Bfrankrijk%2Bluxe%2Bvilla%2Bprovence%2Bcote%2Bd%27azur.jpg",
+        slug: "saint-tropez",
+        topPick: true,
+        highlights: [
+          "Port de Saint-Tropez - Port emblématique avec yachts de luxe",
+          "Place des Lices - Célèbre place du marché et culture café",
+          "Citadelle de Saint-Tropez - Forteresse historique avec vues panoramiques",
+          "Plage de Pampelonne - Beach clubs de renommée mondiale",
+          "Vieille Ville - Rues provençales charmantes et boutiques",
+          "Musée de l'Annonciade - Impressionnante collection d'art",
         ],
         price: "110€",
         priceType: "1 personne | 190€ (2 personnes) | 270€ (3 personnes)",
