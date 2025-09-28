@@ -65,7 +65,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <button
               onClick={handleLogoClick}
-              className={`text-lg sm:text-xl lg:text-2xl font-bold transition-colors duration-200 ${
+              className={`text-2xl font-bold transition-colors duration-200 ${
                 isScrolled ? "text-riviera-blue" : "text-white"
               }`}
             >
@@ -96,7 +96,16 @@ const Navbar = () => {
               >
                 {t("nav.about")}
               </button>
-
+              <button
+                onClick={handleTestimonialsClick}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  isScrolled
+                    ? "text-gray-700 hover:text-riviera-blue"
+                    : "text-white hover:text-gray-200"
+                }`}
+              >
+                {t("nav.clientStories")}
+              </button>
               <button
                 onClick={() => scrollToSection("contact")}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${

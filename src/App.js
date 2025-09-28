@@ -1,6 +1,4 @@
 import React from "react";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
@@ -14,14 +12,12 @@ import Testimonials from "./pages/Testimonials";
 import ClientMemoriesPage from "./pages/ClientMemoriesPage";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import SEOHead, { seoConfigs } from "./components/SEOHead";
-import StructuredData from "./components/StructuredData";
 import "./App.css";
 
 // Home Page Component
 const HomePage = () => (
   <>
     <SEOHead {...seoConfigs.home} />
-    <StructuredData />
     <Hero />
     <Tours />
     <AboutPreviewSection />
@@ -43,8 +39,6 @@ function App() {
           </Routes>
           <Footer />
           <WhatsAppWidget />
-          <Analytics />
-          <SpeedInsights />
         </div>
       </Router>
     </LanguageProvider>

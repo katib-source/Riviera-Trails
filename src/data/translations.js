@@ -14,11 +14,6 @@ export const translations = {
         "Experience the glamour, culture, and natural beauty of the French Riviera with our personalized private tours. From Monaco's luxury to charming medieval villages, create unforgettable memories.",
       ctaButton: "Explore Tours",
       ctaWhatsapp: "Book via WhatsApp",
-      stats: {
-        travelers: "Happy Travelers",
-        villages: "Historic Villages",
-        languages: "Languages Spoken",
-      },
     },
     tours: {
       title: "Our Tours",
@@ -61,33 +56,6 @@ export const translations = {
         },
       },
       clientsButton: "Meet Our Clients",
-      trustSection: {
-        title: "Why Trust Azur Escape",
-        subtitle: "Your peace of mind is our priority",
-        features: {
-          licensed: {
-            title: "Licensed & Insured",
-            description: "Fully certified local guides with insurance coverage",
-          },
-          smallGroups: {
-            title: "Small Groups Only",
-            description: "Maximum 8 people for personalized experiences",
-          },
-          localExpertise: {
-            title: "Local Expertise",
-            description: "Born and raised on the French Riviera",
-          },
-          multilingual: {
-            title: "Multilingual Guides",
-            description: "English, French, Spanish, Italian & more",
-          },
-        },
-      },
-      testimonialsSection: {
-        title: "What Our Clients Say",
-        subtitle: "Real experiences from our French Riviera adventures",
-        seeAll: "See All Stories",
-      },
     },
     testimonials: {
       title: "Client Memories",
@@ -101,20 +69,18 @@ export const translations = {
     contact: {
       title: "Contact Us",
       subtitle: "Ready to explore the French Riviera?",
-      description:
-        "Get in touch to book your personalized tour or ask any questions. I'm here to help you create unforgettable memories along the Mediterranean coast.",
       getInTouch: "Get in Touch",
       name: "Name",
       email: "Email",
       phone: "Phone",
       message: "Message",
       send: "Send Message",
-      whatsappTitle: "WhatsApp (Preferred)",
-      whatsappDescription: "Quick responses, instant booking",
+      whatsappTitle: "WhatsApp",
+      whatsappDescription: "Quick booking and instant responses",
       phoneTitle: "Phone",
       phoneDescription: "Speak directly with our team",
       emailTitle: "Email",
-      emailDescription: "For detailed inquiries",
+      emailDescription: "Detailed inquiries and information",
     },
     footer: {
       tagline: "Discover the French Riviera with Azur Escape",
@@ -178,11 +144,6 @@ export const translations = {
         "Découvrez le glamour, la culture et la beauté naturelle de la Côte d'Azur avec nos tours privés personnalisés. Du luxe de Monaco aux charmants villages médiévaux, créez des souvenirs inoubliables.",
       ctaButton: "Explorer les Tours",
       ctaWhatsapp: "Réserver via WhatsApp",
-      stats: {
-        travelers: "Voyageurs satisfaits",
-        villages: "Villages historiques",
-        languages: "Langues parlées",
-      },
     },
     tours: {
       title: "Nos Tours",
@@ -225,34 +186,6 @@ export const translations = {
         },
       },
       clientsButton: "Rencontrer nos clients",
-      trustSection: {
-        title: "Pourquoi faire confiance à Azur Escape",
-        subtitle: "Votre tranquillité d'esprit est notre priorité",
-        features: {
-          licensed: {
-            title: "Agréé et Assuré",
-            description: "Guides locaux certifiés avec couverture d'assurance",
-          },
-          smallGroups: {
-            title: "Petits Groupes Seulement",
-            description:
-              "Maximum 8 personnes pour des expériences personnalisées",
-          },
-          localExpertise: {
-            title: "Expertise Locale",
-            description: "Nés et élevés sur la Côte d'Azur",
-          },
-          multilingual: {
-            title: "Guides Multilingues",
-            description: "Anglais, Français, Espagnol, Italien et plus",
-          },
-        },
-      },
-      testimonialsSection: {
-        title: "Ce que disent nos clients",
-        subtitle: "Expériences réelles de nos aventures sur la Côte d'Azur",
-        seeAll: "Voir toutes les histoires",
-      },
     },
     testimonials: {
       title: "Souvenirs clients",
@@ -266,20 +199,18 @@ export const translations = {
     contact: {
       title: "Nous contacter",
       subtitle: "Prêt à explorer la Côte d'Azur ?",
-      description:
-        "Contactez-nous pour réserver votre tour personnalisé ou poser vos questions. Je suis là pour vous aider à créer des souvenirs inoubliables sur la côte méditerranéenne.",
       getInTouch: "Contactez-nous",
       name: "Nom",
       email: "Email",
       phone: "Téléphone",
       message: "Message",
       send: "Envoyer le message",
-      whatsappTitle: "WhatsApp (Préféré)",
-      whatsappDescription: "Réponses rapides, réservation instantanée",
+      whatsappTitle: "WhatsApp",
+      whatsappDescription: "Réservation rapide et réponses instantanées",
       phoneTitle: "Téléphone",
       phoneDescription: "Parlez directement avec notre équipe",
       emailTitle: "Email",
-      emailDescription: "Pour les demandes détaillées",
+      emailDescription: "Demandes détaillées et informations",
     },
     footer: {
       tagline: "Découvrez la Côte d'Azur avec Azur Escape",

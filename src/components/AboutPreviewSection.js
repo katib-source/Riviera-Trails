@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiMapPin,
   FiHeart,
@@ -8,40 +9,36 @@ import {
   FiPhone,
   FiCheckCircle,
   FiGlobe,
+  FiCamera,
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import { useLanguage } from "../context/LanguageContext";
-import { testimonialsData } from "../data/bilingualTestimonials";
+import { testimonialsData } from "../data/toursData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
 
 const AboutPreviewSection = () => {
-  const { language, t } = useLanguage();
-
-  // Get testimonials based on current language
-  const testimonials = testimonialsData[language];
   // Select first 3 testimonials for preview
-  const previewTestimonials = testimonials.slice(0, 3);
+  const previewTestimonials = testimonialsData.slice(0, 3);
 
   const trustFeatures = [
     {
       icon: <FiShield className="w-6 h-6" />,
-      title: t("about.trustSection.features.licensed.title"),
-      description: t("about.trustSection.features.licensed.description"),
+      title: "Licensed & Insured",
+      description: "Fully certified local guides with insurance coverage",
     },
     {
       icon: <FiUsers className="w-6 h-6" />,
-      title: t("about.trustSection.features.smallGroups.title"),
-      description: t("about.trustSection.features.smallGroups.description"),
+      title: "Small Groups Only",
+      description: "Maximum 8 people for personalized experiences",
     },
     {
       icon: <FiHeart className="w-6 h-6" />,
-      title: t("about.trustSection.features.localExpertise.title"),
-      description: t("about.trustSection.features.localExpertise.description"),
+      title: "Local Expertise",
+      description: "Born and raised on the French Riviera",
     },
     {
       icon: <FiGlobe className="w-6 h-6" />,
-      title: t("about.trustSection.features.multilingual.title"),
-      description: t("about.trustSection.features.multilingual.description"),
+      title: "Multilingual Guides",
+      description: "English, French, Spanish, Italian & more",
     },
   ];
 
@@ -84,7 +81,7 @@ const AboutPreviewSection = () => {
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight">
-                {t("about.title")}
+                Your Authentic French Riviera
                 <span className="bg-gradient-to-r from-riviera-blue to-mediterranean-teal bg-clip-text text-transparent">
                   {" "}
                   Experience
@@ -92,7 +89,11 @@ const AboutPreviewSection = () => {
               </h2>
 
               <p className="text-lg text-gray-600 leading-relaxed">
-                {t("about.description")}
+                We're not just tour guides – we're your local friends who happen
+                to know every hidden gem, secret viewpoint, and authentic
+                experience the French Riviera has to offer. Born and raised
+                here, we share our home with you the way we'd show our own
+                family.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -106,9 +107,7 @@ const AboutPreviewSection = () => {
                   <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                     <FiUsers className="w-4 h-4 text-green-600" />
                   </div>
-                  <span className="font-semibold">
-                    500+ {t("hero.stats.travelers")}
-                  </span>
+                  <span className="font-semibold">500+ Happy Travelers</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-700">
                   <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
@@ -170,7 +169,7 @@ const AboutPreviewSection = () => {
         <FadeIn delay={300}>
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">
-              {t("about.trustSection.title")}
+              Why Choose Azur Escape?
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {trustFeatures.map((feature, index) => (
@@ -196,10 +195,11 @@ const AboutPreviewSection = () => {
           <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
             <div className="text-center mb-8">
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
-                {t("about.testimonialsSection.title")}
+                What Our Travelers Say
               </h3>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                {t("about.testimonialsSection.subtitle")}
+                Don't just take our word for it. Here's what recent guests have
+                to say about their French Riviera experiences.
               </p>
             </div>
 
@@ -265,10 +265,11 @@ const AboutPreviewSection = () => {
           <div className="mt-16 text-center">
             <div className="bg-gradient-to-r from-riviera-blue to-mediterranean-teal rounded-3xl p-8 sm:p-12 text-white">
               <h3 className="text-2xl sm:text-3xl font-bold mb-4">
-                {t("contact.title")}
+                Ready for Your French Riviera Adventure?
               </h3>
               <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                {t("contact.subtitle")}
+                Let's create memories that will last a lifetime. Contact us to
+                start planning your personalized tour today.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -278,7 +279,7 @@ const AboutPreviewSection = () => {
                   className="inline-flex items-center gap-3 bg-white text-riviera-blue px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl"
                 >
                   <FaWhatsapp className="w-6 h-6" />
-                  {t("hero.ctaWhatsapp")}
+                  Start Planning on WhatsApp
                 </a>
                 <a
                   href="tel:+33605985410"

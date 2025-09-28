@@ -11,20 +11,14 @@ import {
   FiX,
   FiZoomIn,
 } from "react-icons/fi";
-import { toursData } from "../data/bilingualToursData";
-import { useLanguage } from "../context/LanguageContext";
+import { toursData } from "../data/toursData";
 import BookingForm from "../components/BookingForm";
 import SEOHead, { seoConfigs } from "../components/SEOHead";
 
 const TourDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { language, t } = useLanguage();
-
-  // Get tours data for current language
-  const tours = toursData[language];
-  const tour = tours.find((t) => t.id === parseInt(id));
-
+  const tour = toursData.find((t) => t.id === parseInt(id));
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -54,13 +48,13 @@ const TourDetails = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            {t("tourDetails.overview")} {t("common.error")}
+            Tour Not Found
           </h2>
           <button
             onClick={() => navigate("/")}
             className="bg-riviera-blue text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            {t("tourDetails.backToTours")}
+            Back to Home
           </button>
         </div>
       </div>
@@ -230,7 +224,7 @@ const TourDetails = () => {
             {/* Overview */}
             <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
               <h2 className="text-3xl font-bold text-gray-800 mb-6">
-                {t("tourDetails.overview")}
+                Tour Overview
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-6">
                 {tour.description}
@@ -239,9 +233,7 @@ const TourDetails = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <FiClock className="w-8 h-8 text-riviera-blue mx-auto mb-2" />
-                  <div className="font-semibold text-gray-800">
-                    {t("tourDetails.duration")}
-                  </div>
+                  <div className="font-semibold text-gray-800">Duration</div>
                   <div className="text-gray-600">{tour.duration}</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
