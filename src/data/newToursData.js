@@ -15,7 +15,7 @@ export const updatedToursData = {
         departure: "8:00 H or 14:00 H",
         frequency: "Daily",
         pricePerPax: 115,
-        currency: "$",
+        currency: "€",
         popular: true,
         stops: ["Nice", "Villefranche-sur-Mer", "Monaco", "Menton"],
         highlights: [
@@ -39,7 +39,7 @@ export const updatedToursData = {
         departure: "9:00 H or 14:00 H",
         frequency: "Daily",
         pricePerPax: 85,
-        currency: "$",
+        currency: "€",
         popular: true,
         stops: ["Eze Village", "Monaco", "Monte-Carlo"],
         highlights: [
@@ -63,7 +63,7 @@ export const updatedToursData = {
         departure: "9:00 H or 14:00 H",
         frequency: "Daily",
         pricePerPax: 100,
-        currency: "$",
+        currency: "€",
         stops: ["Cannes", "Antibes", "St-Paul de Vence"],
         highlights: [
           "Walk the famous Croisette and Palais des Festivals",
@@ -86,7 +86,7 @@ export const updatedToursData = {
         departure: "9:00 H",
         frequency: "Daily",
         pricePerPax: 145,
-        currency: "$",
+        currency: "€",
         popular: true,
         stops: ["San Remo / Ventimiglia", "Menton", "Monaco", "Monte-Carlo"],
         highlights: [
@@ -110,7 +110,7 @@ export const updatedToursData = {
         departure: "8:00 H",
         frequency: "Daily",
         pricePerPax: 145,
-        currency: "$",
+        currency: "€",
         topPick: true,
         popular: true,
         stops: [
@@ -145,7 +145,7 @@ export const updatedToursData = {
         departure: "Flexible - 8:00 H",
         frequency: "Daily",
         pricePerPax: 350,
-        currency: "$",
+        currency: "€",
         stops: ["Custom route"],
         highlights: [
           "Fully customizable itinerary",
@@ -164,13 +164,12 @@ export const updatedToursData = {
         duration: "Full Day (9h)",
         durationType: "full-day",
         isPrivate: true,
-        image:
-          "https://od.lk/s/NjlfNDI5MzMxNjJf/take-to-the-road_image-3.webp",
+        image: "https://od.lk/s/NjlfNDI5MzMxNjJf/take-to-the-road_image-3.webp",
         slug: "private-tour-full-day",
         departure: "Flexible - 9:00 H",
         frequency: "Daily",
         pricePerPax: 600,
-        currency: "$",
+        currency: "€",
         topPick: true,
         stops: ["Custom route"],
         highlights: [
@@ -197,7 +196,7 @@ export const updatedToursData = {
         departure: "8h00 ou 14h00",
         frequency: "Quotidien",
         pricePerPax: 115,
-        currency: "$",
+        currency: "€",
         popular: true,
         stops: ["Nice", "Villefranche-sur-Mer", "Monaco", "Menton"],
         highlights: [
@@ -221,7 +220,7 @@ export const updatedToursData = {
         departure: "9h00 ou 14h00",
         frequency: "Quotidien",
         pricePerPax: 85,
-        currency: "$",
+        currency: "€",
         popular: true,
         stops: ["Village d'Èze", "Monaco", "Monte-Carlo"],
         highlights: [
@@ -245,7 +244,7 @@ export const updatedToursData = {
         departure: "9h00 ou 14h00",
         frequency: "Quotidien",
         pricePerPax: 100,
-        currency: "$",
+        currency: "€",
         stops: ["Cannes", "Antibes", "St-Paul de Vence"],
         highlights: [
           "Promenade sur la célèbre Croisette et Palais des Festivals",
@@ -268,7 +267,7 @@ export const updatedToursData = {
         departure: "9h00",
         frequency: "Quotidien",
         pricePerPax: 145,
-        currency: "$",
+        currency: "€",
         popular: true,
         stops: ["San Remo / Vintimille", "Menton", "Monaco", "Monte-Carlo"],
         highlights: [
@@ -292,7 +291,7 @@ export const updatedToursData = {
         departure: "8h00",
         frequency: "Quotidien",
         pricePerPax: 145,
-        currency: "$",
+        currency: "€",
         topPick: true,
         popular: true,
         stops: [
@@ -327,7 +326,7 @@ export const updatedToursData = {
         departure: "Flexible - 8h00",
         frequency: "Quotidien",
         pricePerPax: 350,
-        currency: "$",
+        currency: "€",
         stops: ["Itinéraire personnalisé"],
         highlights: [
           "Itinéraire entièrement personnalisable",
@@ -346,13 +345,12 @@ export const updatedToursData = {
         duration: "Journée complète (9h)",
         durationType: "full-day",
         isPrivate: true,
-        image:
-          "https://od.lk/s/NjlfNDI5MzMxNjJf/take-to-the-road_image-3.webp",
+        image: "https://od.lk/s/NjlfNDI5MzMxNjJf/take-to-the-road_image-3.webp",
         slug: "tour-prive-journee-complete",
         departure: "Flexible - 9h00",
         frequency: "Quotidien",
         pricePerPax: 600,
-        currency: "$",
+        currency: "€",
         topPick: true,
         stops: ["Itinéraire personnalisé"],
         highlights: [
@@ -379,7 +377,7 @@ export const getTourBySlug = (slug, language = "en") => {
 };
 
 // Helper function to format price
-export const formatPrice = (pricePerPax, numPeople = 1, currency = "$") => {
+export const formatPrice = (pricePerPax, numPeople = 1, currency = "€") => {
   const total = pricePerPax * numPeople;
   return `${currency}${total}`;
 };
