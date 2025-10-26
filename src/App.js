@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Tours from "./components/Tours";
+import EnhancedTours from "./components/EnhancedTours";
 import AboutPreviewSection from "./components/AboutPreviewSection";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import TourDetails from "./pages/TourDetails";
+import EnhancedTourDetails from "./components/EnhancedTourDetails";
 import Testimonials from "./pages/Testimonials";
 import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -25,7 +25,7 @@ const HomePage = () => (
     <StructuredDataScript type="website" />
     <StructuredDataScript type="organization" />
     <Hero />
-    <Tours />
+    <EnhancedTours />
     <AboutPreviewSection />
     <Contact />
   </>
@@ -39,7 +39,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/tour/:id" element={<TourDetails />} />
+            <Route path="/tour/:slug" element={<EnhancedTourDetails />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

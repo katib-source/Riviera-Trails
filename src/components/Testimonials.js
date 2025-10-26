@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid } from "react-visual-grid";
-import { testimonialsData } from "../data/toursData";
+import { testimonialsData } from "../data/testimonialsData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
 import { FiStar, FiX, FiMapPin, FiCalendar } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";

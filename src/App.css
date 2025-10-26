@@ -39,3 +39,28 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Fixed navbar spacing */
+main {
+  padding-top: 80px;
+}
+
+@media (min-width: 640px) {
+  main {
+    padding-top: 96px;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+/* Smooth navbar transitions with cinematic ease-out curves */
+.translate-y-0 {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease,
+    box-shadow 0.5s ease, scale 0.5s ease;
+}
+
+.-translate-y-full {
+  opacity: 0;
+}

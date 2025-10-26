@@ -12,7 +12,7 @@ import {
   FiCamera,
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import { testimonialsData } from "../data/toursData";
+import { testimonialsData } from "../data/testimonialsData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
 
 const AboutPreviewSection = () => {
