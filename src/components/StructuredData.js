@@ -21,8 +21,8 @@ export const StructuredDataScript = ({ type = "website", data = {} }) => {
             "query-input": "required name=search_term_string",
           },
           sameAs: [
-            "https://www.instagram.com/azur_escape",
-            "https://www.facebook.com/azur.escape",
+            "https://www.instagram.com/azurescape",
+            "https://www.facebook.com/azurescape",
           ],
         };
 

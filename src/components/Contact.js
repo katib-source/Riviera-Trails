@@ -116,7 +116,7 @@ const Contact = () => {
                     <FiInstagram className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                   </a>
                   <a
-                    href="https://facebook.com/rivieratrails"
+                    href="https://www.facebook.com/azurescape"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
