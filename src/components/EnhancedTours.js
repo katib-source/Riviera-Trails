@@ -33,7 +33,7 @@ const EnhancedTours = () => {
 
   const handleBookNow = (tour) => {
     const message = `Hello! I'm interested in booking the "${tour.title}" tour (${tour.duration}). Could you provide more information?`;
-    const whatsappUrl = `https://wa.me/33605985410?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/33758781678?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");
@@ -265,7 +265,7 @@ const EnhancedTours = () => {
               : "Contactez-nous pour créer un circuit personnalisé adapté à vos intérêts, votre emploi du temps et vos préférences."}
           </p>
           <a
-            href="https://wa.me/33605985410?text=Hello!%20I'm%20interested%20in%20creating%20a%20custom%20tour%20experience."
+            href="https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20creating%20a%20custom%20tour%20experience."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-200 shadow-lg"

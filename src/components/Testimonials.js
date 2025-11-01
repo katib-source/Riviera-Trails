@@ -104,7 +104,7 @@ const Testimonials = () => {
   }));
 
   const whatsappUrl =
-    "https://wa.me/33605985410?text=Hello!%20I'm%20interested%20in%20booking%20a%20French%20Riviera%20tour.";
+    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20booking%20a%20French%20Riviera%20tour.";
 
   const closeModal = () => {
     setSelectedTestimonial(null);

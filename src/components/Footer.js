@@ -44,7 +44,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-3 sm:gap-4">
               <a
-                href="https://wa.me/33605985410"
+                href="https://wa.me/33758781678"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-200"
@@ -60,7 +60,7 @@ const Footer = () => {
                 <FaFacebook className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                href="mailto:derbalaymene@yahoo.fr"
+                href="mailto:info@azurescape.fr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 sm:w-10 sm:h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
@@ -140,8 +140,8 @@ const Footer = () => {
             </h4>
             <div className="space-y-2 text-gray-300 text-sm sm:text-base">
               <p>📍 Nice, French Riviera</p>
-              <p className="break-all">📱 +33 6 05 98 54 10</p>
-              <p className="break-all">📧 derbalaymene@yahoo.fr</p>
+              <p className="break-all">📱 +33 7 58 78 16 78</p>
+              <p className="break-all">📧 info@azurescape.fr</p>
               <p>🌐 3 Languages: FR, EN, AR</p>
             </div>
           </div>

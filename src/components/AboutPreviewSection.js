@@ -43,7 +43,7 @@ const AboutPreviewSection = () => {
   ];
 
   const whatsappUrl =
-    "https://wa.me/33605985410?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.";
+    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.";
 
   const getCountryFlag = (country) => {
     const flags = {
@@ -282,11 +282,11 @@ const AboutPreviewSection = () => {
                   Start Planning on WhatsApp
                 </a>
                 <a
-                  href="tel:+33605985410"
+                  href="tel:+33758781678"
                   className="inline-flex items-center gap-3 bg-white/20 backdrop-blur text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-colors border border-white/30"
                 >
                   <FiPhone className="w-5 h-5" />
-                  Call +33 6 05 98 54 10
+                  Call +33 7 58 78 16 78
                 </a>
               </div>
             </div>

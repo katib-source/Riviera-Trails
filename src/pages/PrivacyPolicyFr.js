@@ -100,7 +100,7 @@ const PrivacyPolicyFr = () => {
             </p>
             <ul className="list-disc pl-6 mb-6">
               <li>Email : privacy@azurescape.fr</li>
-              <li>WhatsApp : +33 6 05 98 54 10</li>
+              <li>WhatsApp : +33 7 58 78 16 78</li>
               <li>Adresse : Côte d'Azur, France</li>
             </ul>
 

@@ -95,8 +95,8 @@ export const seoConfigs = {
       description:
         "Expert local guide offering small group tours of the French Riviera",
       url: "https://www.azurescape.fr",
-      telephone: "+33605985410",
-      email: "derbalaymene@yahoo.fr",
+      telephone: "+33758781678",
+      email: "info@azurescape.fr",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Nice",
@@ -133,7 +133,7 @@ export const seoConfigs = {
       provider: {
         "@type": "TourOperator",
         name: "Azur Escape",
-        telephone: "+33605985410",
+        telephone: "+33758781678",
       },
       duration: tour.duration,
       offers: {

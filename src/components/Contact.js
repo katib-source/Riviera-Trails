@@ -11,7 +11,7 @@ import { FadeIn, SlideIn } from "./LoadingAnimations";
 
 const Contact = () => {
   const whatsappUrl =
-    "https://wa.me/33605985410?text=Hello!%20I'd%20like%20to%20book%20a%20tour%20or%20get%20more%20information%20about%20your%20French%20Riviera%20experiences.";
+    "https://wa.me/33758781678?text=Hello!%20I'd%20like%20to%20book%20a%20tour%20or%20get%20more%20information%20about%20your%20French%20Riviera%20experiences.";
 
   return (
     <section id="contact" className="py-16 bg-white">
@@ -56,14 +56,14 @@ const Contact = () => {
                       Quick responses, instant booking
                     </p>
                     <p className="text-green-600 font-medium text-sm sm:text-base break-all">
-                      +33 6 05 98 54 10
+                      +33 7 58 78 16 78
                     </p>
                   </div>
                 </a>
 
                 {/* Email */}
                 <a
-                  href="mailto:derbalaymene@yahoo.fr"
+                  href="mailto:info@azurescape.fr"
                   className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200"
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-riviera-blue rounded-full flex items-center justify-center flex-shrink-0">
@@ -77,7 +77,7 @@ const Contact = () => {
                       For detailed inquiries
                     </p>
                     <p className="text-riviera-blue font-medium text-sm sm:text-base break-all">
-                      derbalaymene@yahoo.fr
+                      info@azurescape.fr
                     </p>
                   </div>
                 </a>

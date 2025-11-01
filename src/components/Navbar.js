@@ -98,7 +98,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const whatsappUrl =
-    "https://wa.me/33605985410?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.";
+    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.";
 
   const scrollToSection = (sectionId) => {
     // If not on homepage, navigate to homepage first

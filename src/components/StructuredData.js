@@ -33,7 +33,7 @@ export const StructuredDataScript = ({ type = "website", data = {} }) => {
           name: "Azur Escape",
           description: "Premium guided tours of the French Riviera",
           url: "https://www.azurescape.fr",
-          telephone: "+33605985410",
+          telephone: "+33758781678",
           address: {
             "@type": "PostalAddress",
             addressRegion: "French Riviera",

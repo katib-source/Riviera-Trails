@@ -6,7 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 const Hero = () => {
   const { t } = useLanguage();
   const whatsappUrl =
-    "https://wa.me/33605985410?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.%20Could%20you%20please%20provide%20more%20information?";
+    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.%20Could%20you%20please%20provide%20more%20information?";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

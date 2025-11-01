@@ -45,7 +45,7 @@ const WhatsAppWidget = () => {
   ];
 
   const sendWhatsAppMessage = (message) => {
-    const phoneNumber = "33605985410";
+    const phoneNumber = "33758781678";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
     )}`;

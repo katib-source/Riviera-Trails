@@ -52,7 +52,7 @@ const EnhancedTourDetails = () => {
     }" for ${groupSize} ${groupSize === 1 ? "person" : "people"}. Total: ${
       tour.currency
     }${totalPrice}. Could you confirm availability?`;
-    const whatsappUrl = `https://wa.me/33605985410?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/33758781678?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");
@@ -420,10 +420,10 @@ const EnhancedTourDetails = () => {
                     : "Des questions? Contactez-nous:"}
                 </p>
                 <a
-                  href="tel:+33605985410"
+                  href="tel:+33758781678"
                   className="text-blue-600 hover:text-blue-700 font-semibold"
                 >
-                  +33 6 05 98 54 10
+                  +33 7 58 78 16 78
                 </a>
               </div>
             </div>
