@@ -50,12 +50,14 @@ function App() {
     <LanguageProvider>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="App">
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-riviera-blue focus:px-4 focus:py-2 focus:rounded focus:shadow-lg focus:font-semibold"
-          >
-            Skip to main content
-          </a>
+          <div style={{ position: "absolute", top: 0, left: 0, width: 0, height: 0, overflow: "visible" }}>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-riviera-blue focus:px-4 focus:py-2 focus:rounded focus:shadow-lg focus:font-semibold"
+            >
+              Skip to main content
+            </a>
+          </div>
           <Navbar />
           <main id="main-content">
             <ErrorBoundary>
