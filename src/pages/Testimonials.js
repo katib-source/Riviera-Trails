@@ -217,7 +217,7 @@ const Testimonials = () => {
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-500 mb-2">
-                  500+
+                  1,000+
                 </div>
                 <div className="text-sm text-gray-600">{t("testimonialsPage.happyTravelers")}</div>
               </div>

@@ -140,7 +140,7 @@ const Testimonials = () => {
               <div className="text-sm text-gray-600">Average Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-500 mb-2">500+</div>
+              <div className="text-3xl font-bold text-green-500 mb-2">1,000+</div>
               <div className="text-sm text-gray-600">Happy Travelers</div>
             </div>
             <div className="text-center">
@@ -300,7 +300,7 @@ const Testimonials = () => {
                     </div>
                     <div>
                       <div className="text-lg font-bold text-green-500">
-                        500+
+                        1,000+
                       </div>
                       <div className="text-xs text-gray-600">Reviews</div>
                     </div>

@@ -64,7 +64,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
             <div className="text-3xl font-bold text-sunset-orange mb-2">
-              500+
+              1,000+
             </div>
             <div className="text-gray-300">Happy Travelers</div>
           </div>
