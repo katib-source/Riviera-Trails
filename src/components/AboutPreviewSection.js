@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import {
   FiMapPin,
   FiHeart,
@@ -9,7 +9,6 @@ import {
   FiPhone,
   FiCheckCircle,
   FiGlobe,
-  FiCamera,
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { testimonialsData } from "../data/testimonialsData";

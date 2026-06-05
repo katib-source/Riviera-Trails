@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 import { FaWhatsapp, FaFacebook, FaGoogle } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
-import { PHONE_NUMBER, EMAIL_ADDRESS, getWhatsAppUrl } from "../config/constants";
+import { EMAIL_ADDRESS, getWhatsAppUrl } from "../config/constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
