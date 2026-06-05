@@ -1,30 +1,37 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ isDarkBackground = true }) => {
   const { language, changeLanguage } = useLanguage();
 
+  const activeClass = isDarkBackground
+    ? "text-white font-semibold"
+    : "text-riviera-blue font-semibold";
+
+  const inactiveClass = isDarkBackground
+    ? "text-white/60 hover:text-white transition-colors duration-200 cursor-pointer"
+    : "text-gray-400 hover:text-riviera-blue transition-colors duration-200 cursor-pointer";
+
+  const separatorClass = isDarkBackground ? "text-white/30" : "text-gray-300";
+
   return (
-    <div className="flex items-center space-x-1 bg-white/10 backdrop-blur-sm rounded-full p-1">
-      <button
-        onClick={() => changeLanguage("en")}
-        className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
-          language === "en"
-            ? "bg-white text-riviera-blue shadow-sm"
-            : "text-white hover:bg-white/20"
-        }`}
-      >
-        EN
-      </button>
+    <div className="flex items-center gap-1.5 text-sm tracking-wider uppercase select-none">
       <button
         onClick={() => changeLanguage("fr")}
-        className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
-          language === "fr"
-            ? "bg-white text-riviera-blue shadow-sm"
-            : "text-white hover:bg-white/20"
+        className={`transition-colors duration-200 ${
+          language === "fr" ? activeClass : inactiveClass
         }`}
       >
         FR
+      </button>
+      <span className={separatorClass} aria-hidden="true">|</span>
+      <button
+        onClick={() => changeLanguage("en")}
+        className={`transition-colors duration-200 ${
+          language === "en" ? activeClass : inactiveClass
+        }`}
+      >
+        EN
       </button>
     </div>
   );

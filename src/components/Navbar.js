@@ -228,12 +228,12 @@ const Navbar = () => {
                 {t("nav.bookNow")}
               </a>
             </div>
-            <LanguageSwitcher />
+            <LanguageSwitcher isDarkBackground={isDarkBackground} />
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            <LanguageSwitcher />
+            <LanguageSwitcher isDarkBackground={isDarkBackground} />
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
