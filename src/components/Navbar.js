@@ -143,13 +143,17 @@ const Navbar = () => {
   return (
     <nav
       style={{ top: 0, marginTop: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-500 ease-out ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isHidden ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       } ${
-        isDarkBackground
-          ? "bg-white/10 text-white shadow-[inset_0_-1px_0_rgba(255,255,255,0.25)]"
-          : "bg-white/30 text-gray-800 shadow-[inset_0_-1px_0_rgba(0,0,0,0.08)]"
-      } ${isScrolled ? "shadow-lg shadow-black/5 scale-[1.02]" : "scale-100"}`}
+        isScrolled
+          ? isDarkBackground
+            ? "bg-black/20 text-white shadow-lg backdrop-blur-md shadow-black/5 scale-[1.02]"
+            : "bg-white/80 text-gray-800 shadow-lg backdrop-blur-md shadow-black/5 scale-[1.02]"
+          : isDarkBackground
+            ? "bg-transparent text-white scale-100"
+            : "bg-transparent text-gray-800 scale-100"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">

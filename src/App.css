@@ -44,10 +44,16 @@ html {
 main {
   padding-top: 80px;
 }
+main:has(.hero) {
+  padding-top: 0;
+}
 
 @media (min-width: 640px) {
   main {
     padding-top: 96px;
+  }
+  main:has(.hero) {
+    padding-top: 0;
   }
 }
 
