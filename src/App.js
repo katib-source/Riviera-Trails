@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -8,18 +8,30 @@ import EnhancedTours from "./components/EnhancedTours";
 import AboutPreviewSection from "./components/AboutPreviewSection";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import EnhancedTourDetails from "./components/EnhancedTourDetails";
-import Testimonials from "./pages/Testimonials";
-import FAQ from "./pages/FAQ";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import PrivacyPolicyFr from "./pages/PrivacyPolicyFr";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import CookieConsent from "./components/CookieConsent";
 import SEOHead, { seoConfigs } from "./components/SEOHead";
 import StructuredDataScript from "./components/StructuredData";
+import ErrorBoundary from "./components/ErrorBoundary";
 import "./App.css";
 
-// Home Page Component
+// Route-level chunks — loaded only when the user navigates to that route
+const EnhancedTourDetails = React.lazy(() =>
+  import("./components/EnhancedTourDetails")
+);
+const Testimonials = React.lazy(() => import("./pages/Testimonials"));
+const FAQ          = React.lazy(() => import("./pages/FAQ"));
+const PrivacyPolicy   = React.lazy(() => import("./pages/PrivacyPolicy"));
+const PrivacyPolicyFr = React.lazy(() => import("./pages/PrivacyPolicyFr"));
+
+// Shown while a lazy route chunk is loading
+const PageFallback = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
+  </div>
+);
+
+// Home Page Component — eagerly loaded, above the fold
 const HomePage = () => (
   <>
     <SEOHead {...seoConfigs.home} />
@@ -35,17 +47,29 @@ const HomePage = () => (
 function App() {
   return (
     <LanguageProvider>
-      <Router>
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="App">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-riviera-blue focus:px-4 focus:py-2 focus:rounded focus:shadow-lg focus:font-semibold"
+          >
+            Skip to main content
+          </a>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/tour/:slug" element={<EnhancedTourDetails />} />
-            <Route path="/testimonials" element={<Testimonials />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/privacy-policy-fr" element={<PrivacyPolicyFr />} />
-          </Routes>
+          <main id="main-content">
+            <ErrorBoundary>
+              <Suspense fallback={<PageFallback />}>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/tour/:slug" element={<EnhancedTourDetails />} />
+                  <Route path="/testimonials" element={<Testimonials />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/privacy-policy-fr" element={<PrivacyPolicyFr />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
+          </main>
           <Footer />
           <WhatsAppWidget />
           <CookieConsent />

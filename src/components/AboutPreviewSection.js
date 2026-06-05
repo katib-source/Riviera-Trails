@@ -14,6 +14,7 @@ import {
 import { FaWhatsapp } from "react-icons/fa";
 import { testimonialsData } from "../data/testimonialsData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
+import { PHONE_NUMBER, getWhatsAppUrl } from "../config/constants";
 
 const AboutPreviewSection = () => {
   // Select first 3 testimonials for preview
@@ -42,8 +43,9 @@ const AboutPreviewSection = () => {
     },
   ];
 
-  const whatsappUrl =
-    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.";
+  const whatsappUrl = getWhatsAppUrl(
+    "Hello! I'm interested in your French Riviera tours."
+  );
 
   const getCountryFlag = (country) => {
     const flags = {
@@ -128,11 +130,13 @@ const AboutPreviewSection = () => {
                     src="/images/ppl/w1.jpeg"
                     alt="Group tour in Monaco"
                     className="w-full h-70 object-cover rounded-2xl shadow-lg"
+                    loading="lazy"
                   />
                   <img
                     src="/images/ppl/w2.jpeg"
                     alt="Scenic French Riviera landscape"
                     className="w-full h-70 object-cover rounded-2xl shadow-lg"
+                    loading="lazy"
                   />
                 </div>
                 <div className="space-y-4 pt-8">
@@ -140,11 +144,13 @@ const AboutPreviewSection = () => {
                     src="/images/ppl/w3.jpeg"
                     alt="Happy clients at Eze Village"
                     className="w-full h-66 object-cover rounded-2xl shadow-lg"
+                    loading="lazy"
                   />
                   <img
                     src="/images/ppl/w4.jpeg"
                     alt="Family enjoying Saint-Tropez"
                     className="w-full h-48 object-cover rounded-2xl shadow-lg"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -250,7 +256,7 @@ const AboutPreviewSection = () => {
             {/* CTA to Full Testimonials */}
             {/* <div className="text-center">
               <Link
-                to="/clients"
+                to="/testimonials"
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-riviera-blue to-mediterranean-teal text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-lg transition-shadow"
               >
                 <FiCamera className="w-5 h-5" />
@@ -282,7 +288,7 @@ const AboutPreviewSection = () => {
                   Start Planning on WhatsApp
                 </a>
                 <a
-                  href="tel:+33758781678"
+                  href={`tel:+${PHONE_NUMBER}`}
                   className="inline-flex items-center gap-3 bg-white/20 backdrop-blur text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-colors border border-white/30"
                 >
                   <FiPhone className="w-5 h-5" />

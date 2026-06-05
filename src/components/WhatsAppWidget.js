@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getWhatsAppUrl } from "../config/constants";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiX, FiMessageCircle } from "react-icons/fi";
 
@@ -6,19 +7,19 @@ const WhatsAppWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
-  // Hide widget when scrolling to footer to avoid overlap
+  // Hide widget when the footer scrolls into view
   useEffect(() => {
-    const handleScroll = () => {
-      const footer = document.querySelector("footer");
-      if (footer) {
-        const footerTop = footer.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        setIsVisible(footerTop > windowHeight - 100);
-      }
-    };
+    const footer = document.querySelector("footer");
+    if (!footer) return;
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // IntersectionObserver fires only when the element crosses the threshold —
+    // far cheaper than computing getBoundingClientRect on every scroll tick.
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(!entry.isIntersecting),
+      { threshold: 0, rootMargin: "100px 0px 0px 0px" }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
   }, []);
 
   const quickMessages = [
@@ -45,11 +46,7 @@ const WhatsAppWidget = () => {
   ];
 
   const sendWhatsAppMessage = (message) => {
-    const phoneNumber = "33758781678";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
-    window.open(whatsappUrl, "_blank");
+    window.open(getWhatsAppUrl(message), "_blank");
     setIsOpen(false);
   };
 
@@ -73,7 +70,7 @@ const WhatsAppWidget = () => {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-500 hover:text-gray-700 transition-colors"
               >
                 <FiX className="w-5 h-5" />
               </button>

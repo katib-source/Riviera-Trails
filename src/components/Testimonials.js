@@ -4,6 +4,7 @@ import { testimonialsData } from "../data/testimonialsData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
 import { FiStar, FiX, FiMapPin, FiCalendar } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { getWhatsAppUrl } from "../config/constants";
 
 const Testimonials = () => {
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
@@ -103,8 +104,9 @@ const Testimonials = () => {
     onClick: () => setSelectedTestimonial(testimonial),
   }));
 
-  const whatsappUrl =
-    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20booking%20a%20French%20Riviera%20tour.";
+  const whatsappUrl = getWhatsAppUrl(
+    "Hello! I'm interested in booking a French Riviera tour."
+  );
 
   const closeModal = () => {
     setSelectedTestimonial(null);
@@ -225,6 +227,7 @@ const Testimonials = () => {
               src={selectedTestimonial.image}
               alt="Background"
               className="w-full h-full object-cover filter blur-sm"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-riviera-blue/40 to-mediterranean-teal/40"></div>
           </div>
@@ -246,6 +249,7 @@ const Testimonials = () => {
                   src={selectedTestimonial.image}
                   alt={selectedTestimonial.name}
                   className="w-48 h-48 lg:w-full lg:h-64 rounded-2xl object-cover shadow-xl mx-auto"
+                  loading="lazy"
                 />
               </div>
 

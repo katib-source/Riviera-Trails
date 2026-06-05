@@ -1,30 +1,29 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 import { FaWhatsapp, FaFacebook, FaGoogle } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
+import { PHONE_NUMBER, EMAIL_ADDRESS, getWhatsAppUrl } from "../config/constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
+  const location = useLocation();
   const { language } = useLanguage();
 
+  // M-06: fire after the route renders so the target section is in the DOM
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      document.getElementById(location.state.scrollTo)?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location]);
+
   const scrollToSection = (sectionId) => {
-    // If not on homepage, navigate to homepage first
-    if (window.location.pathname !== "/") {
-      navigate("/");
-      // Wait for navigation to complete, then scroll
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
+    if (location.pathname !== "/") {
+      // Pass scroll target via router state; the useEffect above handles the scroll
+      navigate("/", { state: { scrollTo: sectionId } });
     } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -44,28 +43,29 @@ const Footer = () => {
             </p>
             <div className="flex gap-3 sm:gap-4">
               <a
-                href="https://wa.me/33758781678"
+                href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-200"
+                aria-label="Chat with us on WhatsApp"
+                className="w-11 h-11 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-200"
               >
-                <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://www.facebook.com/azurescape"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
+                aria-label="Follow us on Facebook"
+                className="w-11 h-11 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
               >
-                <FaFacebook className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaFacebook className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
-                href="mailto:info@azurescape.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 sm:w-10 sm:h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
+                href={`mailto:${EMAIL_ADDRESS}`}
+                aria-label="Send us an email"
+                className="w-11 h-11 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
               >
-                <FaGoogle className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaGoogle className="w-5 h-5" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -94,7 +94,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => navigate("/clients")}
+                  onClick={() => navigate("/testimonials")}
                   className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
                   Client Stories
@@ -141,7 +141,7 @@ const Footer = () => {
             <div className="space-y-2 text-gray-300 text-sm sm:text-base">
               <p>📍 Nice, French Riviera</p>
               <p className="break-all">📱 +33 7 58 78 16 78</p>
-              <p className="break-all">📧 info@azurescape.fr</p>
+              <p className="break-all">📧 {EMAIL_ADDRESS}</p>
               <p>🌐 3 Languages: FR, EN, AR</p>
             </div>
           </div>

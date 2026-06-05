@@ -4,26 +4,15 @@
   "description": "Premium guided tours of the French Riviera from Nice to Menton",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192",
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
       "purpose": "any maskable"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any"
     }
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#FF6B35",
+  "theme_color": "#0077BE",
   "background_color": "#ffffff",
   "orientation": "portrait-primary",
   "categories": ["travel", "tourism", "lifestyle"],

@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { PHONE_NUMBER, EMAIL_ADDRESS } from "../config/constants";
+import { useLanguage } from "../context/LanguageContext";
 
 const SEOHead = ({
   title = "Azur Escape - French Riviera Tours | Expert Local Guide",
@@ -8,6 +10,8 @@ const SEOHead = ({
   ogImage = "/images/tours/og-image.jpg",
   structuredData = null,
 }) => {
+  const { language } = useLanguage();
+
   useEffect(() => {
     // Update title
     document.title = title;
@@ -40,7 +44,10 @@ const SEOHead = ({
     updateMetaTag("og:url", canonical, true);
     updateMetaTag("og:image", ogImage, true);
     updateMetaTag("og:site_name", "Azur Escape", true);
-    updateMetaTag("og:locale", "en_US", true);
+    const ogLocale = language === "fr" ? "fr_FR" : "en_US";
+    const ogLocaleAlt = language === "fr" ? "en_US" : "fr_FR";
+    updateMetaTag("og:locale", ogLocale, true);
+    updateMetaTag("og:locale:alternate", ogLocaleAlt, true);
 
     // Twitter Card tags
     updateMetaTag("twitter:card", "summary_large_image");
@@ -75,7 +82,7 @@ const SEOHead = ({
       }
       structuredDataScript.textContent = JSON.stringify(structuredData);
     }
-  }, [title, description, keywords, canonical, ogImage, structuredData]);
+  }, [title, description, keywords, canonical, ogImage, structuredData, language]);
 
   return null; // This component doesn't render anything
 };
@@ -95,8 +102,8 @@ export const seoConfigs = {
       description:
         "Expert local guide offering small group tours of the French Riviera",
       url: "https://www.azurescape.fr",
-      telephone: "+33758781678",
-      email: "info@azurescape.fr",
+      telephone: `+${PHONE_NUMBER}`,
+      email: EMAIL_ADDRESS,
       address: {
         "@type": "PostalAddress",
         addressLocality: "Nice",
@@ -112,7 +119,7 @@ export const seoConfigs = {
         "@type": "Place",
         name: "French Riviera",
       },
-      priceRange: "€120",
+      priceRange: "€100 – €150",
       languages: ["French", "English", "Arabic"],
     },
   },
@@ -121,10 +128,10 @@ export const seoConfigs = {
     title: `${tour.title} - French Riviera Tours | Azur Escape`,
     description: `${tour.description.substring(0, 150)}... Book this ${
       tour.duration
-    } French Riviera tour for ${
-      tour.price
-    } per person. Expert local guide, small groups.`,
-    keywords: `${tour.title}, French Riviera tours, ${tour.city} tour, Monaco tour, Nice tour, Menton tour`,
+    } French Riviera tour from €${
+      tour.pricePerPax
+    }/person. Expert local guide, small groups.`,
+    keywords: `${tour.title}, French Riviera tours, Monaco tour, Nice tour, Menton tour`,
     structuredData: {
       "@context": "https://schema.org",
       "@type": "TouristTrip",
@@ -133,12 +140,12 @@ export const seoConfigs = {
       provider: {
         "@type": "TourOperator",
         name: "Azur Escape",
-        telephone: "+33758781678",
+        telephone: `+${PHONE_NUMBER}`,
       },
       duration: tour.duration,
       offers: {
         "@type": "Offer",
-        price: tour.price.replace("€", ""),
+        price: String(tour.pricePerPax),
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
       },

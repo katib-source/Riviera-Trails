@@ -31,6 +31,38 @@ export const translations = {
         title: "Tour Pricing",
         subtitle: "All tours available at the same competitive rates",
       },
+      // Badge labels (shared between TourCard and TourHeroSection)
+      badges: {
+        topPick: "Top Pick",
+        popular: "Popular 🔥",
+        private: "Private",
+        privateTour: "Private Tour",
+      },
+      // Tour card UI strings
+      card: {
+        halfDay: "Half Day",
+        fullDay: "Full Day",
+        departureLabel: "Departure:",
+        highlightsLabel: "Highlights:",
+        person: "person",
+        customRoute: "Custom route",
+        details: "Details",
+        startingFrom: "Starting from",
+        totalPrice: "Total Price",
+      },
+      // Section header on the home page
+      section: {
+        title: "Discover Our Tours",
+        subtitle:
+          "From half-day adventures to full-day explorations, find your perfect French Riviera experience",
+      },
+      // Custom tour CTA block
+      custom: {
+        title: "Need a Custom Experience?",
+        description:
+          "Contact us to create a personalized tour tailored to your interests, schedule, and preferences.",
+        cta: "Contact Us on WhatsApp",
+      },
     },
     about: {
       title: "About Azur Escape",
@@ -111,6 +143,45 @@ export const translations = {
       notes: "Important Notes",
       whatsappBooking: "Book via WhatsApp",
       backToTours: "Back to Tours",
+      // Navigation
+      back: "Back",
+      // Quick-info grid
+      info: "Tour Information",
+      frequency: "Frequency",
+      stops: "Stops",
+      tourStops: "Tour Stops",
+      // 404 state
+      notFound: {
+        title: "Tour Not Found",
+        description:
+          "The tour you're looking for doesn't exist or may have been removed.",
+        cta: "Browse All Tours",
+      },
+      // Private tour benefits panel
+      privateBenefits: {
+        title: "Private Tour Benefits",
+        flexible: "Flexible itinerary customized to your interests",
+        personalGuide: "Personal dedicated guide",
+        pickup: "Pickup from your location",
+        vehicle: "Premium comfort vehicle",
+      },
+      // Booking sidebar
+      booking: {
+        title: "Book This Tour",
+        pricePerPerson: "Price per person",
+        totalPriceLabel: "Total Price",
+        flatRate: "(Flat rate for the tour)",
+        numberOfPeople: "Number of People",
+        person: "person",
+        people: "people",
+        privateFlatRate: "Private tour (flat rate)",
+        groupDiscount: "Group Discount (10%)",
+        discountNudge:
+          "Book for 4+ people and get 10% group discount!",
+        bookWhatsapp: "Book on WhatsApp",
+        questions: "Questions? Contact us:",
+        startingFrom: "Starting from",
+      },
     },
     clientMemories: {
       title: "Client Memories",
@@ -134,6 +205,7 @@ export const translations = {
       showLess: "Show Less",
     },
   },
+
   fr: {
     nav: {
       tours: "Tours",
@@ -165,6 +237,34 @@ export const translations = {
       pricing: {
         title: "Tarifs des Circuits",
         subtitle: "Tous les circuits disponibles aux mêmes tarifs compétitifs",
+      },
+      badges: {
+        topPick: "Meilleur Choix",
+        popular: "Populaire 🔥",
+        private: "Privé",
+        privateTour: "Tour Privé",
+      },
+      card: {
+        halfDay: "Demi-journée",
+        fullDay: "Journée complète",
+        departureLabel: "Départ:",
+        highlightsLabel: "Points forts:",
+        person: "personne",
+        customRoute: "Itinéraire personnalisé",
+        details: "Détails",
+        startingFrom: "À partir de",
+        totalPrice: "Prix total",
+      },
+      section: {
+        title: "Découvrez Nos Circuits",
+        subtitle:
+          "Des aventures d'une demi-journée aux explorations d'une journée complète, trouvez votre expérience parfaite sur la Côte d'Azur",
+      },
+      custom: {
+        title: "Besoin d'une expérience personnalisée?",
+        description:
+          "Contactez-nous pour créer un circuit personnalisé adapté à vos intérêts, votre emploi du temps et vos préférences.",
+        cta: "Contactez-nous sur WhatsApp",
       },
     },
     about: {
@@ -246,6 +346,40 @@ export const translations = {
       notes: "Notes importantes",
       whatsappBooking: "Réserver via WhatsApp",
       backToTours: "Retour aux tours",
+      back: "Retour",
+      info: "Informations sur le circuit",
+      frequency: "Fréquence",
+      stops: "Arrêts",
+      tourStops: "Arrêts du circuit",
+      notFound: {
+        title: "Circuit introuvable",
+        description:
+          "Le circuit que vous recherchez n'existe pas ou a peut-être été supprimé.",
+        cta: "Voir tous les circuits",
+      },
+      privateBenefits: {
+        title: "Avantages du tour privé",
+        flexible: "Itinéraire flexible personnalisé selon vos intérêts",
+        personalGuide: "Guide personnel dédié",
+        pickup: "Prise en charge depuis votre emplacement",
+        vehicle: "Véhicule confortable premium",
+      },
+      booking: {
+        title: "Réserver ce circuit",
+        pricePerPerson: "Prix par personne",
+        totalPriceLabel: "Prix total",
+        flatRate: "(Tarif forfaitaire pour le circuit)",
+        numberOfPeople: "Nombre de personnes",
+        person: "personne",
+        people: "personnes",
+        privateFlatRate: "Tour privé (tarif forfaitaire)",
+        groupDiscount: "Remise de groupe (10%)",
+        discountNudge:
+          "Réservez pour 4+ personnes et obtenez 10% de réduction de groupe!",
+        bookWhatsapp: "Réserver sur WhatsApp",
+        questions: "Des questions? Contactez-nous:",
+        startingFrom: "À partir de",
+      },
     },
     clientMemories: {
       title: "Souvenirs clients",

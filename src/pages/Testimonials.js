@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
+import SEOHead from "../components/SEOHead";
+import { getWhatsAppUrl } from "../config/constants";
 import { Masonry } from "react-visual-grid";
 import { testimonialsData } from "../data/testimonialsData";
 import { FadeIn, SlideIn } from "../components/LoadingAnimations";
 import { FiStar, FiMapPin, FiCalendar, FiHeart } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 
-const Testimonials = () => {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  // Extended testimonials with more client experiences
-  const extendedTestimonials = [
-    ...testimonialsData,
-    {
-      id: 4,
-      name: "Jean-Pierre Dubois",
-      country: "France",
-      rating: 5,
-      text: "Even as a local, I discovered hidden gems I never knew existed. The team's passion for the region is absolutely contagious! They showed us secret viewpoints and told stories that brought every location to life.",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
-      tour: "Provence Medieval Villages",
-      bgColor: "from-blue-100 to-blue-200",
-      textColor: "text-blue-800",
-    },
+// Hoisted outside the component so the array reference is stable across renders
+const EXTENDED_TESTIMONIALS = [
+  ...testimonialsData,
+  {
+    id: 4,
+    name: "Jean-Pierre Dubois",
+    country: "France",
+    rating: 5,
+    text: "Even as a local, I discovered hidden gems I never knew existed. The team's passion for the region is absolutely contagious! They showed us secret viewpoints and told stories that brought every location to life.",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
+    tour: "Provence Medieval Villages",
+    bgColor: "from-blue-100 to-blue-200",
+    textColor: "text-blue-800",
+  },
     {
       id: 5,
       name: "Lisa & David Chen",
@@ -108,54 +106,88 @@ const Testimonials = () => {
       bgColor: "from-rose-100 to-rose-200",
       textColor: "text-rose-800",
     },
-  ];
+];
 
-  // Prepare images for the Masonry component with specific dimensions
-  const dimensions = [
-    [400, 300],
-    [320, 400],
-    [450, 280],
-    [350, 450],
-    [500, 350],
-    [380, 320],
-    [420, 380],
-    [360, 400],
-    [480, 300],
-    [340, 360],
-    [460, 340],
-  ];
+// Fixed dimensions grid — stable module-level constant, no randomness
+const MASONRY_DIMENSIONS = [
+  [400, 300],
+  [320, 400],
+  [450, 280],
+  [350, 450],
+  [500, 350],
+  [380, 320],
+  [420, 380],
+  [360, 400],
+  [480, 300],
+  [340, 360],
+  [460, 340],
+];
 
-  const masonryImages = extendedTestimonials.map((testimonial, index) => {
-    const [width, height] = dimensions[index % dimensions.length];
-    return {
-      src: testimonial.image,
-      alt: `${testimonial.name} from ${testimonial.country}`,
-      width,
-      height,
-      onClick: () => setActiveTestimonial(index),
-      className: `rc-w-${width} rc-h-${height} cursor-pointer hover:scale-105 transition-transform duration-300 rounded-lg shadow-md hover:shadow-xl`,
-    };
-  });
+const Testimonials = () => {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [announcement, setAnnouncement] = useState("");
+  const carouselRef = useRef(null);
+
+  const handleSelect = (index) => {
+    const item = EXTENDED_TESTIMONIALS[index];
+    setActiveTestimonial(index);
+    setIsAutoPlaying(false);
+    setAnnouncement(
+      `Testimonial ${index + 1} of ${EXTENDED_TESTIMONIALS.length}: ${item.name} from ${item.country}`
+    );
+  };
+
+  const handleCarouselBlur = (e) => {
+    if (!carouselRef.current?.contains(e.relatedTarget)) {
+      setIsAutoPlaying(true);
+    }
+  };
+
+  // Stable image list — only computed once on mount; setActiveTestimonial
+  // from useState is guaranteed stable so capturing it here is safe.
+  const masonryImages = useMemo(
+    () =>
+      EXTENDED_TESTIMONIALS.map((testimonial, index) => {
+        const [width, height] =
+          MASONRY_DIMENSIONS[index % MASONRY_DIMENSIONS.length];
+        return {
+          src: testimonial.image,
+          alt: `${testimonial.name} from ${testimonial.country}`,
+          width,
+          height,
+          onClick: () => setActiveTestimonial(index),
+          className: `rc-w-${width} rc-h-${height} cursor-pointer hover:scale-105 transition-transform duration-300 rounded-lg shadow-md hover:shadow-xl`,
+        };
+      }),
+    [] // EXTENDED_TESTIMONIALS and MASONRY_DIMENSIONS are module-level constants
+  );
 
   // Auto-rotate testimonials
   useEffect(() => {
     if (isAutoPlaying) {
       const interval = setInterval(() => {
         setActiveTestimonial(
-          (prev) => (prev + 1) % extendedTestimonials.length
+          (prev) => (prev + 1) % EXTENDED_TESTIMONIALS.length
         );
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, [isAutoPlaying, extendedTestimonials.length]);
+  }, [isAutoPlaying]);
 
-  const whatsappUrl =
-    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20booking%20a%20French%20Riviera%20tour.";
+  const whatsappUrl = getWhatsAppUrl(
+    "Hello! I'm interested in booking a French Riviera tour."
+  );
 
-  const currentTestimonial = extendedTestimonials[activeTestimonial];
+  const currentTestimonial = EXTENDED_TESTIMONIALS[activeTestimonial];
 
   return (
     <div className="min-h-screen bg-white pt-20">
+      <SEOHead
+        title="Client Stories - Azur Escape | French Riviera Tours"
+        description="Read what travellers say about their French Riviera tours with Azur Escape. Testimonials from guests who explored Nice, Monaco, Eze, Cannes, and Saint-Tropez."
+        keywords="Azur Escape reviews, French Riviera tour testimonials, Nice tour reviews, Monaco tour feedback, client stories"
+      />
       {/* Header Section */}
       <section className="py-12 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -204,7 +236,15 @@ const Testimonials = () => {
       {/* Split Screen Main Content */}
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-8 min-h-[600px]">
+          <div
+            ref={carouselRef}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Client testimonials"
+            onFocus={() => setIsAutoPlaying(false)}
+            onBlur={handleCarouselBlur}
+            className="flex flex-col lg:flex-row gap-8 min-h-[600px]"
+          >
             {/* Left Side - Photo Gallery (60%) */}
             <SlideIn direction="left" delay={200}>
               <div className="lg:w-3/5 bg-gray-900 rounded-3xl p-6 shadow-2xl">
@@ -236,6 +276,7 @@ const Testimonials = () => {
                           src={image.src}
                           alt={image.alt}
                           className="w-full h-full object-cover rounded-lg"
+                          loading="lazy"
                         />
                         {activeTestimonial === index && (
                           <div className="absolute inset-0 bg-riviera-blue/30 rounded-lg flex items-center justify-center">
@@ -311,13 +352,12 @@ const Testimonials = () => {
 
                 {/* Navigation Dots */}
                 <div className="flex justify-center space-x-2 py-4">
-                  {extendedTestimonials.map((_, index) => (
+                  {EXTENDED_TESTIMONIALS.map((testimonial, index) => (
                     <button
                       key={index}
-                      onClick={() => {
-                        setActiveTestimonial(index);
-                        setIsAutoPlaying(false);
-                      }}
+                      onClick={() => handleSelect(index)}
+                      aria-label={`Show testimonial by ${testimonial.name}`}
+                      aria-current={activeTestimonial === index ? "true" : undefined}
                       className={`w-3 h-3 rounded-full transition-all duration-300 ${
                         activeTestimonial === index
                           ? "bg-riviera-blue scale-125"
@@ -327,21 +367,35 @@ const Testimonials = () => {
                   ))}
                 </div>
 
+                <span className="sr-only" aria-live="polite" aria-atomic="true">
+                  {announcement}
+                </span>
+
                 {/* Smaller Preview Cards */}
                 <div className="space-y-3">
-                  {extendedTestimonials
+                  {EXTENDED_TESTIMONIALS
                     .filter((_, index) => index !== activeTestimonial)
                     .slice(0, 2)
                     .map((testimonial, index) => (
                       <div
                         key={testimonial.id}
-                        className={`bg-gradient-to-r ${testimonial.bgColor} rounded-2xl p-4 cursor-pointer hover:shadow-lg transition-all duration-300 opacity-80 hover:opacity-100`}
+                        role="button"
+                        tabIndex={0}
+                        className={`bg-gradient-to-r ${testimonial.bgColor} rounded-2xl p-4 cursor-pointer hover:shadow-lg transition-all duration-300 opacity-80 hover:opacity-100 focus-visible:ring-2 focus-visible:ring-riviera-blue focus-visible:outline-none`}
                         onClick={() => {
-                          const realIndex = extendedTestimonials.findIndex(
+                          const realIndex = EXTENDED_TESTIMONIALS.findIndex(
                             (t) => t.id === testimonial.id
                           );
-                          setActiveTestimonial(realIndex);
-                          setIsAutoPlaying(false);
+                          handleSelect(realIndex);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            const realIndex = EXTENDED_TESTIMONIALS.findIndex(
+                              (t) => t.id === testimonial.id
+                            );
+                            handleSelect(realIndex);
+                          }
                         }}
                       >
                         <div className="flex items-center gap-3">

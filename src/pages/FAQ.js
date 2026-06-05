@@ -2,6 +2,8 @@ import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useState } from "react";
+import SEOHead from "../components/SEOHead";
+import { getWhatsAppUrl } from "../config/constants";
 
 const FAQ = () => {
   const { language } = useLanguage();
@@ -132,6 +134,11 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-16">
+      <SEOHead
+        title="FAQ - Azur Escape | French Riviera Tours"
+        description="Frequently asked questions about Azur Escape tours. Find answers about prices, duration, meeting points, what's included, and how to book your French Riviera experience."
+        keywords="FAQ French Riviera tours, tour prices Nice, how to book Azur Escape, what is included tour, Monaco tour questions"
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -184,7 +191,7 @@ const FAQ = () => {
               : "Contact us directly via WhatsApp for instant answers!"}
           </p>
           <a
-            href="https://wa.me/33758781678?text=Hello!%20I%20have%20a%20question%20about%20your%20French%20Riviera%20tours."
+            href={getWhatsAppUrl("Hello! I have a question about your French Riviera tours.")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-green-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-600 transition-colors duration-200"

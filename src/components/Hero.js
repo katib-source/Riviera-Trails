@@ -2,11 +2,13 @@ import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FadeIn } from "./LoadingAnimations";
 import { useLanguage } from "../context/LanguageContext";
+import { getWhatsAppUrl } from "../config/constants";
 
 const Hero = () => {
   const { t } = useLanguage();
-  const whatsappUrl =
-    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.%20Could%20you%20please%20provide%20more%20information?";
+  const whatsappUrl = getWhatsAppUrl(
+    "Hello! I'm interested in your French Riviera tours. Could you please provide more information?"
+  );
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -62,7 +64,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
             <div className="text-3xl font-bold text-sunset-orange mb-2">
-              200+
+              500+
             </div>
             <div className="text-gray-300">Happy Travelers</div>
           </div>

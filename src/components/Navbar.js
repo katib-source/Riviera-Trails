@@ -4,6 +4,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { getWhatsAppUrl } from "../config/constants";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,8 +49,12 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
-  // Dynamic background brightness detection with route-change delay
+  // Dynamic background brightness detection with route-change delay.
+  // getComputedStyle + getBoundingClientRect are expensive; rAF ensures they
+  // run at most once per animation frame instead of on every scroll tick.
   useEffect(() => {
+    let rafId = null;
+
     const detectBackground = () => {
       const hero = document.querySelector(
         ".hero, main > div:first-child, header, [class*='hero'], [class*='Hero']"
@@ -57,48 +62,53 @@ const Navbar = () => {
 
       if (hero) {
         const rect = hero.getBoundingClientRect();
-        // If hero is in viewport and navbar overlaps it
         if (rect.top < 80 && rect.bottom > 0) {
           const bgColor = window.getComputedStyle(hero).backgroundColor;
           const rgb = bgColor.match(/\d+/g)?.map(Number);
 
           if (rgb && rgb.length >= 3) {
-            // Calculate brightness using luminance formula
+            // ITU-R BT.601 luma — perceived brightness of the background colour
             const brightness =
               (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
             setIsDarkBackground(brightness < 140);
             return;
           }
 
-          // Fallback: Check for background-image if backgroundColor is transparent
           const bgImage = window.getComputedStyle(hero).backgroundImage;
           if (bgImage && bgImage !== "none") {
-            // If there's a background image, assume dark for safety
             setIsDarkBackground(true);
             return;
           }
         }
       }
 
-      // Safe fallback: Default to light background (dark text)
       setIsDarkBackground(false);
     };
 
-    // ✅ Delay detection until hero section is fully rendered after route change
-    const timeout = setTimeout(() => detectBackground(), 250);
+    // rAF gate: cancels any pending frame before scheduling a new one so that
+    // rapid scroll / resize events collapse into a single detection per frame.
+    const scheduleDetection = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(detectBackground);
+    };
 
-    window.addEventListener("scroll", detectBackground, { passive: true });
-    window.addEventListener("resize", detectBackground);
+    // Initial detection after the route finishes rendering
+    const timeout = setTimeout(detectBackground, 250);
+
+    window.addEventListener("scroll", scheduleDetection, { passive: true });
+    window.addEventListener("resize", scheduleDetection, { passive: true });
 
     return () => {
       clearTimeout(timeout);
-      window.removeEventListener("scroll", detectBackground);
-      window.removeEventListener("resize", detectBackground);
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", scheduleDetection);
+      window.removeEventListener("resize", scheduleDetection);
     };
   }, [location.pathname]);
 
-  const whatsappUrl =
-    "https://wa.me/33758781678?text=Hello!%20I'm%20interested%20in%20your%20French%20Riviera%20tours.";
+  const whatsappUrl = getWhatsAppUrl(
+    "Hello! I'm interested in your French Riviera tours."
+  );
 
   const scrollToSection = (sectionId) => {
     // If not on homepage, navigate to homepage first
@@ -121,7 +131,7 @@ const Navbar = () => {
   };
 
   const handleTestimonialsClick = () => {
-    navigate("/clients");
+    navigate("/testimonials");
     setIsOpen(false);
   };
 
@@ -221,6 +231,9 @@ const Navbar = () => {
             <LanguageSwitcher />
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
               className={`inline-flex items-center justify-center p-2 rounded-md transition-all duration-300 ${
                 isDarkBackground
                   ? "hover:text-gray-200 hover:scale-105"
@@ -239,7 +252,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden">
+        <div id="mobile-menu" className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/30 backdrop-blur-md shadow-lg shadow-black/5 border-t border-white/20">
             <button
               onClick={() => scrollToSection("tours")}

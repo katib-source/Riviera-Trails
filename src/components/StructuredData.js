@@ -1,4 +1,5 @@
 import React from "react";
+import { PHONE_NUMBER } from "../config/constants";
 
 export const StructuredDataScript = ({ type = "website", data = {} }) => {
   const getStructuredData = () => {
@@ -29,34 +30,48 @@ export const StructuredDataScript = ({ type = "website", data = {} }) => {
       case "organization":
         return {
           "@context": "https://schema.org",
-          "@type": "TravelAgency",
+          "@type": ["TravelAgency", "LocalBusiness"],
           name: "Azur Escape",
           description: "Premium guided tours of the French Riviera",
           url: "https://www.azurescape.fr",
-          telephone: "+33758781678",
+          telephone: `+${PHONE_NUMBER}`,
           address: {
             "@type": "PostalAddress",
-            addressRegion: "French Riviera",
-            addressCountry: "France",
+            addressLocality: "Nice",
+            addressRegion: "Provence-Alpes-Côte d'Azur",
+            addressCountry: "FR",
           },
           geo: {
             "@type": "GeoCoordinates",
             latitude: 43.7102,
             longitude: 7.262,
           },
+          hasMap: "https://maps.google.com/?q=Nice,France",
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ],
+              opens: "08:00",
+              closes: "19:00",
+            },
+          ],
+          currenciesAccepted: "EUR",
+          paymentAccepted: "Cash, Credit Card, PayPal",
+          priceRange: "€100 – €150",
           areaServed: [
-            {
-              "@type": "City",
-              name: "Nice",
-            },
-            {
-              "@type": "City",
-              name: "Monaco",
-            },
-            {
-              "@type": "City",
-              name: "Menton",
-            },
+            { "@type": "City", name: "Nice" },
+            { "@type": "City", name: "Monaco" },
+            { "@type": "City", name: "Menton" },
+            { "@type": "City", name: "Cannes" },
+            { "@type": "City", name: "Saint-Tropez" },
           ],
           serviceType: "Guided Tours",
         };
@@ -76,7 +91,7 @@ export const StructuredDataScript = ({ type = "website", data = {} }) => {
           duration: data.duration || "2-4 hours",
           offers: {
             "@type": "Offer",
-            price: "110",
+            price: String(data.pricePerPax || 100),
             priceCurrency: "EUR",
             availability: "https://schema.org/InStock",
           },
@@ -89,6 +104,24 @@ export const StructuredDataScript = ({ type = "website", data = {} }) => {
                 name: highlight,
               })) || [],
           },
+        };
+
+      case "attraction":
+        return {
+          "@context": "https://schema.org",
+          "@type": "TouristAttraction",
+          name: data.title || "French Riviera Attraction",
+          description: data.description || "Tourist attraction on the French Riviera",
+          url: `https://www.azurescape.fr/tour/${data.slug || ""}`,
+          image: data.image || "",
+          touristType: "Leisure",
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 43.7102,
+            longitude: 7.262,
+          },
+          isAccessibleForFree: false,
+          publicAccess: true,
         };
 
       default:

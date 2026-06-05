@@ -8,10 +8,12 @@ import {
 } from "react-icons/fi";
 import { FaWhatsapp, FaGoogle } from "react-icons/fa";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
+import { EMAIL_ADDRESS, getWhatsAppUrl } from "../config/constants";
 
 const Contact = () => {
-  const whatsappUrl =
-    "https://wa.me/33758781678?text=Hello!%20I'd%20like%20to%20book%20a%20tour%20or%20get%20more%20information%20about%20your%20French%20Riviera%20experiences.";
+  const whatsappUrl = getWhatsAppUrl(
+    "Hello! I'd like to book a tour or get more information about your French Riviera experiences."
+  );
 
   return (
     <section id="contact" className="py-16 bg-white">
@@ -63,7 +65,7 @@ const Contact = () => {
 
                 {/* Email */}
                 <a
-                  href="mailto:info@azurescape.fr"
+                  href={`mailto:${EMAIL_ADDRESS}`}
                   className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200"
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-riviera-blue rounded-full flex items-center justify-center flex-shrink-0">
@@ -77,7 +79,7 @@ const Contact = () => {
                       For detailed inquiries
                     </p>
                     <p className="text-riviera-blue font-medium text-sm sm:text-base break-all">
-                      info@azurescape.fr
+                      {EMAIL_ADDRESS}
                     </p>
                   </div>
                 </a>
@@ -111,25 +113,25 @@ const Contact = () => {
                     href="https://instagram.com/rivieratrails"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 sm:w-10 sm:h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors duration-200"
+                    className="w-11 h-11 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors duration-200"
                   >
-                    <FiInstagram className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                    <FiInstagram className="w-5 h-5 text-white" />
                   </a>
                   <a
                     href="https://www.facebook.com/azurescape"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
+                    className="w-11 h-11 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
                   >
-                    <FiFacebook className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                    <FiFacebook className="w-5 h-5 text-white" />
                   </a>
                   <a
                     href="https://g.page/r/rivieratrails"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 sm:w-10 sm:h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
+                    className="w-11 h-11 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
                   >
-                    <FaGoogle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                    <FaGoogle className="w-5 h-5 text-white" />
                   </a>
                 </div>
               </div>
