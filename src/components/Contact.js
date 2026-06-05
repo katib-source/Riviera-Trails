@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "../context/LanguageContext";
 import {
   FiMail,
   FiMapPin,
@@ -11,6 +12,7 @@ import { FadeIn, SlideIn } from "./LoadingAnimations";
 import { EMAIL_ADDRESS, getWhatsAppUrl } from "../config/constants";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const whatsappUrl = getWhatsAppUrl(
     "Hello! I'd like to book a tour or get more information about your French Riviera experiences."
   );
@@ -21,12 +23,10 @@ const Contact = () => {
         <FadeIn>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-              Ready to Explore the French Riviera?
+              {t("contactSection.title")}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Get in touch to book your personalized tour or ask any questions.
-              I'm here to help you create unforgettable memories along the
-              Mediterranean coast.
+              {t("contactSection.subtitle")}
             </p>
           </div>
         </FadeIn>
@@ -36,7 +36,7 @@ const Contact = () => {
           <SlideIn direction="left">
             <div>
               <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
-                Get In Touch
+                {t("contactSection.getInTouch")}
               </h3>
 
               <div className="space-y-6">
@@ -52,10 +52,10 @@ const Contact = () => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
-                      WhatsApp (Preferred)
+                      {t("contactSection.whatsappTitle")}
                     </h4>
                     <p className="text-gray-600 text-xs sm:text-sm">
-                      Quick responses, instant booking
+                      {t("contactSection.whatsappDesc")}
                     </p>
                     <p className="text-green-600 font-medium text-sm sm:text-base break-all">
                       +33 7 58 78 16 78
@@ -73,10 +73,10 @@ const Contact = () => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
-                      Email
+                      {t("contactSection.emailTitle")}
                     </h4>
                     <p className="text-gray-600 text-xs sm:text-sm">
-                      For detailed inquiries
+                      {t("contactSection.emailDesc")}
                     </p>
                     <p className="text-riviera-blue font-medium text-sm sm:text-base break-all">
                       {EMAIL_ADDRESS}
@@ -91,10 +91,10 @@ const Contact = () => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
-                      Based In
+                      {t("contactSection.basedIn")}
                     </h4>
                     <p className="text-gray-600 text-xs sm:text-sm">
-                      Tours throughout the French Riviera
+                      {t("contactSection.basedInDesc")}
                     </p>
                     <p className="text-gray-700 font-medium text-sm sm:text-base">
                       Nice, Côte d'Azur, France
@@ -106,7 +106,7 @@ const Contact = () => {
               {/* Social Media */}
               <div className="mt-8">
                 <h4 className="font-semibold text-gray-800 mb-4 text-sm sm:text-base">
-                  Follow Our Adventures
+                  {t("contactSection.followAdventures")}
                 </h4>
                 <div className="flex gap-3 sm:gap-4">
                   <a
@@ -142,7 +142,7 @@ const Contact = () => {
           <SlideIn direction="right">
             <div>
               <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
-                Our Tour Areas
+                {t("contactSection.tourAreas")}
               </h3>
               <div className="rounded-lg overflow-hidden shadow-lg h-64 sm:h-80 lg:h-96">
                 <iframe
@@ -160,11 +160,10 @@ const Contact = () => {
               {/* Quick Booking CTA */}
               <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-gradient-to-r from-riviera-blue to-mediterranean-teal rounded-lg text-white">
                 <h4 className="text-lg sm:text-xl font-semibold mb-2">
-                  Ready to Book?
+                  {t("contactSection.readyToBook")}
                 </h4>
                 <p className="mb-3 sm:mb-4 opacity-90 text-sm sm:text-base">
-                  Click below to start a WhatsApp conversation and book your
-                  tour instantly!
+                  {t("contactSection.readyToBookDesc")}
                 </p>
                 <a
                   href={whatsappUrl}
@@ -173,7 +172,7 @@ const Contact = () => {
                   className="inline-flex items-center gap-2 bg-white text-riviera-blue px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 text-sm sm:text-base"
                 >
                   <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
-                  Book Now on WhatsApp
+                  {t("contactSection.bookNowWhatsapp")}
                 </a>
               </div>
             </div>
@@ -186,19 +185,19 @@ const Contact = () => {
             <div className="inline-flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-8 text-gray-600 text-sm sm:text-base">
               <div className="flex items-center gap-2">
                 <FiStar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
-                <span>Licensed Tour Guide</span>
+                <span>{t("contactSection.trustLicensed")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <FiStar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
-                <span>Fully Insured</span>
+                <span>{t("contactSection.trustInsured")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <FiStar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
-                <span>COVID-19 Safety Protocols</span>
+                <span>{t("contactSection.trustCovid")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <FiStar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
-                <span>Small Group Guarantee</span>
+                <span>{t("contactSection.trustSmallGroup")}</span>
               </div>
             </div>
           </div>

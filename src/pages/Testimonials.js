@@ -6,6 +6,7 @@ import { testimonialsData } from "../data/testimonialsData";
 import { FadeIn, SlideIn } from "../components/LoadingAnimations";
 import { FiStar, FiMapPin, FiCalendar, FiHeart } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 // Hoisted outside the component so the array reference is stable across renders
 const EXTENDED_TESTIMONIALS = [
@@ -124,6 +125,7 @@ const MASONRY_DIMENSIONS = [
 ];
 
 const Testimonials = () => {
+  const { t, language } = useLanguage();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [announcement, setAnnouncement] = useState("");
@@ -176,7 +178,9 @@ const Testimonials = () => {
   }, [isAutoPlaying]);
 
   const whatsappUrl = getWhatsAppUrl(
-    "Hello! I'm interested in booking a French Riviera tour."
+    language === "fr"
+      ? "Bonjour ! Je souhaite réserver un circuit sur la Côte d'Azur."
+      : "Hello! I'm interested in booking a French Riviera tour."
   );
 
   const currentTestimonial = EXTENDED_TESTIMONIALS[activeTestimonial];
@@ -194,11 +198,10 @@ const Testimonials = () => {
           <FadeIn>
             <div className="text-center mb-12">
               <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-riviera-blue to-mediterranean-teal bg-clip-text text-transparent mb-6">
-                Memories Made Together
+                {t("testimonialsPage.title")}
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Discover authentic experiences through the eyes of our guests.
-                Explore their photos and stories from the French Riviera.
+                {t("testimonialsPage.subtitle")}
               </p>
             </div>
           </FadeIn>
@@ -210,23 +213,23 @@ const Testimonials = () => {
                 <div className="text-3xl font-bold text-yellow-500 mb-2">
                   4.9★
                 </div>
-                <div className="text-sm text-gray-600">Average Rating</div>
+                <div className="text-sm text-gray-600">{t("testimonialsPage.avgRating")}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-500 mb-2">
                   500+
                 </div>
-                <div className="text-sm text-gray-600">Happy Travelers</div>
+                <div className="text-sm text-gray-600">{t("testimonialsPage.happyTravelers")}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-500 mb-2">25+</div>
-                <div className="text-sm text-gray-600">Countries</div>
+                <div className="text-sm text-gray-600">{t("testimonialsPage.countries")}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-500 mb-2">
                   100%
                 </div>
-                <div className="text-sm text-gray-600">Satisfaction</div>
+                <div className="text-sm text-gray-600">{t("testimonialsPage.satisfaction")}</div>
               </div>
             </div>
           </FadeIn>
@@ -250,10 +253,10 @@ const Testimonials = () => {
               <div className="lg:w-3/5 bg-gray-900 rounded-3xl p-6 shadow-2xl">
                 <div className="text-center mb-6">
                   <h2 className="text-2xl font-bold text-white mb-2">
-                    Client Photo Gallery
+                    {t("testimonialsPage.photoGallery")}
                   </h2>
                   <p className="text-gray-300">
-                    Click on any photo to see their story
+                    {t("testimonialsPage.clickPhoto")}
                   </p>
                 </div>
 
@@ -424,10 +427,10 @@ const Testimonials = () => {
                 {/* CTA Button */}
                 <div className="bg-gradient-to-r from-riviera-blue to-mediterranean-teal rounded-2xl p-6 text-white text-center">
                   <h3 className="text-lg font-bold mb-2">
-                    Ready to Create Your Story?
+                    {t("testimonialsPage.readyTitle")}
                   </h3>
                   <p className="text-sm mb-4 opacity-90">
-                    Join our happy travelers!
+                    {t("testimonialsPage.readySubtitle")}
                   </p>
                   <a
                     href={whatsappUrl}
@@ -436,7 +439,7 @@ const Testimonials = () => {
                     className="inline-flex items-center gap-2 bg-white text-riviera-blue px-6 py-2 rounded-xl font-semibold hover:bg-gray-100 transition-colors text-sm"
                   >
                     <FaWhatsapp className="w-4 h-4" />
-                    Start Your Adventure
+                    {t("testimonialsPage.startAdventure")}
                   </a>
                 </div>
               </div>

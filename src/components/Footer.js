@@ -9,7 +9,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
   const location = useLocation();
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   // M-06: fire after the route renders so the target section is in the DOM
   useEffect(() => {
@@ -37,9 +37,7 @@ const Footer = () => {
               Azur Escape
             </h3>
             <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
-              Your trusted local guide for unforgettable French Riviera
-              experiences. Discover hidden gems, iconic landmarks, and authentic
-              culture with personalized tours.
+              {t("footerSection.brandDesc")}
             </p>
             <div className="flex gap-3 sm:gap-4">
               <a
@@ -73,7 +71,7 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
-              Quick Links
+              {t("footerSection.quickLinks")}
             </h4>
             <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
               <li>
@@ -81,7 +79,7 @@ const Footer = () => {
                   onClick={() => scrollToSection("tours")}
                   className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
-                  Our Tours
+                  {t("footerSection.ourTours")}
                 </button>
               </li>
               <li>
@@ -89,7 +87,7 @@ const Footer = () => {
                   onClick={() => scrollToSection("about")}
                   className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
-                  About Us
+                  {t("footerSection.aboutUs")}
                 </button>
               </li>
               <li>
@@ -97,7 +95,7 @@ const Footer = () => {
                   onClick={() => navigate("/testimonials")}
                   className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
-                  Client Stories
+                  {t("footerSection.clientStories")}
                 </button>
               </li>
               <li>
@@ -105,7 +103,7 @@ const Footer = () => {
                   onClick={() => scrollToSection("contact")}
                   className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
-                  Contact
+                  {t("footerSection.contact")}
                 </button>
               </li>
               <li>
@@ -113,7 +111,7 @@ const Footer = () => {
                   onClick={() => navigate("/faq")}
                   className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
-                  FAQ
+                  {t("footerSection.faq")}
                 </button>
               </li>
               <li>
@@ -127,7 +125,7 @@ const Footer = () => {
                   }
                   className="hover:text-white transition-colors duration-200 cursor-pointer"
                 >
-                  Privacy Policy
+                  {t("footerSection.privacyPolicy")}
                 </button>
               </li>
             </ul>
@@ -136,13 +134,13 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
-              Contact Info
+              {t("footerSection.contactInfo")}
             </h4>
             <div className="space-y-2 text-gray-300 text-sm sm:text-base">
               <p>📍 Nice, French Riviera</p>
               <p className="break-all">📱 +33 7 58 78 16 78</p>
               <p className="break-all">📧 {EMAIL_ADDRESS}</p>
-              <p>🌐 3 Languages: FR, EN, AR</p>
+              <p>🌐 {t("footerSection.languages")}</p>
             </div>
           </div>
         </div>
@@ -150,12 +148,12 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-700 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400">
           <p className="flex items-center justify-center gap-2 text-sm sm:text-base flex-wrap">
-            © {currentYear} Azur Escape. Made with
+            © {currentYear} Azur Escape. {t("footerSection.madeWith")}
             <FiHeart className="w-4 h-4 text-red-500" />
-            for French Riviera travelers.
+            {t("footerSection.forTravelers")}
           </p>
           <p className="mt-2 text-xs sm:text-sm">
-            Licensed tour guide | Fully insured | Small group experiences
+            {t("footerSection.licensedLine")}
           </p>
         </div>
       </div>

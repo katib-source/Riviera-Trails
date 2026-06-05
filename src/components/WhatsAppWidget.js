@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { getWhatsAppUrl } from "../config/constants";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiX, FiMessageCircle } from "react-icons/fi";
+import { useLanguage } from "../context/LanguageContext";
 
 const WhatsAppWidget = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -24,24 +26,20 @@ const WhatsAppWidget = () => {
 
   const quickMessages = [
     {
-      title: "Book a Tour",
-      message:
-        "Hello! I'm interested in booking a French Riviera tour. Could you please provide more information about availability and pricing?",
+      title: t("whatsapp.bookTour"),
+      message: t("whatsapp.bookTourMsg"),
     },
     {
-      title: "Ask Questions",
-      message:
-        "Hi! I have some questions about your French Riviera tours. Could you help me?",
+      title: t("whatsapp.askQuestions"),
+      message: t("whatsapp.askQuestionsMsg"),
     },
     {
-      title: "Custom Tour",
-      message:
-        "Hello! I'm interested in a custom/private tour of the French Riviera. Can we discuss the options?",
+      title: t("whatsapp.customTour"),
+      message: t("whatsapp.customTourMsg"),
     },
     {
-      title: "Group Booking",
-      message:
-        "Hi! I need to book a tour for a group. Could you provide information about group rates and availability?",
+      title: t("whatsapp.groupBooking"),
+      message: t("whatsapp.groupBookingMsg"),
     },
   ];
 
@@ -65,7 +63,7 @@ const WhatsAppWidget = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-800">Azur Escape</h3>
-                  <p className="text-sm text-green-600">Online now</p>
+                  <p className="text-sm text-green-600">{t("whatsapp.onlineNow")}</p>
                 </div>
               </div>
               <button
@@ -79,7 +77,7 @@ const WhatsAppWidget = () => {
 
           <div className="p-4">
             <p className="text-sm text-gray-600 mb-4">
-              Hi! 👋 How can we help you today?
+              {t("whatsapp.greeting")}
             </p>
 
             <div className="space-y-2">
@@ -96,7 +94,7 @@ const WhatsAppWidget = () => {
 
             <div className="mt-4 pt-4 border-t border-gray-100">
               <p className="text-xs text-gray-500 text-center">
-                Typically replies in a few minutes
+                {t("whatsapp.replyTime")}
               </p>
             </div>
           </div>

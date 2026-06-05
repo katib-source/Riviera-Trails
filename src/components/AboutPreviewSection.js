@@ -14,31 +14,33 @@ import { FaWhatsapp } from "react-icons/fa";
 import { testimonialsData } from "../data/testimonialsData";
 import { FadeIn, SlideIn } from "./LoadingAnimations";
 import { PHONE_NUMBER, getWhatsAppUrl } from "../config/constants";
+import { useLanguage } from "../context/LanguageContext";
 
 const AboutPreviewSection = () => {
+  const { t } = useLanguage();
   // Select first 3 testimonials for preview
   const previewTestimonials = testimonialsData.slice(0, 3);
 
   const trustFeatures = [
     {
       icon: <FiShield className="w-6 h-6" />,
-      title: "Licensed & Insured",
-      description: "Fully certified local guides with insurance coverage",
+      title: t("aboutPreview.trustFeatures.licensedTitle"),
+      description: t("aboutPreview.trustFeatures.licensedDesc"),
     },
     {
       icon: <FiUsers className="w-6 h-6" />,
-      title: "Small Groups Only",
-      description: "Maximum 8 people for personalized experiences",
+      title: t("aboutPreview.trustFeatures.smallGroupsTitle"),
+      description: t("aboutPreview.trustFeatures.smallGroupsDesc"),
     },
     {
       icon: <FiHeart className="w-6 h-6" />,
-      title: "Local Expertise",
-      description: "Born and raised on the French Riviera",
+      title: t("aboutPreview.trustFeatures.localTitle"),
+      description: t("aboutPreview.trustFeatures.localDesc"),
     },
     {
       icon: <FiGlobe className="w-6 h-6" />,
-      title: "Multilingual Guides",
-      description: "English, French, Spanish, Italian & more",
+      title: t("aboutPreview.trustFeatures.multilingualTitle"),
+      description: t("aboutPreview.trustFeatures.multilingualDesc"),
     },
   ];
 
@@ -78,23 +80,19 @@ const AboutPreviewSection = () => {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 bg-riviera-blue/10 text-riviera-blue px-4 py-2 rounded-full text-sm font-medium">
                 <FiMapPin className="w-4 h-4" />
-                Born on the French Riviera
+                {t("aboutPreview.badge")}
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight">
-                Your Authentic French Riviera
+                {t("aboutPreview.titleLine1")}
                 <span className="bg-gradient-to-r from-riviera-blue to-mediterranean-teal bg-clip-text text-transparent">
                   {" "}
-                  Experience
+                  {t("aboutPreview.titleHighlight")}
                 </span>
               </h2>
 
               <p className="text-lg text-gray-600 leading-relaxed">
-                We're not just tour guides – we're your local friends who happen
-                to know every hidden gem, secret viewpoint, and authentic
-                experience the French Riviera has to offer. Born and raised
-                here, we share our home with you the way we'd show our own
-                family.
+                {t("aboutPreview.description")}
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -102,19 +100,19 @@ const AboutPreviewSection = () => {
                   <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
                     <FiStar className="w-4 h-4 text-yellow-600" />
                   </div>
-                  <span className="font-semibold">5/5 Rating</span>
+                  <span className="font-semibold">{t("aboutPreview.rating")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-700">
                   <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                     <FiUsers className="w-4 h-4 text-green-600" />
                   </div>
-                  <span className="font-semibold">500+ Happy Travelers</span>
+                  <span className="font-semibold">{t("aboutPreview.happyTravelers")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-700">
                   <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                     <FiGlobe className="w-4 h-4 text-blue-600" />
                   </div>
-                  <span className="font-semibold">25+ Countries</span>
+                  <span className="font-semibold">{t("aboutPreview.countries")}</span>
                 </div>
               </div>
             </div>
@@ -162,7 +160,7 @@ const AboutPreviewSection = () => {
                   </div>
                   <div>
                     <div className="font-bold text-gray-800">100%</div>
-                    <div className="text-sm text-gray-600">Recommendation</div>
+                    <div className="text-sm text-gray-600">{t("aboutPreview.recommendation")}</div>
                   </div>
                 </div>
               </div>
@@ -174,7 +172,7 @@ const AboutPreviewSection = () => {
         <FadeIn delay={300}>
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">
-              Why Choose Azur Escape?
+              {t("aboutPreview.whyChoose")}
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {trustFeatures.map((feature, index) => (
@@ -200,11 +198,10 @@ const AboutPreviewSection = () => {
           <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
             <div className="text-center mb-8">
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
-                What Our Travelers Say
+                {t("aboutPreview.whatTravelersSay")}
               </h3>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Don't just take our word for it. Here's what recent guests have
-                to say about their French Riviera experiences.
+                {t("aboutPreview.travelersSubtitle")}
               </p>
             </div>
 
@@ -270,11 +267,10 @@ const AboutPreviewSection = () => {
           <div className="mt-16 text-center">
             <div className="bg-gradient-to-r from-riviera-blue to-mediterranean-teal rounded-3xl p-8 sm:p-12 text-white">
               <h3 className="text-2xl sm:text-3xl font-bold mb-4">
-                Ready for Your French Riviera Adventure?
+                {t("aboutPreview.adventureTitle")}
               </h3>
               <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                Let's create memories that will last a lifetime. Contact us to
-                start planning your personalized tour today.
+                {t("aboutPreview.adventureSubtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -284,14 +280,14 @@ const AboutPreviewSection = () => {
                   className="inline-flex items-center gap-3 bg-white text-riviera-blue px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl"
                 >
                   <FaWhatsapp className="w-6 h-6" />
-                  Start Planning on WhatsApp
+                  {t("aboutPreview.ctaWhatsapp")}
                 </a>
                 <a
                   href={`tel:+${PHONE_NUMBER}`}
                   className="inline-flex items-center gap-3 bg-white/20 backdrop-blur text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-colors border border-white/30"
                 >
                   <FiPhone className="w-5 h-5" />
-                  Call +33 7 58 78 16 78
+                  {t("aboutPreview.ctaPhone")}
                 </a>
               </div>
             </div>

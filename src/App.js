@@ -12,6 +12,7 @@ import WhatsAppWidget from "./components/WhatsAppWidget";
 import CookieConsent from "./components/CookieConsent";
 import SEOHead, { seoConfigs } from "./components/SEOHead";
 import StructuredDataScript from "./components/StructuredData";
+import LanguageRoute from "./components/LanguageRoute";
 import ErrorBoundary from "./components/ErrorBoundary";
 import "./App.css";
 
@@ -60,12 +61,23 @@ function App() {
             <ErrorBoundary>
               <Suspense fallback={<PageFallback />}>
                 <Routes>
+                  {/* Root routes (no language prefix) */}
                   <Route path="/" element={<HomePage />} />
                   <Route path="/tour/:slug" element={<EnhancedTourDetails />} />
                   <Route path="/testimonials" element={<Testimonials />} />
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/privacy-policy-fr" element={<PrivacyPolicyFr />} />
+
+                  {/* Language-prefixed routes (/en/*, /fr/*) */}
+                  <Route path="/:lang" element={<LanguageRoute />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="tour/:slug" element={<EnhancedTourDetails />} />
+                    <Route path="testimonials" element={<Testimonials />} />
+                    <Route path="faq" element={<FAQ />} />
+                    <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="privacy-policy-fr" element={<PrivacyPolicyFr />} />
+                  </Route>
                 </Routes>
               </Suspense>
             </ErrorBoundary>
