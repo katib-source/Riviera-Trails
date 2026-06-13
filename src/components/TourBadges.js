@@ -13,24 +13,22 @@ const TourBadges = ({ tour, size = "sm" }) => {
   const pad     = size === "md" ? "px-4 py-2" : "px-3 py-1";
   const privKey = size === "md" ? "tours.badges.privateTour" : "tours.badges.private";
 
-  const base = `flex items-center gap-1.5 ${pad} rounded-full ${text} font-semibold uppercase tracking-wider shadow-lg backdrop-blur-sm`;
-
   return (
     <>
       {tour.topPick && (
-        <div className={`${base} bg-gradient-to-r from-gold-light to-gold-deep text-azur-ink`}>
+        <div className={`flex items-center gap-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white ${pad} rounded-full ${text} font-bold shadow-lg`}>
           <Award className={icon} />
           <span>{t("tours.badges.topPick")}</span>
         </div>
       )}
       {tour.popular && (
-        <div className={`${base} bg-coral text-white`}>
+        <div className={`flex items-center gap-1 bg-red-500 text-white ${pad} rounded-full ${text} font-bold shadow-lg animate-pulse`}>
           <TrendingUp className={icon} />
           <span>{t("tours.badges.popular")}</span>
         </div>
       )}
       {tour.isPrivate && (
-        <div className={`${base} bg-azur-deep/90 text-gold-light ring-1 ring-gold/40`}>
+        <div className={`flex items-center gap-1 bg-indigo-600 text-white ${pad} rounded-full ${text} font-bold shadow-lg`}>
           <Users className={icon} />
           <span>{t(privKey)}</span>
         </div>

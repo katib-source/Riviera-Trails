@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 import {
   FiMail,
@@ -8,210 +8,200 @@ import {
   FiStar,
 } from "react-icons/fi";
 import { FaWhatsapp, FaGoogle } from "react-icons/fa";
+import { FadeIn, SlideIn } from "./LoadingAnimations";
 import { EMAIL_ADDRESS, getWhatsAppUrl } from "../config/constants";
-import { gsap, prefersReducedMotion } from "../lib/gsap";
 
 const Contact = () => {
   const { t } = useLanguage();
-  const sectionRef = useRef(null);
-
   const whatsappUrl = getWhatsAppUrl(
     "Hello! I'd like to book a tour or get more information about your French Riviera experiences."
   );
 
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-    const ctx = gsap.context(() => {
-      gsap.from(".contact-reveal", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.12,
-        ease: "power3.out",
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
-  const channels = [
-    {
-      href: whatsappUrl,
-      external: true,
-      icon: <FaWhatsapp className="h-5 w-5 text-white" />,
-      iconBg: "bg-[#25D366]",
-      title: t("contactSection.whatsappTitle"),
-      desc: t("contactSection.whatsappDesc"),
-      value: "+33 7 58 78 16 78",
-      valueClass: "text-teal-deep",
-    },
-    {
-      href: `mailto:${EMAIL_ADDRESS}`,
-      external: false,
-      icon: <FiMail className="h-5 w-5 text-white" />,
-      iconBg: "bg-azur-sea",
-      title: t("contactSection.emailTitle"),
-      desc: t("contactSection.emailDesc"),
-      value: EMAIL_ADDRESS,
-      valueClass: "text-azur-sea",
-    },
-    {
-      href: null,
-      icon: <FiMapPin className="h-5 w-5 text-white" />,
-      iconBg: "bg-gold-deep",
-      title: t("contactSection.basedIn"),
-      desc: t("contactSection.basedInDesc"),
-      value: "Nice, Côte d'Azur, France",
-      valueClass: "text-azur-deep",
-    },
-  ];
-
   return (
-    <section
-      id="contact"
-      ref={sectionRef}
-      className="relative overflow-hidden bg-sand-warm py-24 sm:py-32"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="contact-reveal mx-auto mb-16 max-w-3xl text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-ultra text-gold-deep">
-            03 — {t("nav.contact")}
-          </p>
-          <h2 className="font-display text-4xl font-light leading-tight text-azur-deep sm:text-6xl">
-            {t("contactSection.title")}
-          </h2>
-          <div className="hairline mx-auto my-7 h-px w-24" />
-          <p className="text-lg leading-relaxed text-azur-deep/65">
-            {t("contactSection.subtitle")}
-          </p>
-        </div>
+    <section id="contact" className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeIn>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+              {t("contactSection.title")}
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+              {t("contactSection.subtitle")}
+            </p>
+          </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
-          {/* Channels */}
-          <div className="contact-reveal">
-            <h3 className="mb-7 font-display text-2xl text-azur-deep">
-              {t("contactSection.getInTouch")}
-            </h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Contact Information */}
+          <SlideIn direction="left">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
+                {t("contactSection.getInTouch")}
+              </h3>
 
-            <div className="space-y-4">
-              {channels.map((c, i) => {
-                const inner = (
-                  <>
-                    <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${c.iconBg}`}
-                    >
-                      {c.icon}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-semibold text-azur-deep sm:text-base">
-                        {c.title}
-                      </h4>
-                      <p className="text-xs text-azur-deep/55 sm:text-sm">{c.desc}</p>
-                      <p className={`break-all text-sm font-semibold sm:text-base ${c.valueClass}`}>
-                        {c.value}
-                      </p>
-                    </div>
-                  </>
-                );
-                const cls =
-                  "flex items-center gap-4 rounded-2xl border border-azur-deep/10 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/40 hover:shadow-soft";
-                return c.href ? (
-                  <a
-                    key={i}
-                    href={c.href}
-                    {...(c.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className={cls}
-                  >
-                    {inner}
-                  </a>
-                ) : (
-                  <div key={i} className={cls}>
-                    {inner}
+              <div className="space-y-6">
+                {/* WhatsApp */}
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors duration-200"
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
-                );
-              })}
-            </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
+                      {t("contactSection.whatsappTitle")}
+                    </h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">
+                      {t("contactSection.whatsappDesc")}
+                    </p>
+                    <p className="text-green-600 font-medium text-sm sm:text-base break-all">
+                      +33 7 58 78 16 78
+                    </p>
+                  </div>
+                </a>
 
-            {/* Social */}
-            <div className="mt-8">
-              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-azur-deep/70">
-                {t("contactSection.followAdventures")}
-              </h4>
-              <div className="flex gap-3">
-                {[
-                  { href: "https://instagram.com/rivieratrails", icon: <FiInstagram className="h-5 w-5" /> },
-                  { href: "https://www.facebook.com/azurescape", icon: <FiFacebook className="h-5 w-5" /> },
-                  { href: "https://g.page/r/rivieratrails", icon: <FaGoogle className="h-5 w-5" /> },
-                ].map((s, i) => (
+                {/* Email */}
+                <a
+                  href={`mailto:${EMAIL_ADDRESS}`}
+                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200"
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-riviera-blue rounded-full flex items-center justify-center flex-shrink-0">
+                    <FiMail className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
+                      {t("contactSection.emailTitle")}
+                    </h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">
+                      {t("contactSection.emailDesc")}
+                    </p>
+                    <p className="text-riviera-blue font-medium text-sm sm:text-base break-all">
+                      {EMAIL_ADDRESS}
+                    </p>
+                  </div>
+                </a>
+
+                {/* Location */}
+                <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <FiMapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-semibold text-gray-800 text-sm sm:text-base">
+                      {t("contactSection.basedIn")}
+                    </h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">
+                      {t("contactSection.basedInDesc")}
+                    </p>
+                    <p className="text-gray-700 font-medium text-sm sm:text-base">
+                      Nice, Côte d'Azur, France
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Media */}
+              <div className="mt-8">
+                <h4 className="font-semibold text-gray-800 mb-4 text-sm sm:text-base">
+                  {t("contactSection.followAdventures")}
+                </h4>
+                <div className="flex gap-3 sm:gap-4">
                   <a
-                    key={i}
-                    href={s.href}
+                    href="https://instagram.com/rivieratrails"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-azur-deep/15 bg-white text-azur-deep transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:bg-azur-deep hover:text-gold"
+                    className="w-11 h-11 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors duration-200"
                   >
-                    {s.icon}
+                    <FiInstagram className="w-5 h-5 text-white" />
                   </a>
-                ))}
+                  <a
+                    href="https://www.facebook.com/azurescape"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
+                  >
+                    <FiFacebook className="w-5 h-5 text-white" />
+                  </a>
+                  <a
+                    href="https://g.page/r/rivieratrails"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
+                  >
+                    <FaGoogle className="w-5 h-5 text-white" />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          </SlideIn>
 
-          {/* Map + CTA */}
-          <div className="contact-reveal">
-            <h3 className="mb-7 font-display text-2xl text-azur-deep">
-              {t("contactSection.tourAreas")}
-            </h3>
-            <div className="h-64 overflow-hidden rounded-3xl shadow-lift ring-1 ring-azur-deep/10 sm:h-80 lg:h-96">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92326.68831761793!2d7.189953127353686!3d43.71628097107258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdc26f996b7715%3A0x40819a5fd979270!2sNice%2C%20France!5e0!3m2!1sen!2sus!4v1703597852541!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="French Riviera Map"
-              />
-            </div>
+          {/* Embedded Map */}
+          <SlideIn direction="right">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
+                {t("contactSection.tourAreas")}
+              </h3>
+              <div className="rounded-lg overflow-hidden shadow-lg h-64 sm:h-80 lg:h-96">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92326.68831761793!2d7.189953127353686!3d43.71628097107258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdc26f996b7715%3A0x40819a5fd979270!2sNice%2C%20France!5e0!3m2!1sen!2sus!4v1703597852541!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="French Riviera Map"
+                ></iframe>
+              </div>
 
-            <div className="relative mt-6 overflow-hidden rounded-3xl bg-azur-deep p-6 text-white shadow-lift sm:p-7">
-              <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_85%_15%,rgba(231,180,115,0.4),transparent_55%)]" />
-              <div className="relative">
-                <h4 className="font-display text-xl">{t("contactSection.readyToBook")}</h4>
-                <p className="mb-4 mt-1 text-sm text-white/75">
+              {/* Quick Booking CTA */}
+              <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-gradient-to-r from-riviera-blue to-mediterranean-teal rounded-lg text-white">
+                <h4 className="text-lg sm:text-xl font-semibold mb-2">
+                  {t("contactSection.readyToBook")}
+                </h4>
+                <p className="mb-3 sm:mb-4 opacity-90 text-sm sm:text-base">
                   {t("contactSection.readyToBookDesc")}
                 </p>
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-gold inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase tracking-widest2"
+                  className="inline-flex items-center gap-2 bg-white text-riviera-blue px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 text-sm sm:text-base"
                 >
-                  <FaWhatsapp className="h-5 w-5" />
+                  <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
                   {t("contactSection.bookNowWhatsapp")}
                 </a>
               </div>
             </div>
-          </div>
+          </SlideIn>
         </div>
 
-        {/* Trust */}
-        <div className="contact-reveal mt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-8">
-          {[
-            t("contactSection.trustLicensed"),
-            t("contactSection.trustInsured"),
-            t("contactSection.trustCovid"),
-            t("contactSection.trustSmallGroup"),
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2 text-sm text-azur-deep/70">
-              <FiStar className="h-4 w-4 text-gold" />
-              <span>{item}</span>
+        {/* Trust Indicators */}
+        <FadeIn delay={400}>
+          <div className="mt-12 sm:mt-16 text-center">
+            <div className="inline-flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-8 text-gray-600 text-sm sm:text-base">
+              <div className="flex items-center gap-2">
+                <FiStar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
+                <span>{t("contactSection.trustLicensed")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FiStar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
+                <span>{t("contactSection.trustInsured")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FiStar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
+                <span>{t("contactSection.trustCovid")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FiStar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
+                <span>{t("contactSection.trustSmallGroup")}</span>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

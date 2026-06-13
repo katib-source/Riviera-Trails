@@ -10,19 +10,11 @@ export const translations = {
     },
     hero: {
       title: "Azur Escape",
-      eyebrow: "The French Riviera, Curated",
       subtitle: "Exclusive guided tours of the Côte d'Azur",
       description:
         "Experience the glamour, culture, and natural beauty of the French Riviera with our personalized private tours. From Monaco's luxury to charming medieval villages, create unforgettable memories.",
       ctaButton: "Explore Tours",
       ctaWhatsapp: "Book via WhatsApp",
-      scrollCue: "Scroll to explore",
-      stats: {
-        travelers: "Happy travellers",
-        routes: "Signature routes",
-        rating: "Guest rating",
-        languages: "Languages spoken",
-      },
     },
     tours: {
       title: "Our Tours",
@@ -314,19 +306,11 @@ export const translations = {
     },
     hero: {
       title: "Azur Escape",
-      eyebrow: "La Côte d'Azur, Sublimée",
       subtitle: "Visites guidées exclusives de la Côte d'Azur",
       description:
         "Découvrez le glamour, la culture et la beauté naturelle de la Côte d'Azur avec nos tours privés personnalisés. Du luxe de Monaco aux charmants villages médiévaux, créez des souvenirs inoubliables.",
       ctaButton: "Explorer les Tours",
       ctaWhatsapp: "Réserver via WhatsApp",
-      scrollCue: "Défiler pour explorer",
-      stats: {
-        travelers: "Voyageurs ravis",
-        routes: "Circuits signature",
-        rating: "Note des clients",
-        languages: "Langues parlées",
-      },
     },
     tours: {
       title: "Nos Tours",

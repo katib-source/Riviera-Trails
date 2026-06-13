@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+
 import {
   FiMapPin,
   FiHeart,
@@ -11,53 +12,33 @@ import {
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { testimonialsData } from "../data/testimonialsData";
+import { FadeIn, SlideIn } from "./LoadingAnimations";
 import { PHONE_NUMBER, getWhatsAppUrl } from "../config/constants";
 import { useLanguage } from "../context/LanguageContext";
-import { gsap, prefersReducedMotion } from "../lib/gsap";
-
-const getCountryFlag = (country) => {
-  const flags = {
-    "United States": "🇺🇸",
-    USA: "🇺🇸",
-    Canada: "🇨🇦",
-    Australia: "🇦🇺",
-    "United Kingdom": "🇬🇧",
-    UK: "🇬🇧",
-    Germany: "🇩🇪",
-    France: "🇫🇷",
-    Spain: "🇪🇸",
-    Italy: "🇮🇹",
-    Japan: "🇯🇵",
-    Singapore: "🇸🇬",
-    UAE: "🇦🇪",
-    Ireland: "🇮🇪",
-    Mexico: "🇲🇽",
-  };
-  return flags[country] || "🌍";
-};
 
 const AboutPreviewSection = () => {
   const { t } = useLanguage();
-  const sectionRef = useRef(null);
+  // Select first 3 testimonials for preview
+  const previewTestimonials = testimonialsData.slice(0, 3);
 
   const trustFeatures = [
     {
-      icon: <FiShield className="h-6 w-6" />,
+      icon: <FiShield className="w-6 h-6" />,
       title: t("aboutPreview.trustFeatures.licensedTitle"),
       description: t("aboutPreview.trustFeatures.licensedDesc"),
     },
     {
-      icon: <FiUsers className="h-6 w-6" />,
+      icon: <FiUsers className="w-6 h-6" />,
       title: t("aboutPreview.trustFeatures.smallGroupsTitle"),
       description: t("aboutPreview.trustFeatures.smallGroupsDesc"),
     },
     {
-      icon: <FiHeart className="h-6 w-6" />,
+      icon: <FiHeart className="w-6 h-6" />,
       title: t("aboutPreview.trustFeatures.localTitle"),
       description: t("aboutPreview.trustFeatures.localDesc"),
     },
     {
-      icon: <FiGlobe className="h-6 w-6" />,
+      icon: <FiGlobe className="w-6 h-6" />,
       title: t("aboutPreview.trustFeatures.multilingualTitle"),
       description: t("aboutPreview.trustFeatures.multilingualDesc"),
     },
@@ -67,248 +48,251 @@ const AboutPreviewSection = () => {
     "Hello! I'm interested in your French Riviera tours."
   );
 
-  const marqueeTestimonials = [...testimonialsData, ...testimonialsData];
-
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-    const ctx = gsap.context(() => {
-      gsap.from(".about-reveal", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
-        y: 44,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.12,
-        ease: "power3.out",
-      });
-      // Parallax the photo collage.
-      gsap.to(".about-photo-a", {
-        scrollTrigger: {
-          trigger: ".about-collage",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-        y: -40,
-      });
-      gsap.to(".about-photo-b", {
-        scrollTrigger: {
-          trigger: ".about-collage",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-        y: 40,
-      });
-      gsap.from(".trust-card", {
-        scrollTrigger: { trigger: ".trust-grid", start: "top 82%" },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  const getCountryFlag = (country) => {
+    const flags = {
+      USA: "🇺🇸",
+      Canada: "🇨🇦",
+      Australia: "🇦🇺",
+      UK: "🇬🇧",
+      Germany: "🇩🇪",
+      France: "🇫🇷",
+      Spain: "🇪🇸",
+      Italy: "🇮🇹",
+      Japan: "🇯🇵",
+      Singapore: "🇸🇬",
+      UAE: "🇦🇪",
+      Ireland: "🇮🇪",
+      Mexico: "🇲🇽",
+    };
+    return flags[country] || "🌍";
+  };
 
   return (
     <section
       id="about"
-      ref={sectionRef}
-      className="relative overflow-hidden bg-azur-night py-24 text-white sm:py-32"
+      className="py-20 bg-gradient-to-br from-white via-gray-50 to-blue-50/30"
     >
-      {/* atmospheric glows */}
-      <div className="pointer-events-none absolute left-0 top-1/4 h-[28rem] w-[28rem] -translate-x-1/3 rounded-full bg-azur-sea/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[26rem] w-[26rem] translate-x-1/4 rounded-full bg-gold/10 blur-3xl" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main About Section */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+          {/* Left: Company Story */}
+          <FadeIn>
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 bg-riviera-blue/10 text-riviera-blue px-4 py-2 rounded-full text-sm font-medium">
+                <FiMapPin className="w-4 h-4" />
+                {t("aboutPreview.badge")}
+              </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Story split */}
-        <div className="mb-24 grid items-center gap-14 lg:grid-cols-2">
-          {/* Left: copy */}
-          <div className="space-y-6">
-            <div className="about-reveal inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest2 text-gold-light">
-              <FiMapPin className="h-4 w-4" />
-              {t("aboutPreview.badge")}
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight">
+                {t("aboutPreview.titleLine1")}
+                <span className="bg-gradient-to-r from-riviera-blue to-mediterranean-teal bg-clip-text text-transparent">
+                  {" "}
+                  {t("aboutPreview.titleHighlight")}
+                </span>
+              </h2>
+
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {t("aboutPreview.description")}
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                    <FiStar className="w-4 h-4 text-yellow-600" />
+                  </div>
+                  <span className="font-semibold">{t("aboutPreview.rating")}</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                    <FiUsers className="w-4 h-4 text-green-600" />
+                  </div>
+                  <span className="font-semibold">{t("aboutPreview.happyTravelers")}</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <FiGlobe className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <span className="font-semibold">{t("aboutPreview.countries")}</span>
+                </div>
+              </div>
             </div>
+          </FadeIn>
 
-            <p className="about-reveal text-xs font-semibold uppercase tracking-ultra text-azur-mist/70">
-              02 — {t("nav.about")}
-            </p>
+          {/* Right: Photos */}
+          <SlideIn direction="right" delay={200}>
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <img
+                    src="/images/ppl/w1.jpeg"
+                    alt="Group tour in Monaco"
+                    className="w-full h-70 object-cover rounded-2xl shadow-lg"
+                    loading="lazy"
+                  />
+                  <img
+                    src="/images/ppl/w2.jpeg"
+                    alt="Scenic French Riviera landscape"
+                    className="w-full h-70 object-cover rounded-2xl shadow-lg"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="space-y-4 pt-8">
+                  <img
+                    src="/images/ppl/w3.jpeg"
+                    alt="Happy clients at Eze Village"
+                    className="w-full h-66 object-cover rounded-2xl shadow-lg"
+                    loading="lazy"
+                  />
+                  <img
+                    src="/images/ppl/w4.jpeg"
+                    alt="Family enjoying Saint-Tropez"
+                    className="w-full h-48 object-cover rounded-2xl shadow-lg"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
 
-            <h2 className="about-reveal font-display text-4xl font-light leading-[1.05] sm:text-5xl">
-              {t("aboutPreview.titleLine1")}{" "}
-              <span className="italic text-gradient-gold">
-                {t("aboutPreview.titleHighlight")}
-              </span>
-            </h2>
+              {/* Floating Stats */}
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <FiCheckCircle className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-800">100%</div>
+                    <div className="text-sm text-gray-600">{t("aboutPreview.recommendation")}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SlideIn>
+        </div>
 
-            <p className="about-reveal max-w-xl text-lg leading-relaxed text-white/70">
-              {t("aboutPreview.description")}
-            </p>
-
-            <div className="about-reveal flex flex-wrap gap-3 pt-2">
-              {[
-                { icon: <FiStar className="h-4 w-4 text-gold" />, label: t("aboutPreview.rating") },
-                { icon: <FiUsers className="h-4 w-4 text-teal-sea" />, label: t("aboutPreview.happyTravelers") },
-                { icon: <FiGlobe className="h-4 w-4 text-azur-mist" />, label: t("aboutPreview.countries") },
-              ].map((chip, i) => (
+        {/* Trust Features Grid */}
+        <FadeIn delay={300}>
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">
+              {t("aboutPreview.whyChoose")}
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {trustFeatures.map((feature, index) => (
                 <div
-                  key={i}
-                  className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/85"
+                  key={index}
+                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                 >
-                  {chip.icon}
-                  {chip.label}
+                  <div className="w-12 h-12 bg-gradient-to-br from-riviera-blue to-mediterranean-teal rounded-2xl flex items-center justify-center text-white mb-4">
+                    {feature.icon}
+                  </div>
+                  <h4 className="font-semibold text-gray-800 mb-2">
+                    {feature.title}
+                  </h4>
+                  <p className="text-sm text-gray-600">{feature.description}</p>
                 </div>
               ))}
             </div>
           </div>
+        </FadeIn>
 
-          {/* Right: photo collage */}
-          <div className="about-collage about-reveal relative">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="about-photo-a space-y-4">
-                <img
-                  src="/images/ppl/w1.jpeg"
-                  alt="Group tour in Monaco"
-                  className="h-60 w-full rounded-3xl object-cover shadow-lift ring-1 ring-white/10"
-                  loading="lazy"
-                />
-                <img
-                  src="/images/ppl/w2.jpeg"
-                  alt="Scenic French Riviera landscape"
-                  className="h-72 w-full rounded-3xl object-cover shadow-lift ring-1 ring-white/10"
-                  loading="lazy"
-                />
-              </div>
-              <div className="about-photo-b space-y-4 pt-10">
-                <img
-                  src="/images/ppl/w3.jpeg"
-                  alt="Happy clients at Èze Village"
-                  className="h-72 w-full rounded-3xl object-cover shadow-lift ring-1 ring-white/10"
-                  loading="lazy"
-                />
-                <img
-                  src="/images/ppl/w4.jpeg"
-                  alt="Family enjoying Saint-Tropez"
-                  className="h-60 w-full rounded-3xl object-cover shadow-lift ring-1 ring-white/10"
-                  loading="lazy"
-                />
-              </div>
+        {/* Testimonials Preview */}
+        <SlideIn direction="up" delay={400}>
+          <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+                {t("aboutPreview.whatTravelersSay")}
+              </h3>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                {t("aboutPreview.travelersSubtitle")}
+              </p>
             </div>
 
-            {/* Floating stat */}
-            <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl border border-white/10 bg-azur-ink/80 p-4 shadow-lift backdrop-blur-md">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-sea/20">
-                <FiCheckCircle className="h-6 w-6 text-teal-sea" />
-              </div>
-              <div>
-                <div className="font-display text-2xl text-white">100%</div>
-                <div className="text-xs uppercase tracking-wider text-white/60">
-                  {t("aboutPreview.recommendation")}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust features */}
-        <div className="mb-24">
-          <h3 className="about-reveal mb-10 text-center font-display text-3xl font-light">
-            {t("aboutPreview.whyChoose")}
-          </h3>
-          <div className="trust-grid grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {trustFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="trust-card group rounded-3xl border border-white/10 bg-white/5 p-7 transition-colors duration-300 hover:border-gold/40 hover:bg-white/[0.08]"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-azur-sea to-teal-sea text-white transition-transform duration-300 group-hover:scale-110">
-                  {feature.icon}
-                </div>
-                <h4 className="mb-2 font-semibold text-white">{feature.title}</h4>
-                <p className="text-sm leading-relaxed text-white/60">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Testimonials marquee */}
-        <div className="about-reveal mb-24">
-          <div className="mb-10 text-center">
-            <h3 className="font-display text-3xl font-light sm:text-4xl">
-              {t("aboutPreview.whatTravelersSay")}
-            </h3>
-            <p className="mx-auto mt-3 max-w-2xl text-white/60">
-              {t("aboutPreview.travelersSubtitle")}
-            </p>
-          </div>
-
-          <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
-            <div className="flex w-max gap-6 animate-marquee hover:[animation-play-state:paused]">
-              {marqueeTestimonials.map((testimonial, index) => (
-                <figure
-                  key={index}
-                  className="w-[340px] shrink-0 rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm"
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              {previewTestimonials.map((testimonial, index) => (
+                <div
+                  key={testimonial.id}
+                  className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow"
                 >
-                  <div className="mb-3 flex gap-1">
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <FiStar key={i} className="h-4 w-4 fill-current text-gold" />
+                      <FiStar
+                        key={i}
+                        className="w-4 h-4 text-yellow-500 fill-current"
+                      />
                     ))}
                   </div>
-                  <blockquote className="mb-5 text-sm italic leading-relaxed text-white/80">
-                    “{testimonial.text.length > 150
-                      ? testimonial.text.substring(0, 150) + "…"
-                      : testimonial.text}”
+
+                  {/* Quote - Short version */}
+                  <blockquote className="text-gray-700 mb-4 text-sm italic leading-relaxed">
+                    "
+                    {testimonial.text.length > 100
+                      ? testimonial.text.substring(0, 100) + "..."
+                      : testimonial.text}
+                    "
                   </blockquote>
-                  <figcaption className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-azur-sea to-teal-sea text-sm font-semibold text-white">
+
+                  {/* Client Info */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-riviera-blue to-mediterranean-teal rounded-full flex items-center justify-center text-white font-semibold text-sm">
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="text-sm font-semibold text-white">
+                      <div className="font-semibold text-gray-800 text-sm">
                         {testimonial.name}
                       </div>
-                      <div className="flex items-center gap-1 text-xs text-white/55">
+                      <div className="flex items-center gap-1 text-xs text-gray-600">
                         <span>{getCountryFlag(testimonial.country)}</span>
                         <span>{testimonial.country}</span>
                       </div>
                     </div>
-                  </figcaption>
-                </figure>
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
-        </div>
 
-        {/* Adventure CTA */}
-        <div className="about-reveal relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-azur-sea/30 via-azur-deep to-azur-night p-10 text-center sm:p-14">
-          <h3 className="font-display text-3xl font-light sm:text-4xl">
-            {t("aboutPreview.adventureTitle")}
-          </h3>
-          <p className="mx-auto mt-4 max-w-2xl text-white/70">
-            {t("aboutPreview.adventureSubtitle")}
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold uppercase tracking-widest2"
-            >
-              <FaWhatsapp className="h-5 w-5" />
-              {t("aboutPreview.ctaWhatsapp")}
-            </a>
-            <a
-              href={`tel:+${PHONE_NUMBER}`}
-              className="btn-outline-light inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold uppercase tracking-widest2"
-            >
-              <FiPhone className="h-5 w-5" />
-              {t("aboutPreview.ctaPhone")}
-            </a>
+            {/* CTA to Full Testimonials */}
+            {/* <div className="text-center">
+              <Link
+                to="/testimonials"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-riviera-blue to-mediterranean-teal text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-lg transition-shadow"
+              >
+                <FiCamera className="w-5 h-5" />
+                See All Client Stories & Photos
+              </Link>
+            </div> */}
           </div>
-        </div>
+        </SlideIn>
+
+        {/* Contact CTA */}
+        <FadeIn delay={500}>
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-riviera-blue to-mediterranean-teal rounded-3xl p-8 sm:p-12 text-white">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+                {t("aboutPreview.adventureTitle")}
+              </h3>
+              <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+                {t("aboutPreview.adventureSubtitle")}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-white text-riviera-blue px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl"
+                >
+                  <FaWhatsapp className="w-6 h-6" />
+                  {t("aboutPreview.ctaWhatsapp")}
+                </a>
+                <a
+                  href={`tel:+${PHONE_NUMBER}`}
+                  className="inline-flex items-center gap-3 bg-white/20 backdrop-blur text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-colors border border-white/30"
+                >
+                  <FiPhone className="w-5 h-5" />
+                  {t("aboutPreview.ctaPhone")}
+                </a>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

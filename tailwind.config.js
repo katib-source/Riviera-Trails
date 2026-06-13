@@ -4,86 +4,57 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // ── Legacy tokens (kept so existing pages keep working) ──
-        "riviera-blue": "#0A6FB5",
-        "sand-beige": "#F4ECDD",
-        "sunset-orange": "#E8765A",
-        "mediterranean-teal": "#18B0A4",
-
-        // ── New "Côte d'Azur" luxury system ──
-        azur: {
-          ink: "#04101F", // deepest midnight sea
-          night: "#071D33", // night azure
-          deep: "#0C2F4F", // deep sea
-          sea: "#0A6FB5", // signature azure
-          wave: "#1F8FD0", // bright wave
-          mist: "#9FC9E6", // sea mist
-        },
-        gold: {
-          DEFAULT: "#E7B473", // riviera sun gold
-          light: "#F3D3A1",
-          deep: "#C98F4A",
-        },
-        coral: {
-          DEFAULT: "#E8765A",
-          light: "#F4A38C",
-        },
-        sand: {
-          DEFAULT: "#F6EFE2",
-          deep: "#E9DCC4",
-          warm: "#FBF7EF",
-        },
-        teal: {
-          sea: "#18B0A4",
-          deep: "#0E7C76",
-        },
+        "riviera-blue": "#0077BE",
+        "sand-beige": "#F5F5DC",
+        "sunset-orange": "#FF6B35",
+        "mediterranean-teal": "#20B2AA",
       },
       fontFamily: {
-        display: ['"Fraunces"', "Georgia", "serif"],
-        sans: ['"Manrope"', "Inter", "system-ui", "sans-serif"],
-      },
-      letterSpacing: {
-        ultra: "0.35em",
-        widest2: "0.25em",
+        sans: ["Inter", "system-ui", "sans-serif"],
       },
       animation: {
-        fadeIn: "fadeIn 0.8s ease-in-out",
-        floaty: "floaty 6s ease-in-out infinite",
-        shimmer: "shimmer 2.4s linear infinite",
-        marquee: "marquee 40s linear infinite",
-        "scroll-cue": "scrollCue 2s ease-in-out infinite",
+        fadeIn: "fadeIn 0.6s ease-in-out",
+        slideInUp: "slideInUp 0.6s ease-out",
+        slideInDown: "slideInDown 0.6s ease-out",
+        slideInLeft: "slideInLeft 0.6s ease-out",
+        slideInRight: "slideInRight 0.6s ease-out",
+        shimmer: "shimmer 1.5s infinite",
+        "bounce-gentle": "bounce-gentle 2s infinite",
         "pulse-slow": "pulse 3s infinite",
-        grain: "grain 8s steps(10) infinite",
+        wiggle: "wiggle 1s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
-          "0%": { opacity: "0", transform: "translateY(14px)" },
+          "0%": { opacity: "0", transform: "translateY(10px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        floaty: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-12px)" },
+        slideInUp: {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideInDown: {
+          "0%": { opacity: "0", transform: "translateY(-30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideInLeft: {
+          "0%": { opacity: "0", transform: "translateX(-30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        slideInRight: {
+          "0%": { opacity: "0", transform: "translateX(30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
         },
         shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
         },
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
+        "bounce-gentle": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" },
         },
-        scrollCue: {
-          "0%": { transform: "translateY(0)", opacity: "0" },
-          "40%": { opacity: "1" },
-          "100%": { transform: "translateY(14px)", opacity: "0" },
-        },
-        grain: {
-          "0%, 100%": { transform: "translate(0, 0)" },
-          "10%": { transform: "translate(-5%, -10%)" },
-          "30%": { transform: "translate(3%, -15%)" },
-          "50%": { transform: "translate(-8%, 5%)" },
-          "70%": { transform: "translate(8%, 8%)" },
-          "90%": { transform: "translate(-3%, 12%)" },
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
         },
       },
       screens: {
@@ -100,12 +71,7 @@ module.exports = {
       },
       boxShadow: {
         soft: "0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)",
-        glow: "0 0 40px rgba(31, 143, 208, 0.35)",
-        gold: "0 10px 40px -10px rgba(231, 180, 115, 0.5)",
-        lift: "0 30px 60px -20px rgba(4, 16, 31, 0.35)",
-      },
-      transitionTimingFunction: {
-        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
+        glow: "0 0 20px rgba(0, 119, 190, 0.3)",
       },
     },
   },

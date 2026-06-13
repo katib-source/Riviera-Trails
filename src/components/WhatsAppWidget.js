@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { getWhatsAppUrl } from "../config/constants";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiX, FiMessageCircle } from "react-icons/fi";
@@ -7,13 +6,8 @@ import { useLanguage } from "../context/LanguageContext";
 
 const WhatsAppWidget = () => {
   const { t } = useLanguage();
-  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-
-  // Tour-detail pages carry their own sticky booking bar with a WhatsApp CTA,
-  // so the floating widget would collide / duplicate it — suppress it there.
-  const onTourPage = /\/tour\//.test(location.pathname);
 
   // Hide widget when the footer scrolls into view
   useEffect(() => {
@@ -54,7 +48,7 @@ const WhatsAppWidget = () => {
     setIsOpen(false);
   };
 
-  if (!isVisible || onTourPage) return null;
+  if (!isVisible) return null;
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

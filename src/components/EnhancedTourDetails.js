@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Check, Info } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
@@ -10,26 +10,25 @@ import TourInfoGrid from "./tour/TourInfoGrid";
 import TourStops from "./tour/TourStops";
 import TourHighlights from "./tour/TourHighlights";
 import BookingSidebar from "./tour/BookingSidebar";
-import { gsap, prefersReducedMotion } from "../lib/gsap";
 
 // ─── Local helpers ────────────────────────────────────────────────────────────
 
 const TourNotFound = () => {
   const { t } = useLanguage();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-sand px-6 pt-16">
-      <div className="max-w-md text-center">
-        <div className="mb-6 text-6xl">🗺️</div>
-        <h1 className="mb-4 font-display text-4xl font-light text-azur-deep">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 pt-16">
+      <div className="text-center max-w-md px-6">
+        <div className="text-6xl mb-6">🗺️</div>
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">
           {t("tourDetails.notFound.title")}
         </h1>
-        <p className="mb-8 text-azur-deep/65">
+        <p className="text-gray-600 mb-8">
           {t("tourDetails.notFound.description")}
         </p>
         <Link
           to="/"
           state={{ scrollTo: "tours" }}
-          className="btn-gold inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-widest2"
+          className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
         >
           {t("tourDetails.notFound.cta")}
         </Link>
@@ -41,22 +40,22 @@ const TourNotFound = () => {
 const PrivateTourBenefits = () => {
   const { t } = useLanguage();
   return (
-    <div className="rounded-3xl border border-gold/30 bg-gradient-to-br from-azur-deep to-azur-night p-7 text-white">
+    <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 border-2 border-indigo-200">
       <div className="flex items-start gap-3">
-        <Info className="mt-1 h-6 w-6 shrink-0 text-gold-light" />
+        <Info className="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" />
         <div>
-          <h3 className="mb-3 font-display text-xl">
+          <h3 className="text-lg font-bold text-indigo-900 mb-2">
             {t("tourDetails.privateBenefits.title")}
           </h3>
-          <ul className="space-y-2.5 text-white/80">
+          <ul className="space-y-2 text-indigo-800">
             {[
               "tourDetails.privateBenefits.flexible",
               "tourDetails.privateBenefits.personalGuide",
               "tourDetails.privateBenefits.pickup",
               "tourDetails.privateBenefits.vehicle",
             ].map((key) => (
-              <li key={key} className="flex items-center gap-2 text-sm">
-                <Check className="h-4 w-4 shrink-0 text-gold-light" />
+              <li key={key} className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-indigo-600" />
                 {t(key)}
               </li>
             ))}
@@ -74,7 +73,6 @@ const EnhancedTourDetails = () => {
   const { language } = useLanguage();
   const [tour, setTour] = useState(null);
   const [notFound, setNotFound] = useState(false);
-  const contentRef = useRef(null);
 
   const {
     groupSize,
@@ -96,55 +94,29 @@ const EnhancedTourDetails = () => {
     }
   }, [slug, language]);
 
-  // Reveal the content blocks as they enter the viewport.
-  useEffect(() => {
-    if (!tour || prefersReducedMotion()) return;
-    const ctx = gsap.context(() => {
-      gsap.from(".tour-reveal", {
-        scrollTrigger: { trigger: contentRef.current, start: "top 85%" },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: "power3.out",
-      });
-    }, contentRef);
-    return () => ctx.revert();
-  }, [tour]);
-
   if (notFound) return <TourNotFound />;
 
   if (!tour) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-sand">
-        <div className="h-14 w-14 animate-spin rounded-full border-2 border-azur-deep/15 border-t-gold" />
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-sand pb-28 lg:pb-12">
+    <div className="min-h-screen bg-gray-50 pt-16 pb-20 lg:pb-0">
       <SEOHead {...seoConfigs.tourDetails(tour)} />
 
       <TourHeroSection tour={tour} onBack={() => navigate(-1)} />
 
-      <div ref={contentRef} className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-3">
-          <div className="space-y-8 lg:col-span-2">
-            <div className="tour-reveal">
-              <TourInfoGrid tour={tour} />
-            </div>
-            <div className="tour-reveal">
-              <TourStops tour={tour} />
-            </div>
-            <div className="tour-reveal">
-              <TourHighlights tour={tour} />
-            </div>
-            {tour.isPrivate && (
-              <div className="tour-reveal">
-                <PrivateTourBenefits />
-              </div>
-            )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-8">
+            <TourInfoGrid tour={tour} />
+            <TourStops tour={tour} />
+            <TourHighlights tour={tour} />
+            {tour.isPrivate && <PrivateTourBenefits />}
           </div>
           <div className="lg:col-span-1">
             <BookingSidebar
