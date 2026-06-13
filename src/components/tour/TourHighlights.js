@@ -1,25 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Star, Check } from "lucide-react";
+import { Sparkles, Check } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
 const TourHighlights = ({ tour }) => {
   const { t } = useLanguage();
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-        <Star className="w-6 h-6 text-amber-500" />
+    <div className="rounded-3xl border border-azur-deep/10 bg-white p-7 shadow-soft">
+      <h2 className="mb-6 flex items-center gap-2 font-display text-2xl text-azur-deep">
+        <Sparkles className="h-6 w-6 text-gold-deep" />
         {t("tourDetails.highlights")}
       </h2>
-      <ul className="grid md:grid-cols-2 gap-3">
+      <ul className="grid gap-3 sm:grid-cols-2">
         {tour.highlights.map((highlight, index) => (
           <li
             key={index}
-            className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors"
+            className="flex items-start gap-3 rounded-2xl border border-azur-deep/10 bg-sand-warm p-4 transition-colors hover:border-gold/40"
           >
-            <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-            <span className="text-gray-700">{highlight}</span>
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-sea/15 text-teal-deep">
+              <Check className="h-3.5 w-3.5" />
+            </span>
+            <span className="text-sm leading-relaxed text-azur-deep/80">
+              {highlight}
+            </span>
           </li>
         ))}
       </ul>

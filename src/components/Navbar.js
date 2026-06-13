@@ -154,7 +154,11 @@ const Navbar = () => {
             <span className="font-display text-2xl font-medium tracking-tight">
               Azur
             </span>
-            <span className="font-display text-2xl font-light italic text-gradient-gold">
+            <span
+              className={`font-display text-2xl font-light italic ${
+                isDarkBackground ? "text-gold-light" : "text-gold-deep"
+              }`}
+            >
               Escape
             </span>
           </button>

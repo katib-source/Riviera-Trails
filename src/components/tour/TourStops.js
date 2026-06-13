@@ -7,24 +7,27 @@ const TourStops = ({ tour }) => {
   const { t } = useLanguage();
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-        <MapPin className="w-6 h-6 text-red-600" />
+    <div className="rounded-3xl border border-azur-deep/10 bg-white p-7 shadow-soft">
+      <h2 className="mb-6 flex items-center gap-2 font-display text-2xl text-azur-deep">
+        <MapPin className="h-6 w-6 text-teal-sea" />
         {t("tourDetails.tourStops")}
       </h2>
-      <div className="space-y-2">
+
+      {/* Vertical itinerary timeline */}
+      <ol className="relative space-y-1 pl-2">
         {tour.stops.map((stop, index) => (
-          <div
-            key={index}
-            className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors"
-          >
-            <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0">
+          <li key={index} className="relative flex items-center gap-4 pb-5 last:pb-0">
+            {/* connector line */}
+            {index !== tour.stops.length - 1 && (
+              <span className="absolute left-[18px] top-9 h-[calc(100%-18px)] w-px bg-gradient-to-b from-azur-sea/50 to-teal-sea/20" />
+            )}
+            <span className="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-azur-sea to-teal-sea font-display text-sm font-semibold text-white shadow-soft">
               {index + 1}
-            </div>
-            <p className="text-gray-800 font-medium">{stop}</p>
-          </div>
+            </span>
+            <span className="font-medium text-azur-deep">{stop}</span>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   );
 };
