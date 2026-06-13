@@ -129,12 +129,14 @@ export const StructuredDataScript = ({ type = "website", data = {} }) => {
     }
   };
 
+  // Escape characters that could break out of the <script> context. The data
+  // here is static, but this keeps the JSON-LD injection safe by construction.
+  const safeJson = JSON.stringify(getStructuredData()).replace(/</g, "\\u003c");
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(getStructuredData()),
-      }}
+      dangerouslySetInnerHTML={{ __html: safeJson }}
     />
   );
 };

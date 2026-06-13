@@ -11,4 +11,8 @@ root.render(
   </React.StrictMode>
 );
 
-serviceWorkerRegistration.register();
+// Ensure visitors always receive the freshest deploy. The CRA service worker
+// aggressively precaches the app shell and serves stale content until every
+// tab is closed — undesirable for a frequently-updated marketing site — so we
+// unregister it (this also cleans up any SW previously installed on a device).
+serviceWorkerRegistration.unregister();
