@@ -31,7 +31,6 @@ const Footer = () => {
   const quickLinks = [
     { label: t("footerSection.ourTours"), action: () => scrollToSection("tours") },
     { label: t("footerSection.aboutUs"), action: () => scrollToSection("about") },
-    { label: t("footerSection.clientStories"), action: () => navigate("/testimonials") },
     { label: t("footerSection.contact"), action: () => scrollToSection("contact") },
     { label: t("footerSection.faq"), action: () => navigate("/faq") },
     {

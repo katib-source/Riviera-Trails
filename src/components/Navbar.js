@@ -110,11 +110,6 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-  const handleTestimonialsClick = () => {
-    navigate("/testimonials");
-    setIsOpen(false);
-  };
-
   const handleLogoClick = () => {
     navigate("/");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -125,7 +120,6 @@ const Navbar = () => {
   const navLinks = [
     { label: t("nav.tours"), action: () => scrollToSection("tours") },
     { label: t("nav.about"), action: () => scrollToSection("about") },
-    { label: t("nav.clientStories"), action: handleTestimonialsClick },
     { label: t("nav.contact"), action: () => scrollToSection("contact") },
     { label: t("nav.faq"), action: () => { navigate("/faq"); setIsOpen(false); } },
   ];

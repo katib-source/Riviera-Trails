@@ -82,11 +82,11 @@ const Hero = () => {
           {t("hero.eyebrow")}
         </p>
 
-        <h1 className="text-shadow-hero font-display font-light leading-[0.92] tracking-tight">
-          <span className="hero-title-line reveal-line text-7xl xs:text-8xl sm:text-[8rem] md:text-[11rem] lg:text-[13rem]">
+        <h1 className="text-shadow-hero font-display font-light leading-[0.9] tracking-tight">
+          <span className="hero-title-line reveal-line text-[min(16vw,14vh)]">
             <span>Azur</span>
           </span>
-          <span className="hero-title-line reveal-line text-7xl italic text-gold-light xs:text-8xl sm:text-[8rem] md:text-[11rem] lg:text-[13rem]">
+          <span className="hero-title-line reveal-line text-[min(16vw,14vh)] italic text-gold-light">
             <span>Escape</span>
           </span>
         </h1>
@@ -134,7 +134,7 @@ const Hero = () => {
       {/* Scroll cue (desktop only — mobile hero is already full) */}
       <a
         href="#tours"
-        className="hero-scroll absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/70 transition-colors hover:text-gold sm:flex"
+        className="hero-scroll absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/70 transition-colors hover:text-gold sm:flex [@media(max-height:820px)]:!hidden"
         aria-label={t("hero.scrollCue")}
       >
         <span className="text-[10px] font-medium uppercase tracking-ultra">
