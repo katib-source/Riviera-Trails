@@ -24,10 +24,7 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 50);
 
-      // Clear any pending hide timeout
       if (hideTimeout) clearTimeout(hideTimeout);
-
-      // Delayed hide for smoother feel
       hideTimeout = setTimeout(() => {
         setIsHidden(currentScrollY > lastScrollY && currentScrollY > 150);
       }, 120);
@@ -44,14 +41,10 @@ const Navbar = () => {
 
   // Keep navbar visible when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      setIsHidden(false);
-    }
+    if (isOpen) setIsHidden(false);
   }, [isOpen]);
 
   // Dynamic background brightness detection with route-change delay.
-  // getComputedStyle + getBoundingClientRect are expensive; rAF ensures they
-  // run at most once per animation frame instead of on every scroll tick.
   useEffect(() => {
     let rafId = null;
 
@@ -67,7 +60,6 @@ const Navbar = () => {
           const rgb = bgColor.match(/\d+/g)?.map(Number);
 
           if (rgb && rgb.length >= 3) {
-            // ITU-R BT.601 luma — perceived brightness of the background colour
             const brightness =
               (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
             setIsDarkBackground(brightness < 140);
@@ -85,16 +77,12 @@ const Navbar = () => {
       setIsDarkBackground(false);
     };
 
-    // rAF gate: cancels any pending frame before scheduling a new one so that
-    // rapid scroll / resize events collapse into a single detection per frame.
     const scheduleDetection = () => {
       if (rafId) cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(detectBackground);
     };
 
-    // Initial detection after the route finishes rendering
     const timeout = setTimeout(detectBackground, 250);
-
     window.addEventListener("scroll", scheduleDetection, { passive: true });
     window.addEventListener("resize", scheduleDetection, { passive: true });
 
@@ -111,21 +99,13 @@ const Navbar = () => {
   );
 
   const scrollToSection = (sectionId) => {
-    // If not on homepage, navigate to homepage first
     if (location.pathname !== "/") {
       navigate("/");
-      // Wait for navigation to complete, then scroll
       setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
     }
     setIsOpen(false);
   };
@@ -140,116 +120,82 @@ const Navbar = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const textColor = isDarkBackground ? "text-white" : "text-azur-deep";
+
+  const navLinks = [
+    { label: t("nav.tours"), action: () => scrollToSection("tours") },
+    { label: t("nav.about"), action: () => scrollToSection("about") },
+    { label: t("nav.clientStories"), action: handleTestimonialsClick },
+    { label: t("nav.contact"), action: () => scrollToSection("contact") },
+    { label: t("nav.faq"), action: () => { navigate("/faq"); setIsOpen(false); } },
+  ];
+
   return (
     <nav
       style={{ top: 0, marginTop: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ease-out ${
         isHidden ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       } ${
         isScrolled
           ? isDarkBackground
-            ? "bg-black/20 text-white shadow-lg backdrop-blur-md shadow-black/5 scale-[1.02]"
-            : "bg-white/80 text-gray-800 shadow-lg backdrop-blur-md shadow-black/5 scale-[1.02]"
-          : isDarkBackground
-            ? "bg-transparent text-white scale-100"
-            : "bg-transparent text-gray-800 scale-100"
-      }`}
+            ? "bg-azur-ink/60 shadow-lift backdrop-blur-md"
+            : "bg-sand-warm/80 shadow-soft backdrop-blur-md"
+          : "bg-transparent"
+      } ${textColor}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <button
-              onClick={handleLogoClick}
-              className={`text-2xl font-bold tracking-wide transition-colors duration-300 ${
-                isDarkBackground
-                  ? "text-white hover:text-gray-100"
-                  : "text-riviera-blue hover:text-mediterranean-teal"
-              }`}
-            >
-              Azur Escape
-            </button>
-          </div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-[68px] items-center justify-between">
+          {/* Wordmark */}
+          <button
+            onClick={handleLogoClick}
+            className="group flex items-baseline gap-2"
+            data-cursor="hover"
+          >
+            <span className="font-display text-2xl font-medium tracking-tight">
+              Azur
+            </span>
+            <span className="font-display text-2xl font-light italic text-gradient-gold">
+              Escape
+            </span>
+          </button>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-baseline space-x-4">
-              <button
-                onClick={() => scrollToSection("tours")}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                  isDarkBackground
-                    ? "hover:text-gray-200"
-                    : "hover:text-riviera-blue"
-                }`}
-              >
-                {t("nav.tours")}
-              </button>
-              <button
-                onClick={() => scrollToSection("about")}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                  isDarkBackground
-                    ? "hover:text-gray-200"
-                    : "hover:text-riviera-blue"
-                }`}
-              >
-                {t("nav.about")}
-              </button>
-
-              <button
-                onClick={() => scrollToSection("contact")}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                  isDarkBackground
-                    ? "hover:text-gray-200"
-                    : "hover:text-riviera-blue"
-                }`}
-              >
-                {t("nav.contact")}
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/faq");
-                  setIsOpen(false);
-                }}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                  isDarkBackground
-                    ? "hover:text-gray-200"
-                    : "hover:text-riviera-blue"
-                }`}
-              >
-                {t("nav.faq")}
-              </button>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-riviera-blue to-mediterranean-teal text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg hover:scale-105"
-              >
-                <FaWhatsapp className="w-4 h-4" />
-                {t("nav.bookNow")}
-              </a>
+          <div className="hidden items-center gap-8 md:flex">
+            <div className="flex items-center gap-7">
+              {navLinks.map((link) => (
+                <button
+                  key={link.label}
+                  onClick={link.action}
+                  className="link-underline text-[13px] font-semibold uppercase tracking-widest2 opacity-90 transition-opacity hover:opacity-100"
+                >
+                  {link.label}
+                </button>
+              ))}
             </div>
+            <div className="h-5 w-px bg-current opacity-20" />
             <LanguageSwitcher isDarkBackground={isDarkBackground} />
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold flex items-center gap-2 rounded-full px-5 py-2.5 text-[12px] font-bold uppercase tracking-widest2"
+            >
+              <FaWhatsapp className="h-4 w-4" />
+              {t("nav.bookNow")}
+            </a>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="flex items-center gap-3 md:hidden">
             <LanguageSwitcher isDarkBackground={isDarkBackground} />
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
-              className={`inline-flex items-center justify-center p-2 rounded-md transition-all duration-300 ${
-                isDarkBackground
-                  ? "hover:text-gray-200 hover:scale-105"
-                  : "hover:text-riviera-blue hover:scale-105"
-              }`}
+              className="inline-flex items-center justify-center rounded-md p-2 transition-transform hover:scale-105"
             >
-              {isOpen ? (
-                <FiX className="w-6 h-6" />
-              ) : (
-                <FiMenu className="w-6 h-6" />
-              )}
+              {isOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
             </button>
           </div>
         </div>
@@ -258,48 +204,24 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div id="mobile-menu" className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/30 backdrop-blur-md shadow-lg shadow-black/5 border-t border-white/20">
-            <button
-              onClick={() => scrollToSection("tours")}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-white/50 w-full text-left transition-all duration-300"
-            >
-              {t("nav.tours")}
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-white/50 w-full text-left transition-all duration-300"
-            >
-              {t("nav.about")}
-            </button>
-            <button
-              onClick={handleTestimonialsClick}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-white/50 w-full text-left transition-all duration-300"
-            >
-              {t("nav.clientStories")}
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-white/50 w-full text-left transition-all duration-300"
-            >
-              {t("nav.contact")}
-            </button>
-            <button
-              onClick={() => {
-                navigate("/faq");
-                setIsOpen(false);
-              }}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-riviera-blue hover:bg-white/50 w-full text-left transition-all duration-300"
-            >
-              {t("nav.faq")}
-            </button>
+          <div className="space-y-1 border-t border-white/10 bg-azur-ink/95 px-4 pb-5 pt-3 text-white backdrop-blur-xl">
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={link.action}
+                className="block w-full rounded-lg px-3 py-3 text-left text-base font-medium uppercase tracking-wide text-white/85 transition-colors hover:bg-white/10 hover:text-gold"
+              >
+                {link.label}
+              </button>
+            ))}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-riviera-blue to-mediterranean-teal text-white hover:shadow-lg transition-all duration-300 flex items-center gap-2"
               onClick={() => setIsOpen(false)}
+              className="btn-gold mt-3 flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-bold uppercase tracking-widest2"
             >
-              <FaWhatsapp className="w-4 h-4" />
+              <FaWhatsapp className="h-4 w-4" />
               {t("nav.bookNow")}
             </a>
           </div>

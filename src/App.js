@@ -14,6 +14,8 @@ import SEOHead, { seoConfigs } from "./components/SEOHead";
 import StructuredDataScript from "./components/StructuredData";
 import LanguageRoute from "./components/LanguageRoute";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Cursor from "./components/experience/Cursor";
+import ScrollProgress from "./components/experience/ScrollProgress";
 import "./App.css";
 
 // Route-level chunks — loaded only when the user navigates to that route
@@ -50,6 +52,9 @@ function App() {
     <LanguageProvider>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="App">
+          <Cursor />
+          <ScrollProgress />
+          <div className="grain-overlay" aria-hidden="true" />
           <div style={{ position: "absolute", top: 0, left: 0, width: 0, height: 0, overflow: "visible" }}>
             <a
               href="#main-content"

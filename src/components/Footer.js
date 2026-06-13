@@ -11,132 +11,103 @@ const Footer = () => {
   const location = useLocation();
   const { language, t } = useLanguage();
 
-  // M-06: fire after the route renders so the target section is in the DOM
+  // Fire after the route renders so the target section is in the DOM
   useEffect(() => {
     if (location.state?.scrollTo) {
-      document.getElementById(location.state.scrollTo)?.scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById(location.state.scrollTo)
+        ?.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
 
   const scrollToSection = (sectionId) => {
     if (location.pathname !== "/") {
-      // Pass scroll target via router state; the useEffect above handles the scroll
       navigate("/", { state: { scrollTo: sectionId } });
     } else {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
+  const quickLinks = [
+    { label: t("footerSection.ourTours"), action: () => scrollToSection("tours") },
+    { label: t("footerSection.aboutUs"), action: () => scrollToSection("about") },
+    { label: t("footerSection.clientStories"), action: () => navigate("/testimonials") },
+    { label: t("footerSection.contact"), action: () => scrollToSection("contact") },
+    { label: t("footerSection.faq"), action: () => navigate("/faq") },
+    {
+      label: t("footerSection.privacyPolicy"),
+      action: () =>
+        navigate(language === "fr" ? "/privacy-policy-fr" : "/privacy-policy"),
+    },
+  ];
+
+  const socials = [
+    { href: getWhatsAppUrl(), icon: <FaWhatsapp className="h-5 w-5" />, label: "WhatsApp" },
+    { href: "https://www.facebook.com/azurescape", icon: <FaFacebook className="h-5 w-5" />, label: "Facebook" },
+    { href: `mailto:${EMAIL_ADDRESS}`, icon: <FaGoogle className="h-5 w-5" />, label: "Email" },
+  ];
+
   return (
-    <footer className="bg-gray-800 text-white py-8 sm:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
+    <footer className="relative overflow-hidden bg-azur-ink text-white">
+      {/* top hairline */}
+      <div className="hairline h-px w-full" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[40rem] -translate-x-1/2 rounded-full bg-azur-sea/10 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Azur Escape
-            </h3>
-            <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+          <div className="md:col-span-2">
+            <div className="flex items-baseline gap-2">
+              <span className="font-display text-3xl font-medium">Azur</span>
+              <span className="font-display text-3xl font-light italic text-gradient-gold">
+                Escape
+              </span>
+            </div>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
               {t("footerSection.brandDesc")}
             </p>
-            <div className="flex gap-3 sm:gap-4">
-              <a
-                href={getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Chat with us on WhatsApp"
-                className="w-11 h-11 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-200"
-              >
-                <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
-              </a>
-              <a
-                href="https://www.facebook.com/azurescape"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow us on Facebook"
-                className="w-11 h-11 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
-              >
-                <FaFacebook className="w-5 h-5" aria-hidden="true" />
-              </a>
-              <a
-                href={`mailto:${EMAIL_ADDRESS}`}
-                aria-label="Send us an email"
-                className="w-11 h-11 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
-              >
-                <FaGoogle className="w-5 h-5" aria-hidden="true" />
-              </a>
+            <div className="mt-6 flex gap-3">
+              {socials.map((s, i) => (
+                <a
+                  key={i}
+                  href={s.href}
+                  {...(s.label !== "Email"
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  aria-label={s.label}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:text-gold"
+                >
+                  {s.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
-            <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest2 text-gold-light">
               {t("footerSection.quickLinks")}
             </h4>
-            <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
-              <li>
-                <button
-                  onClick={() => scrollToSection("tours")}
-                  className="hover:text-white transition-colors duration-200 cursor-pointer"
-                >
-                  {t("footerSection.ourTours")}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("about")}
-                  className="hover:text-white transition-colors duration-200 cursor-pointer"
-                >
-                  {t("footerSection.aboutUs")}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigate("/testimonials")}
-                  className="hover:text-white transition-colors duration-200 cursor-pointer"
-                >
-                  {t("footerSection.clientStories")}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="hover:text-white transition-colors duration-200 cursor-pointer"
-                >
-                  {t("footerSection.contact")}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigate("/faq")}
-                  className="hover:text-white transition-colors duration-200 cursor-pointer"
-                >
-                  {t("footerSection.faq")}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() =>
-                    navigate(
-                      language === "fr"
-                        ? "/privacy-policy-fr"
-                        : "/privacy-policy"
-                    )
-                  }
-                  className="hover:text-white transition-colors duration-200 cursor-pointer"
-                >
-                  {t("footerSection.privacyPolicy")}
-                </button>
-              </li>
+            <ul className="space-y-2.5 text-sm text-white/65">
+              {quickLinks.map((link, i) => (
+                <li key={i}>
+                  <button
+                    onClick={link.action}
+                    className="link-underline transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact info */}
           <div>
-            <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest2 text-gold-light">
               {t("footerSection.contactInfo")}
             </h4>
-            <div className="space-y-2 text-gray-300 text-sm sm:text-base">
+            <div className="space-y-2.5 text-sm text-white/65">
               <p>📍 Nice, French Riviera</p>
               <p className="break-all">📱 +33 7 58 78 16 78</p>
               <p className="break-all">📧 {EMAIL_ADDRESS}</p>
@@ -145,16 +116,14 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-gray-700 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400">
-          <p className="flex items-center justify-center gap-2 text-sm sm:text-base flex-wrap">
+        {/* Bottom */}
+        <div className="mt-12 border-t border-white/10 pt-8 text-center text-white/50">
+          <p className="flex flex-wrap items-center justify-center gap-1.5 text-sm">
             © {currentYear} Azur Escape. {t("footerSection.madeWith")}
-            <FiHeart className="w-4 h-4 text-red-500" />
+            <FiHeart className="h-4 w-4 text-coral" />
             {t("footerSection.forTravelers")}
           </p>
-          <p className="mt-2 text-xs sm:text-sm">
-            {t("footerSection.licensedLine")}
-          </p>
+          <p className="mt-2 text-xs">{t("footerSection.licensedLine")}</p>
         </div>
       </div>
     </footer>

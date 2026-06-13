@@ -1,200 +1,164 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { Clock, MapPin, Calendar, Star, ChevronRight } from "lucide-react";
+import { Clock, MapPin, Calendar, ArrowUpRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 import { getToursByLanguage } from "../data/newToursData";
 import { getWhatsAppUrl } from "../config/constants";
+import { gsap, ScrollTrigger, prefersReducedMotion } from "../lib/gsap";
 import TourBadges from "./TourBadges";
 
-// Pure function — no component state, lives outside to avoid re-creation
-const getDurationBadgeColor = (type) => {
-  switch (type) {
-    case "half-day":
-      return "bg-blue-100 text-blue-800 border-blue-200";
-    case "full-day":
-      return "bg-purple-100 text-purple-800 border-purple-200";
-    default:
-      return "bg-gray-100 text-gray-800 border-gray-200";
-  }
-};
-
 // ─── TourCard ────────────────────────────────────────────────────────────────
-const TourCard = React.memo(
-  ({ tour, isHovered, onHover, onUnhover, onBookNow, onViewDetails }) => {
-    const { t } = useLanguage();
+const TourCard = React.memo(({ tour, index, onBookNow, onViewDetails }) => {
+  const { t } = useLanguage();
+  const cardRef = useRef(null);
+  const imgRef = useRef(null);
 
-    return (
+  // Subtle 3D tilt + image parallax that follows the pointer.
+  const handleMove = (e) => {
+    if (prefersReducedMotion()) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `perspective(900px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateY(-6px)`;
+    if (imgRef.current) {
+      imgRef.current.style.transform = `scale(1.08) translate(${px * -14}px, ${py * -14}px)`;
+    }
+  };
+  const handleLeave = () => {
+    const el = cardRef.current;
+    if (el) el.style.transform = "perspective(900px) rotateY(0) rotateX(0) translateY(0)";
+    if (imgRef.current) imgRef.current.style.transform = "scale(1) translate(0,0)";
+  };
+
+  const duration =
+    tour.durationType === "half-day" ? t("tours.card.halfDay") : t("tours.card.fullDay");
+
+  return (
+    <article
+      data-tour-card
+      style={{ "--i": index }}
+      className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-azur-deep/10 bg-white shadow-soft transition-shadow duration-500 hover:shadow-lift"
+    >
       <div
-        className={`group relative bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 ${
-          isHovered ? "ring-2 ring-blue-500" : ""
-        }`}
-        onMouseEnter={() => onHover(tour.id)}
-        onMouseLeave={onUnhover}
+        ref={cardRef}
+        className="tilt-card flex h-full flex-col"
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
       >
-        {/* Badges */}
-        <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
-          <TourBadges tour={tour} size="sm" />
-        </div>
-
-        {/* Duration Badge */}
-        <div className="absolute top-4 right-4 z-10">
-          <div
-            className={`px-3 py-1 rounded-full text-xs font-semibold border ${getDurationBadgeColor(
-              tour.durationType
-            )} shadow-sm`}
-          >
-            {tour.durationType === "half-day"
-              ? t("tours.card.halfDay")
-              : t("tours.card.fullDay")}
-          </div>
-        </div>
-
         {/* Image */}
         <div
-          className="relative h-56 overflow-hidden cursor-pointer"
+          className="relative h-64 cursor-pointer overflow-hidden"
           onClick={() => onViewDetails(tour)}
+          data-cursor="hover"
         >
           <img
+            ref={imgRef}
             src={tour.image}
             alt={tour.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out-expo will-change-transform"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-azur-ink/80 via-azur-ink/10 to-transparent" />
 
-          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <button className="bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-              {t("tours.viewDetails")}
-              <ChevronRight className="w-4 h-4" />
-            </button>
+          {/* Badges */}
+          <div className="absolute left-4 top-4 z-10 flex flex-col items-start gap-2">
+            <TourBadges tour={tour} size="sm" />
+          </div>
+
+          {/* Duration chip */}
+          <div className="absolute right-4 top-4 z-10 rounded-full border border-white/30 bg-azur-ink/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-md">
+            {duration}
+          </div>
+
+          {/* Route ribbon */}
+          <div className="absolute inset-x-4 bottom-4 z-10 flex items-center gap-1.5 text-[12px] font-medium text-white/90">
+            <MapPin className="h-3.5 w-3.5 shrink-0 text-gold-light" />
+            <span className="truncate">{tour.stops.join("  ·  ")}</span>
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 min-h-[56px]">
+        <div className="flex flex-1 flex-col p-6">
+          <h3 className="font-display text-2xl font-medium leading-snug text-azur-deep">
             {tour.title}
           </h3>
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+          <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-azur-deep/65">
             {tour.description}
           </p>
 
-          {/* Tour Info */}
-          <div className="space-y-2 mb-4">
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
-              <span className="font-medium">{tour.duration}</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              <Calendar className="w-4 h-4 text-green-600 flex-shrink-0" />
-              <span>
-                {t("tours.card.departureLabel")} {tour.departure}
-              </span>
-            </div>
-            <div className="flex items-start gap-2 text-sm text-gray-700">
-              <MapPin className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
-              <span className="line-clamp-1">{tour.stops.join(" • ")}</span>
-            </div>
+          {/* Meta */}
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-azur-deep/75">
+            <span className="flex items-center gap-1.5">
+              <Clock className="h-4 w-4 text-teal-sea" />
+              {tour.duration}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Calendar className="h-4 w-4 text-teal-sea" />
+              {tour.departure}
+            </span>
           </div>
 
-          {/* Highlights */}
-          <div className="mb-4">
-            <p className="text-xs font-semibold text-gray-500 uppercase mb-2">
-              {t("tours.card.highlightsLabel")}
-            </p>
-            <ul className="space-y-1">
-              {tour.highlights.slice(0, 3).map((highlight, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-2 text-sm text-gray-600"
-                >
-                  <Star className="w-3 h-3 text-amber-500 flex-shrink-0 mt-1" />
-                  <span className="line-clamp-1">{highlight}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Pricing */}
-          <div className="border-t border-gray-200 pt-4 mb-4">
-            <div className="flex items-baseline justify-between">
-              <div>
-                <p className="text-xs text-gray-500 uppercase font-semibold">
-                  {tour.isPrivate
-                    ? t("tours.card.totalPrice")
-                    : t("tours.card.startingFrom")}
-                </p>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-bold text-gray-900">
-                    {tour.currency}
-                    {tour.pricePerPax}
+          {/* Price + actions */}
+          <div className="mt-6 flex items-end justify-between border-t border-azur-deep/10 pt-5">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-widest2 text-azur-deep/45">
+                {tour.isPrivate ? t("tours.card.totalPrice") : t("tours.card.startingFrom")}
+              </p>
+              <p className="mt-1 font-display text-3xl text-azur-deep">
+                {tour.currency}
+                {tour.pricePerPax}
+                {!tour.isPrivate && (
+                  <span className="ml-1 font-sans text-sm text-azur-deep/55">
+                    /{t("tours.card.person")}
                   </span>
-                  {!tour.isPrivate && (
-                    <span className="text-sm text-gray-600">
-                      / {t("tours.card.person")}
-                    </span>
-                  )}
-                </div>
-              </div>
-              {tour.isPrivate && (
-                <div className="text-right">
-                  <p className="text-xs text-indigo-600 font-semibold">
-                    {t("tours.badges.privateTour")}
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    {t("tours.card.customRoute")}
-                  </p>
-                </div>
-              )}
+                )}
+              </p>
             </div>
-          </div>
-
-          {/* Actions */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => onBookNow(tour)}
-              className="flex-1 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
-            >
-              <FaWhatsapp className="w-5 h-5" />
-              {t("nav.bookNow")}
-            </button>
             <button
               onClick={() => onViewDetails(tour)}
-              className="px-4 py-3 border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 rounded-lg font-semibold transition-colors duration-200"
+              className="flex items-center gap-1 text-[12px] font-bold uppercase tracking-widest2 text-azur-sea transition-colors hover:text-teal-deep"
             >
               {t("tours.card.details")}
+              <ArrowUpRight className="h-4 w-4" />
             </button>
           </div>
+
+          <button
+            onClick={() => onBookNow(tour)}
+            className="mt-4 flex items-center justify-center gap-2 rounded-full bg-azur-deep py-3.5 text-sm font-bold uppercase tracking-widest2 text-white transition-colors duration-300 hover:bg-azur-sea"
+          >
+            <FaWhatsapp className="h-4 w-4" />
+            {t("nav.bookNow")}
+          </button>
         </div>
       </div>
-    );
-  }
-);
+    </article>
+  );
+});
 
 TourCard.propTypes = {
   tour: PropTypes.shape({
-    id:          PropTypes.number.isRequired,
-    title:       PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image:       PropTypes.string.isRequired,
-    duration:    PropTypes.string.isRequired,
-    departure:   PropTypes.string.isRequired,
-    stops:       PropTypes.arrayOf(PropTypes.string).isRequired,
-    highlights:  PropTypes.arrayOf(PropTypes.string).isRequired,
-    currency:    PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    duration: PropTypes.string.isRequired,
+    departure: PropTypes.string.isRequired,
+    stops: PropTypes.arrayOf(PropTypes.string).isRequired,
+    highlights: PropTypes.arrayOf(PropTypes.string).isRequired,
+    currency: PropTypes.string.isRequired,
     pricePerPax: PropTypes.number.isRequired,
-    isPrivate:   PropTypes.bool,
-    maxPax:      PropTypes.number,
+    isPrivate: PropTypes.bool,
     durationType: PropTypes.string,
-    topPick:     PropTypes.bool,
-    popular:     PropTypes.bool,
+    topPick: PropTypes.bool,
+    popular: PropTypes.bool,
   }).isRequired,
-  isHovered:    PropTypes.bool.isRequired,
-  onHover:      PropTypes.func.isRequired,
-  onUnhover:    PropTypes.func.isRequired,
-  onBookNow:    PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  onBookNow: PropTypes.func.isRequired,
   onViewDetails: PropTypes.func.isRequired,
 };
 
@@ -202,7 +166,7 @@ TourCard.propTypes = {
 const EnhancedTours = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
-  const [hoveredTour, setHoveredTour] = useState(null);
+  const sectionRef = useRef(null);
 
   const tours = useMemo(() => getToursByLanguage(language), [language]);
 
@@ -219,32 +183,64 @@ const EnhancedTours = () => {
     [navigate]
   );
 
-  const handleHover   = useCallback((id) => setHoveredTour(id), []);
-  const handleUnhover = useCallback(() => setHoveredTour(null), []);
+  // Scroll-triggered staggered reveal of the header and cards.
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      gsap.from(".tours-head > *", {
+        scrollTrigger: { trigger: ".tours-head", start: "top 80%" },
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+      gsap.from("[data-tour-card]", {
+        scrollTrigger: { trigger: ".tours-grid", start: "top 78%" },
+        y: 60,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.1,
+        ease: "power3.out",
+      });
+    }, sectionRef);
+    return () => {
+      ctx.revert();
+      ScrollTrigger.refresh();
+    };
+  }, [language]);
 
   return (
     <section
       id="tours"
-      className="pt-20 py-16 bg-gradient-to-b from-gray-50 to-white"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-sand py-24 sm:py-32"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      {/* faint atmospheric accent */}
+      <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 -translate-y-1/3 translate-x-1/3 rounded-full bg-azur-mist/20 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="tours-head mx-auto mb-16 max-w-3xl text-center">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-ultra text-gold-deep">
+            01 — {t("tours.title")}
+          </p>
+          <h2 className="font-display text-4xl font-light leading-tight text-azur-deep sm:text-6xl">
             {t("tours.section.title")}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="hairline mx-auto my-7 h-px w-24" />
+          <p className="text-lg leading-relaxed text-azur-deep/65">
             {t("tours.section.subtitle")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tours.map((tour) => (
+        {/* Grid */}
+        <div className="tours-grid grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {tours.map((tour, index) => (
             <TourCard
               key={tour.id}
               tour={tour}
-              isHovered={hoveredTour === tour.id}
-              onHover={handleHover}
-              onUnhover={handleUnhover}
+              index={index}
               onBookNow={handleBookNow}
               onViewDetails={handleViewDetails}
             />
@@ -252,24 +248,25 @@ const EnhancedTours = () => {
         </div>
 
         {/* Custom Tour CTA */}
-        <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-center text-white shadow-2xl">
-          <h3 className="text-2xl font-bold mb-3">
-            {t("tours.custom.title")}
-          </h3>
-          <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            {t("tours.custom.description")}
-          </p>
-          <a
-            href={getWhatsAppUrl(
-              "Hello! I'm interested in creating a custom tour experience."
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-200 shadow-lg"
-          >
-            <FaWhatsapp className="w-5 h-5" />
-            {t("tours.custom.cta")}
-          </a>
+        <div className="relative mt-16 overflow-hidden rounded-[2rem] bg-azur-deep px-8 py-14 text-center text-white shadow-lift">
+          <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_20%_20%,rgba(31,143,208,0.5),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(231,180,115,0.35),transparent_55%)]" />
+          <div className="relative">
+            <h3 className="font-display text-3xl font-light sm:text-4xl">
+              {t("tours.custom.title")}
+            </h3>
+            <p className="mx-auto mt-4 max-w-2xl text-white/70">
+              {t("tours.custom.description")}
+            </p>
+            <a
+              href={getWhatsAppUrl("Hello! I'm interested in creating a custom tour experience.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold mt-8 inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-bold uppercase tracking-widest2"
+            >
+              <FaWhatsapp className="h-5 w-5" />
+              {t("tours.custom.cta")}
+            </a>
+          </div>
         </div>
       </div>
     </section>
