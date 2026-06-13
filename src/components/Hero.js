@@ -65,9 +65,16 @@ const Hero = () => {
       {/* Living Mediterranean seascape (WebGL) */}
       <OceanCanvas />
 
-      {/* Legibility scrims */}
-      <div className="absolute inset-0 bg-gradient-to-b from-azur-ink/55 via-transparent to-azur-ink/85" />
-      <div className="absolute inset-0 bg-gradient-to-r from-azur-ink/45 via-transparent to-transparent" />
+      {/* Legibility scrims — strong vertical wash plus a dark halo centred on
+          the text so the bright sunset horizon never washes the copy out. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-azur-ink/80 via-azur-ink/40 to-azur-ink/95" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 95% 70% at 50% 44%, rgba(4,16,31,0.82), rgba(4,16,31,0.25) 60%, transparent 78%)",
+        }}
+      />
 
       {/* Content */}
       <div className="hero-content relative z-10 mx-auto max-w-5xl px-6 pt-24 pb-10 text-center text-white sm:py-0">
@@ -75,18 +82,18 @@ const Hero = () => {
           {t("hero.eyebrow")}
         </p>
 
-        <h1 className="font-display font-light leading-[0.92] tracking-tight">
+        <h1 className="text-shadow-hero font-display font-light leading-[0.92] tracking-tight">
           <span className="hero-title-line reveal-line text-7xl xs:text-8xl sm:text-[8rem] md:text-[11rem] lg:text-[13rem]">
             <span>Azur</span>
           </span>
-          <span className="hero-title-line reveal-line text-7xl italic text-gradient-gold xs:text-8xl sm:text-[8rem] md:text-[11rem] lg:text-[13rem]">
+          <span className="hero-title-line reveal-line text-7xl italic text-gold-light xs:text-8xl sm:text-[8rem] md:text-[11rem] lg:text-[13rem]">
             <span>Escape</span>
           </span>
         </h1>
 
         <div className="hero-rule hairline mx-auto mb-5 mt-5 h-px w-28 origin-center sm:mb-7 sm:mt-6 sm:w-40" />
 
-        <p className="hero-desc mx-auto mb-8 max-w-2xl text-balance text-[15px] font-light leading-relaxed text-white/80 sm:mb-10 sm:text-lg">
+        <p className="hero-desc text-shadow-hero mx-auto mb-8 max-w-2xl text-balance text-[15px] font-light leading-relaxed text-white/90 sm:mb-10 sm:text-lg">
           {t("hero.subtitle")}.
           <span className="hidden sm:inline"> {t("hero.description")}</span>
         </p>

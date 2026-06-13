@@ -78,7 +78,7 @@ const fragmentShader = /* glsl */ `
     float disc  = smoothstep(0.085, 0.075, dist);
     float glow  = smoothstep(0.55, 0.0, dist);
     vec3 sunCol = vec3(1.0, 0.86, 0.62);
-    skyCol += glow * glow * 0.65 * sunCol;
+    skyCol += glow * glow * 0.48 * sunCol;
     skyCol = mix(skyCol, vec3(1.0, 0.93, 0.78), disc);
 
     // ── SEA ──────────────────────────────────────────────────
@@ -108,7 +108,7 @@ const fragmentShader = /* glsl */ `
 
     // crisp horizon line glow
     float line = smoothstep(0.004, 0.0, abs(uv.y - horizon));
-    seaCol += line * 0.5 * vec3(1.0, 0.8, 0.55);
+    seaCol += line * 0.32 * vec3(1.0, 0.8, 0.55);
 
     col = uv.y > horizon ? skyCol : seaCol;
 

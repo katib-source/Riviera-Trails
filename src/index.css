@@ -51,6 +51,11 @@ nav {
   text-wrap: balance;
 }
 
+/* Strong legibility shadow for text laid over the bright seascape */
+.text-shadow-hero {
+  text-shadow: 0 2px 28px rgba(4, 16, 31, 0.65), 0 1px 6px rgba(4, 16, 31, 0.55);
+}
+
 ::selection {
   background: var(--gold);
   color: var(--azur-ink);
