@@ -70,30 +70,31 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-azur-ink/45 via-transparent to-transparent" />
 
       {/* Content */}
-      <div className="hero-content relative z-10 mx-auto max-w-5xl px-6 text-center text-white">
-        <p className="hero-eyebrow mb-6 text-xs font-semibold uppercase tracking-ultra text-gold-light sm:text-sm">
+      <div className="hero-content relative z-10 mx-auto max-w-5xl px-6 pt-24 pb-10 text-center text-white sm:py-0">
+        <p className="hero-eyebrow mb-4 text-[10px] font-semibold uppercase tracking-widest2 text-gold-light sm:mb-6 sm:text-sm sm:tracking-ultra">
           {t("hero.eyebrow")}
         </p>
 
         <h1 className="font-display font-light leading-[0.92] tracking-tight">
-          <span className="hero-title-line reveal-line text-[18vw] sm:text-[15vw] md:text-[11rem] lg:text-[13rem]">
+          <span className="hero-title-line reveal-line text-7xl xs:text-8xl sm:text-[8rem] md:text-[11rem] lg:text-[13rem]">
             <span>Azur</span>
           </span>
-          <span className="hero-title-line reveal-line text-[18vw] italic text-gradient-gold sm:text-[15vw] md:text-[11rem] lg:text-[13rem]">
+          <span className="hero-title-line reveal-line text-7xl italic text-gradient-gold xs:text-8xl sm:text-[8rem] md:text-[11rem] lg:text-[13rem]">
             <span>Escape</span>
           </span>
         </h1>
 
-        <div className="hero-rule hairline mx-auto mt-6 mb-7 h-px w-40 origin-center" />
+        <div className="hero-rule hairline mx-auto mb-5 mt-5 h-px w-28 origin-center sm:mb-7 sm:mt-6 sm:w-40" />
 
-        <p className="hero-desc mx-auto mb-10 max-w-2xl text-balance text-base font-light leading-relaxed text-white/80 sm:text-lg">
-          {t("hero.subtitle")}. {t("hero.description")}
+        <p className="hero-desc mx-auto mb-8 max-w-2xl text-balance text-[15px] font-light leading-relaxed text-white/80 sm:mb-10 sm:text-lg">
+          {t("hero.subtitle")}.
+          <span className="hidden sm:inline"> {t("hero.description")}</span>
         </p>
 
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
           <a
             href="#tours"
-            className="hero-cta btn-gold inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold uppercase tracking-widest2 sm:w-auto"
+            className="hero-cta btn-gold inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-widest2 sm:w-auto sm:py-4"
           >
             {t("hero.ctaButton")}
           </a>
@@ -101,7 +102,7 @@ const Hero = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hero-cta btn-outline-light inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold uppercase tracking-widest2 sm:w-auto"
+            className="hero-cta btn-outline-light inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-widest2 sm:w-auto sm:py-4"
           >
             <FaWhatsapp className="h-4 w-4" />
             {t("hero.ctaWhatsapp")}
@@ -109,13 +110,13 @@ const Hero = () => {
         </div>
 
         {/* Stats */}
-        <div className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-y-8 sm:grid-cols-4">
+        <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-x-4 gap-y-6 sm:mt-16 sm:grid-cols-4">
           {stats.map((s, i) => (
             <div key={i} className="hero-stat text-center">
-              <div className="font-display text-3xl text-gold-light sm:text-4xl">
-                <Counter value={s.value} decimals={s.decimals || 0} suffix={s.suffix} />
+              <div className="font-display text-2xl text-gold-light sm:text-4xl">
+                <Counter value={s.value} decimals={s.decimals || 0} suffix={s.suffix} immediate />
               </div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-widest2 text-white/55">
+              <div className="mt-1.5 text-[10px] font-medium uppercase tracking-widest2 text-white/55 sm:mt-2 sm:text-[11px]">
                 {s.label}
               </div>
             </div>
@@ -123,10 +124,10 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll cue */}
+      {/* Scroll cue (desktop only — mobile hero is already full) */}
       <a
         href="#tours"
-        className="hero-scroll absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/70 transition-colors hover:text-gold"
+        className="hero-scroll absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/70 transition-colors hover:text-gold sm:flex"
         aria-label={t("hero.scrollCue")}
       >
         <span className="text-[10px] font-medium uppercase tracking-ultra">
