@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { FiArrowDown } from "react-icons/fi";
 import { useLanguage } from "../context/LanguageContext";
 import { getWhatsAppUrl } from "../config/constants";
 import { gsap, prefersReducedMotion } from "../lib/gsap";
@@ -29,8 +28,7 @@ const Hero = () => {
         .from(".hero-rule", { scaleX: 0, duration: 1, ease: "power3.inOut" }, "-=0.7")
         .from(".hero-desc", { y: 22, opacity: 0, duration: 0.8 }, "-=0.6")
         .from(".hero-cta", { y: 22, opacity: 0, duration: 0.7, stagger: 0.12 }, "-=0.5")
-        .from(".hero-stat", { y: 26, opacity: 0, duration: 0.7, stagger: 0.1 }, "-=0.4")
-        .from(".hero-scroll", { opacity: 0, duration: 0.8 }, "-=0.3");
+        .from(".hero-stat", { y: 26, opacity: 0, duration: 0.7, stagger: 0.1 }, "-=0.4");
     }, rootRef);
     return () => ctx.revert();
   }, []);
@@ -130,20 +128,6 @@ const Hero = () => {
           ))}
         </div>
       </div>
-
-      {/* Scroll cue (desktop only — mobile hero is already full) */}
-      <a
-        href="#tours"
-        className="hero-scroll absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/70 transition-colors hover:text-gold sm:flex [@media(max-height:820px)]:!hidden"
-        aria-label={t("hero.scrollCue")}
-      >
-        <span className="text-[10px] font-medium uppercase tracking-ultra">
-          {t("hero.scrollCue")}
-        </span>
-        <span className="flex h-9 w-5 items-start justify-center rounded-full border border-white/40 p-1">
-          <FiArrowDown className="h-3 w-3 animate-scroll-cue" />
-        </span>
-      </a>
     </section>
   );
 };
