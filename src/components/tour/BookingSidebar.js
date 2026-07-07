@@ -4,6 +4,7 @@ import { Award, Info } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
 import { PHONE_NUMBER } from "../../config/constants";
+import { formatMoney } from "../../data/newToursData";
 
 const BookingSidebar = ({
   tour,
@@ -130,7 +131,7 @@ const BookingSidebar = ({
                 </span>
                 <span className="font-semibold">
                   {tour.currency}
-                  {originalTotal}
+                  {formatMoney(originalTotal)}
                 </span>
               </div>
               {hasDiscount && (
@@ -161,7 +162,7 @@ const BookingSidebar = ({
             </span>
             <span className="text-3xl font-bold text-blue-600">
               {tour.currency}
-              {totalPrice}
+              {formatMoney(totalPrice)}
             </span>
           </div>
         </div>

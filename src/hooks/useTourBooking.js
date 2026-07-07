@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
-import { calculateGroupPrice } from "../data/newToursData";
+import { calculateGroupPrice, formatMoney } from "../data/newToursData";
 import { getWhatsAppUrl } from "../config/constants";
 
 // Encapsulates all booking state for a single tour:
@@ -25,7 +25,7 @@ const useTourBooking = (tour) => {
     const message =
       `Hello! I would like to book "${tour.title}" for ${groupSize} ` +
       `${groupSize === 1 ? "person" : "people"}. ` +
-      `Total: ${tour.currency}${totalPrice}. Could you confirm availability?`;
+      `Total: ${tour.currency}${formatMoney(totalPrice)}. Could you confirm availability?`;
     window.open(getWhatsAppUrl(message), "_blank");
   }, [tour, groupSize, totalPrice]);
 

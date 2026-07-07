@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -79,6 +79,9 @@ function App() {
                     <Route path="faq" element={<FAQ />} />
                     <Route path="privacy-policy" element={<PrivacyPolicy />} />
                     <Route path="privacy-policy-fr" element={<PrivacyPolicyFr />} />
+                    {/* Unknown paths under /en or /fr — go home instead of
+                        rendering an empty page */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
                   </Route>
                 </Routes>
               </Suspense>

@@ -1,18 +1,33 @@
 import { useEffect } from "react";
-import { PHONE_NUMBER, EMAIL_ADDRESS } from "../config/constants";
+import { PHONE_NUMBER, EMAIL_ADDRESS, SITE_URL } from "../config/constants";
 import { useLanguage } from "../context/LanguageContext";
+
+// Canonical URLs must always point at the production host (never preview
+// deploys) and never carry query strings or fragments.
+const buildCanonical = () => `${SITE_URL}${window.location.pathname}`;
+
+// Social crawlers require absolute image URLs; keep already-absolute ones.
+const absolutize = (url) =>
+  url.startsWith("http") ? url : `${SITE_URL}${url}`;
+
+// Current path with any /en or /fr prefix stripped, for hreflang variants.
+const basePath = () =>
+  window.location.pathname.replace(/^\/(en|fr)(\/|$)/, "/");
 
 const SEOHead = ({
   title = "Azur Escape - French Riviera Tours | Expert Local Guide",
   description = "Discover the French Riviera with expert local guide. Small group tours from Nice to Menton. Book your authentic Côte d'Azur experience today. Licensed guide, instant booking.",
   keywords = "French Riviera tours, Nice tours, Monaco tours, Côte d'Azur guide, Riviera tours, Mediterranean tours, local guide France, small group tours",
-  canonical = window.location.href,
-  ogImage = "/images/tours/og-image.jpg",
+  canonical = null,
+  ogImage = "/images/tours/img-nice-menton.png",
   structuredData = null,
 }) => {
   const { language } = useLanguage();
 
   useEffect(() => {
+    const finalCanonical = canonical || buildCanonical();
+    const finalImage = absolutize(ogImage);
+
     // Update title
     document.title = title;
 
@@ -41,8 +56,8 @@ const SEOHead = ({
     updateMetaTag("og:title", title, true);
     updateMetaTag("og:description", description, true);
     updateMetaTag("og:type", "website", true);
-    updateMetaTag("og:url", canonical, true);
-    updateMetaTag("og:image", ogImage, true);
+    updateMetaTag("og:url", finalCanonical, true);
+    updateMetaTag("og:image", finalImage, true);
     updateMetaTag("og:site_name", "Azur Escape", true);
     const ogLocale = language === "fr" ? "fr_FR" : "en_US";
     const ogLocaleAlt = language === "fr" ? "en_US" : "fr_FR";
@@ -53,7 +68,7 @@ const SEOHead = ({
     updateMetaTag("twitter:card", "summary_large_image");
     updateMetaTag("twitter:title", title);
     updateMetaTag("twitter:description", description);
-    updateMetaTag("twitter:image", ogImage);
+    updateMetaTag("twitter:image", finalImage);
     updateMetaTag("twitter:site", "@azurescape");
 
     // Additional meta tags
@@ -69,11 +84,32 @@ const SEOHead = ({
       canonicalLink.setAttribute("rel", "canonical");
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute("href", canonical);
+    canonicalLink.setAttribute("href", finalCanonical);
 
-    // Add structured data if provided
+    // Keep hreflang alternates in sync with the current page (the static
+    // tags in index.html only describe the homepage)
+    const updateHreflang = (hreflang, href) => {
+      let link = document.querySelector(
+        `link[rel="alternate"][hreflang="${hreflang}"]`
+      );
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "alternate");
+        link.setAttribute("hreflang", hreflang);
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", href);
+    };
+    const path = basePath();
+    updateHreflang("en", `${SITE_URL}/en${path === "/" ? "/" : path}`);
+    updateHreflang("fr", `${SITE_URL}/fr${path === "/" ? "/" : path}`);
+    updateHreflang("x-default", `${SITE_URL}${path}`);
+
+    // Add structured data if provided; remove any left over from the
+    // previous page so stale JSON-LD doesn't describe the wrong content
+    const existingScript = document.querySelector("#structured-data");
     if (structuredData) {
-      let structuredDataScript = document.querySelector("#structured-data");
+      let structuredDataScript = existingScript;
       if (!structuredDataScript) {
         structuredDataScript = document.createElement("script");
         structuredDataScript.id = "structured-data";
@@ -81,6 +117,8 @@ const SEOHead = ({
         document.head.appendChild(structuredDataScript);
       }
       structuredDataScript.textContent = JSON.stringify(structuredData);
+    } else if (existingScript) {
+      existingScript.remove();
     }
   }, [title, description, keywords, canonical, ogImage, structuredData, language]);
 
@@ -132,6 +170,7 @@ export const seoConfigs = {
       tour.pricePerPax
     }/person. Expert local guide, small groups.`,
     keywords: `${tour.title}, French Riviera tours, Monaco tour, Nice tour, Menton tour`,
+    ogImage: tour.image,
     structuredData: {
       "@context": "https://schema.org",
       "@type": "TouristTrip",

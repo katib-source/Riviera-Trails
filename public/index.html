@@ -6,6 +6,15 @@
     <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0077BE" />
+
+    <!-- Fonts: loaded here (not via CSS @import) so the browser can start the
+         request immediately instead of after the main stylesheet parses -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
     <meta
       name="description"
       content="Discover the French Riviera with Azur Escape. Premium guided tours from Nice to Menton featuring Monaco, Èze, and coastal villages. Small groups, expert guides, WhatsApp booking."
@@ -53,7 +62,7 @@
     <meta property="og:url" content="https://www.azurescape.fr" />
     <meta
       property="og:image"
-      content="%PUBLIC_URL%/images/tours/img-nice-menton.png"
+      content="https://www.azurescape.fr/images/tours/img-nice-menton.png"
     />
     <meta property="og:site_name" content="Azur Escape" />
     <meta property="og:locale" content="en_US" />
@@ -70,9 +79,8 @@
     />
     <meta
       name="twitter:image"
-      content="%PUBLIC_URL%/images/tours/img-nice-menton.png"
+      content="https://www.azurescape.fr/images/tours/img-nice-menton.png"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/

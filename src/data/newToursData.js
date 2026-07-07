@@ -370,16 +370,34 @@ export const getToursByLanguage = (language = "en") => {
   return updatedToursData.tours[language] || updatedToursData.tours.en;
 };
 
-// Helper function to get individual tour by slug and language
+// Helper function to get individual tour by slug and language.
+// Slugs are localized (e.g. "explore-the-riviera" vs "explorer-la-riviera"),
+// so when the slug belongs to another language (user switched language while
+// on a tour page, or followed a cross-language link), find the tour in any
+// language and return its counterpart (same id) in the requested language.
 export const getTourBySlug = (slug, language = "en") => {
   const tours = getToursByLanguage(language);
-  return tours.find((tour) => tour.slug === slug);
+  const direct = tours.find((tour) => tour.slug === slug);
+  if (direct) return direct;
+
+  for (const otherTours of Object.values(updatedToursData.tours)) {
+    const match = otherTours.find((tour) => tour.slug === slug);
+    if (match) {
+      return tours.find((tour) => tour.id === match.id) || match;
+    }
+  }
+  return undefined;
 };
+
+// Format a money amount for display: whole euros as-is, fractional
+// amounts (e.g. group-discount totals like 382.5) always with 2 decimals.
+export const formatMoney = (amount) =>
+  Number.isInteger(amount) ? String(amount) : amount.toFixed(2);
 
 // Helper function to format price
 export const formatPrice = (pricePerPax, numPeople = 1, currency = "€") => {
   const total = pricePerPax * numPeople;
-  return `${currency}${total}`;
+  return `${currency}${formatMoney(total)}`;
 };
 
 // Helper function to calculate group discount (if applicable)
