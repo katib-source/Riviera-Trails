@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { ChevronLeft } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 import TourBadges from "../TourBadges";
+import { handleTourImageError } from "../../config/constants";
 
 const TourHeroSection = ({ tour, onBack }) => {
   const { t } = useLanguage();
@@ -14,6 +15,7 @@ const TourHeroSection = ({ tour, onBack }) => {
         alt={tour.title}
         className="w-full h-full object-cover"
         fetchpriority="high"
+        onError={handleTourImageError}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
